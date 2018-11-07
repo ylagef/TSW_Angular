@@ -22,6 +22,7 @@
                 </i>
               </div>
             </div>
+            <input class="form-control" placeholder="Email" type="email">
             <!-- <?= $this->Form->control('email',["class"=>"form-control","placeholder"=>__("Email"),"label"=>false,"type"=>"email"]) ?> -->
           </div>
 
@@ -33,6 +34,7 @@
                 </i>
               </div>
             </div>
+            <input class="form-control" placeholder="Username">
             <!-- <?= $this->Form->control('username',["class"=>"form-control","placeholder"=>__("Username"),"label"=>false]) ?> -->
           </div>
 
@@ -44,6 +46,7 @@
                 </i>
               </div>
             </div>
+            <input class="form-control" placeholder="Name">
             <!-- <?= $this->Form->control('name',["class"=>"form-control","placeholder"=>__("Name"),"label"=>false]) ?> -->
           </div>
 
@@ -55,6 +58,7 @@
                 </i>
               </div>
             </div>
+            <input class="form-control" placeholder="Password" type="password">
             <!-- <?= $this->Form->control('password',["class"=>"form-control","placeholder"=>__("Password"),"label"=>false]) ?> -->
           </div>
 
@@ -66,20 +70,23 @@
                 </i>
               </div>
             </div>
+            <input class="form-control" placeholder="Password confirm" type="password">
             <!-- <?= $this->Form->control('password_confirm',["class"=>"form-control","placeholder"=>__("Repeat password"),"label"=>false,"type"=>"password"]) ?> -->
           </div>
         </div>
 
-        <small id="help" class="form-text text-muted">
+        <small id="help" class="form-text text-muted text-center">
           - Fields are mandatory -
         </small>
 
-        <small id="help" class="form-text font-weight-light">
+        <small id="help" class="form-text font-weight-light text-center">
+          <a href="login">Return to login</a>
           <!-- <?= $this->Html->link(__("Return to login"), array('controller' => 'Users','action'=> 'login'))?> -->
         </small>
 
-        <div class="form-group row submit-button">
+        <div class="form-group row submit-button text-center">
           <div class="col-sm-12">
+            <button class="btn btn-outline-secondary">Sign up</button>
             <!-- <?= $this->Form->button(__('Sign up'),["class"=>"btn btn-outline-secondary"]); ?> -->
           </div>
         </div>
