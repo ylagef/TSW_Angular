@@ -1,0 +1,184 @@
+small {
+  margin-bottom: 1rem;
+}
+
+.link-icon {
+  background-color: #6c757d;
+  color: white;
+}
+
+.copy-button {
+  background-color: none;
+  color: #6c757d;
+}
+
+.accept-button {
+  width: 6rem;
+  float: right;
+  margin-top: 1rem;
+}
+
+.table-responsive {
+  margin-top: 2rem;
+}
+
+.jumbotron {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  width: 80%!important;
+  padding-bottom: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dropdown-menu {
+  min-width: 6rem;
+  margin: 2.2rem 0 0;
+  top: 0;
+}
+
+.dropdown-item:active {
+  background-color: white;
+  color: black;
+}
+
+.my-2 {
+  width: 10rem;
+  margin-bottom: 1rem!important;
+}
+
+.btn-group {
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+
+.table td {
+  vertical-align: middle!important;
+}
+
+.dropdown-day {
+  width: 4.1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropdown-month {
+  width: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropdown-year {
+  width: 5.1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropdown-time {
+  width: 5.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.other-option-button {
+  width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5rem;
+}
+
+.delete-td {
+  width: 1rem;
+}
+
+.delete-icon {
+  vertical-align: middle;
+}
+
+.form-control {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.date {
+  width: 50%!important;
+}
+
+.startTime {
+  width: 40%!important;
+}
+
+.endTime {
+  width: 40%!important;
+}
+
+.table th {
+  vertical-align: middle;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+  .jumbotron {
+    width: 70%!important;
+    padding-bottom: 2rem 1rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+  .location {
+    margin-top: 0rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  .btn-group {
+    margin-bottom: 0rem;
+  }
+}
+
+div.time-picker {
+  position: absolute;
+  height: 191px;
+  width: 200px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #aaa;
+  z-index: 99;
+  margin: 0;
+}
+
+div.time-picker-12hours {
+  width: 200px;
+}
+
+div.time-picker ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.time-picker li {
+  cursor: pointer;
+  height: 12px;
+  padding: 4px 3px;
+  color: #000;
+}
+
+div.time-picker li.selected {
+  background: #0063CE;
+  color: #fff;
+}
