@@ -1,2 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css'; // Importing bootstrap
+
+html,
+body {
+  height: 100%;
+  background-color: white;
+}
+
+.alert {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.logo {
+  width: 7rem;
+  margin-right: 1rem;
+}
+
+.jumbotron {
+  padding-bottom: 2rem;
+}
+
+.login-lang {
+  // margin-top: 2rem;
+  float: right;
+  margin-right: 1rem;
+}
+
+.lang-group {
+  margin-right: 2rem;
+}

@@ -1,0 +1,45 @@
+.nav {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white!important;
+    border: solid #6c757d;
+    border-width: 1px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+.nav-title {
+    margin-right: 1rem;
+}
+.dropdown-menu {
+    min-width: 6rem;
+    margin: 2.2rem 0 0;
+    top: 0;
+}
+.dropdown-item:active {
+    background-color: white;
+    color: black;
+}
+@media (min-width: 576px) {
+    .nav {
+        width: 80%;
+    }
+}
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {}
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .btn-group {
+        margin-bottom: 0rem;
+    }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .btn-group {
+        margin-bottom: 0rem;
+    }
+}
