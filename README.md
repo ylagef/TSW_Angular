@@ -23,24 +23,33 @@
 Coded with Angular 7 + Bootstrap 4 frameworks.
 
 **Location:**
+
 front/angular/
 
 **Start command:**
+
 `$ cd front/angular`
+
 `$ npm install`
+
 `$ ng serve`
 
 Will serve front at *localhost:4200/*
 
 ### Back
+
 Coded with ExpressJS framework.
 
 **Location:**
+
 back/api-rest/
 
 **Start command:**
+
 `$ cd back/api-rest`
+
 `$ npm install`
+
 `$ npm start`
 
 Will serve API REST at *localhost:3000/*
