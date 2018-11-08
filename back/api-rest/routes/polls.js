@@ -17,6 +17,7 @@ router.get('/', function (req, res, next) {
 
 // GET poll by id
 router.get('/:id', function (req, res, next) {
+  console.log(req.params);
   res.locals.connection.query('SELECT * FROM polls WHERE poll_id=' + req.params.id,
     function (error, results, fields) {
       if (error) {
@@ -31,6 +32,7 @@ router.get('/:id', function (req, res, next) {
 
 // POST poll
 router.post('/', function (req, res) {
+  console.log(req.body);
   var md5 = require('md5');
   const url = md5(req.body.title + "Hashing text");
   res.locals.connection.query('INSERT INTO polls (title, place, author, url) VALUES (?,?,?,?)',
@@ -48,6 +50,7 @@ router.post('/', function (req, res) {
 
 // DELETE poll by id
 router.delete('/:id', function (req, res, next) {
+  console.log(req.params);
   res.locals.connection.query('DELETE FROM polls WHERE poll_id=' + req.params.id,
     function (error, results, fields) {
       if (error) {

@@ -17,6 +17,7 @@ router.get('/', function (req, res, next) {
 
 // GET assignation by id
 router.get('/:id', function (req, res, next) {
+  console.log(req.params);
   res.locals.connection.query('SELECT * FROM assignations WHERE assignation_id=' + req.params.id,
     function (error, results, fields) {
       if (error) {
@@ -31,6 +32,7 @@ router.get('/:id', function (req, res, next) {
 
 // POST assignations
 router.post('/', function (req, res) {
+  console.log(req.body);
   res.locals.connection.query('INSERT INTO assignations (user_id, gap_id) VALUES (?,?)',
     [req.body.user_id, req.body.gap_id],
     function (error, results) {
@@ -46,6 +48,7 @@ router.post('/', function (req, res) {
 
 // DELETE assignation by id
 router.delete('/:id', function (req, res, next) {
+  console.log(req.params);
   res.locals.connection.query('DELETE FROM assignations WHERE assignation_id=' + req.params.id,
     function (error, results, fields) {
       if (error) {
