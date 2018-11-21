@@ -4,18 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { LoginComponent } from './login/login.component';
-import { LanguageComponent } from './language/language.component';
-import { LoginService } from './login/login.service';
+import { NavComponent } from './components/nav/nav.component';
+import { LoginComponent } from './components/login/login.component';
+import { LanguageComponent } from './components/language/language.component';
+import { LoginService } from './components/login/login.service';
 import { UserService } from './_services/user.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { PollComponent } from './poll/poll.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PollViewComponent } from './poll/poll-view/poll-view.component';
-import { PollIndexComponent } from './poll/poll-index/poll-index.component';
+import { PollComponent } from './components/poll/poll.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PollViewComponent } from './components/poll/poll-view/poll-view.component';
+import { PollIndexComponent } from './components/poll/poll-index/poll-index.component';
 
 @NgModule({
   declarations: [

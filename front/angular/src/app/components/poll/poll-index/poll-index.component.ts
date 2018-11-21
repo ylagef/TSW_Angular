@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PollService } from 'src/app/_services/poll.service';
-import { Poll } from '../../_models/poll.model';
-import { User } from '../../_models/user.model';
+import { Poll } from '../../../_models/poll.model';
+import { User } from '../../../_models/user.model';
 
 @Component({
   selector: 'app-poll-index',

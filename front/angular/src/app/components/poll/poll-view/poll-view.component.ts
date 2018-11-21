@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PollService } from 'src/app/_services/poll.service';
-import { Poll } from '../../_models/poll.model';
+import { Poll } from '../../../_models/poll.model';
 
 @Component({
   selector: 'app-poll-view',

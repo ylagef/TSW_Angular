@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { PollComponent } from './poll/poll.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PollIndexComponent } from './poll/poll-index/poll-index.component';
-import { PollViewComponent } from './poll/poll-view/poll-view.component';
+import { LoginComponent } from './components/login/login.component';
+import { PollComponent } from './components/poll/poll.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PollIndexComponent } from './components/poll/poll-index/poll-index.component';
+import { PollViewComponent } from './components/poll/poll-view/poll-view.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 
