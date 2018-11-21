@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Poll } from '../models/poll.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,11 @@ export class PollService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get(this.url);
+    return this.http.get<Poll[]>(this.url);
   }
 
   getById(id) {
-    return this.http.get(this.url + "/" + id);
+    return this.http.get<Poll>(this.url + "/" + id);
   }
 
 }

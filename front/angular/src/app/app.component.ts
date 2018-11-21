@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './user/user.service';
 // import { NavComponent } from './nav/nav.component';
 
 @Component({
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular';
+  userLogged
+  setUserLoggedIn() {
+    this.userLogged = true;
+  }
+
 }

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var md5 = require('md5');
 
 // GET users listing
 router.get('/', function (req, res, next) {
@@ -92,6 +93,43 @@ router.delete('/:id', function (req, res, next) {
           "error": null,
           "response": results
         });
+        //If there is no error, all is good and response is 200OK.
+      }
+    });
+});
+
+// POST user
+router.post('/login', function (req, res) {
+  console.log(req.body);
+  let hashedPass = md5(req.body.password);
+  console.log("Hashed pass: " + hashedPass);
+  res.locals.connection.query('SELECT user_id, username, name, email FROM users WHERE username="' + req.body.username + '" AND password="' + hashedPass + '"',
+    function (error, results, fields) {
+      if (error) {
+        res.json({
+          "status": 500,
+          "error": error,
+          "response": null
+        });
+        //If there is error, we send the error in the error section with 500 status
+      } else {
+        if (results.length == 1) {
+          console.log(results);
+          res.json({
+            "status": 200,
+            "error": null,
+            "response": results
+          });
+        } else {
+          res.status(400);
+
+          res.json({
+            "status": 400,
+            "error": "User is not on db",
+            "response": null
+          });
+
+        }
         //If there is no error, all is good and response is 200OK.
       }
     });

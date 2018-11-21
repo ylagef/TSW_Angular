@@ -9,8 +9,10 @@ var usersRouter = require('./routes/users');
 var pollsRouter = require('./routes/polls');
 var gapsRouter = require('./routes/gaps');
 var assignationsRouter = require('./routes/assignations');
+var cors = require('cors')
 
 var app = express();
+app.use(cors());
 
 var mysql = require("mysql");
 //Database connection
