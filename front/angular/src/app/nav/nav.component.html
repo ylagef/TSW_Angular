@@ -37,10 +37,12 @@
     <div class="btn-group" role="group">
       <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline-secondary btn-sm dropdown-toggle"
         data-toggle="dropdown" id="btnGroupDrop1" type="button">
-        Username
+        {{currentUser.name}}
         <!-- <?php echo $this->request->getSession()->read('Auth.User.name') ?> -->
       </button>
       <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
+        <button class="dropdown-item" i18n>Profile</button>
+        <button (click)="logout()" class="dropdown-item" i18n>Logout</button>
         <!-- <?=$this->Html->link(__('Profile'), ['controller' => 'Users', 'action' => 'edit'], ['class' => 'dropdown-item']);?>
         <?=$this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'dropdown-item']);?> -->
       </div>

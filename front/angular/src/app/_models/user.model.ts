@@ -3,11 +3,16 @@ export class User {
     private username: string;
     private name: string;
     private email: string;
+    private token: string = null;
 
     constructor(user_id, username, name, email) {
         this.user_id = user_id;
         this.username = username;
         this.name = name;
         this.email = email;
+    }
+
+    set jwt(jwt: string) {
+        this.token = jwt;
     }
 }

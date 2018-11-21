@@ -8,7 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { LanguageComponent } from './language/language.component';
 import { LoginService } from './login/login.service';
-import { UserService } from './user/user.service';
+import { UserService } from './_services/user.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';

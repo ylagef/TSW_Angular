@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var md5 = require('md5');
+var nJwt = require('njwt');
+var secureRandom = require('secure-random');
 
 // GET users listing
 router.get('/', function (req, res, next) {
@@ -115,6 +117,19 @@ router.post('/login', function (req, res) {
       } else {
         if (results.length == 1) {
           console.log(results);
+
+          var claims = {
+            iss: "http://myapp.com/", // The URL of your service
+            sub: "users/user1234", // The UID of the user in your system
+            scope: "self, admins"
+          }
+          var secretKey = secureRandom(256, {
+            type: 'Buffer'
+          }); // Create a highly random byte array of 256 bytes
+          var jwt = nJwt.create(claims, secretKey);
+          // console.log(jwt.compact());
+          console.log(results.push(jwt.compact()));
+
           res.json({
             "status": 200,
             "error": null,

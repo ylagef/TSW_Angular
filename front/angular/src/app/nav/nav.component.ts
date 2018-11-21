@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from '../_services/user.service';
+import { User } from '../_models/user.model';
+import { AuthenticationService } from '../_services/authentication.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -7,16 +10,16 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-
-  users: Object;
-
-  constructor(private userService: UserService) { }
+  currentUser: User;
+  constructor(private authService: AuthenticationService) {
+  }
 
   ngOnInit() {
-    // Get all users from DB
-    this.userService.getAll().subscribe(data => {
-      this.users = data['response'];
-    });
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }
