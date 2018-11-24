@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
 import { LanguageComponent } from './components/language/language.component';
-import { LoginService } from './components/login/login.service';
 import { UserService } from './_services/user.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +15,8 @@ import { PollComponent } from './components/poll/poll.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PollViewComponent } from './components/poll/poll-view/poll-view.component';
 import { PollIndexComponent } from './components/poll/poll-index/poll-index.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,17 +27,19 @@ import { PollIndexComponent } from './components/poll/poll-index/poll-index.comp
     PollComponent,
     PageNotFoundComponent,
     PollViewComponent,
-    PollIndexComponent
+    PollIndexComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    LoginService,
     UserService
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,103 @@
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="jumbotron jumbotron-fluid rounded">
+      <div class="container">
+        <h1 class="display-4" i18n>
+          Sign up!
+        </h1>
+        <p class="lead" i18n>
+          Tell me your data
+        </p>
+        <hr class="my-4">
+        <form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    mail_outline
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" placeholder="Email" type="email" formControlName="email">
+            </div>
+            <small class="error" *ngIf="registrationForm.controls.email.errors && (registrationForm.controls.email.touched || registrationForm.controls.email.dirty)">
+              Must be a@b.com format and is required.
+            </small>
+
+            <div class="
+              input-group passwd">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    face
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" placeholder="Username" formControlName="username">
+            </div>
+            <small class="error" *ngIf="registrationForm.controls.username.errors && (registrationForm.controls.username.touched || registrationForm.controls.username.dirty)">This
+              field is required. Size > 4.</small>
+
+            <div class="input-group passwd">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    person
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" placeholder="Name" formControlName="name">
+            </div>
+            <small class="error" *ngIf="registrationForm.controls.name.errors  && (registrationForm.controls.name.touched || registrationForm.controls.name.dirty)">This
+              field is required.</small>
+
+            <div class="input-group passwd">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    lock
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" placeholder="Password" type="password" formControlName="password">
+            </div>
+            <small class="error" *ngIf="registrationForm.controls.password.errors  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)">This
+              field is required. Size > 5.</small>
+
+            <div class="input-group passwd">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    refresh
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" name="password_confirm" placeholder="Repeat password" type="password"
+                formControlName="password_confirm">
+            </div>
+            <small class="error" *ngIf="registrationForm.controls.password_confirm.errors  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)">This
+              field is required.</small>
+          </div>
+
+          <small class="error" *ngIf="registrationForm.errors?.passwordValidation  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)">Password
+            doesn't match.</small>
+
+          <small id="help" class="form-text text-muted">- Fields are mandatory -</small>
+          <small id="help" class="form-text font-weight-light">
+            <a href="login" i18n>Return to login</a>
+          </small>
+
+          <div class="form-group row submit-button">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-outline-secondary" [disabled]="!registrationForm.valid" i18n> Sign
+                up</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

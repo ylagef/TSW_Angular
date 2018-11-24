@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PollIndexComponent } from './components/poll/poll-index/poll-index.component';
 import { PollViewComponent } from './components/poll/poll-view/poll-view.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent,
     pathMatch: 'full'
   },
   {

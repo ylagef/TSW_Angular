@@ -3,23 +3,26 @@
 <!-- CENTRAL JUMBOTRON -->
 <div class="jumbotron jumbotron-fluid rounded">
   <div class="container">
-    <h1 class="display-4">
-      <!-- <?=__("View Poll")?> -->
+    <h1 class="display-4" i18n>
+      View Poll
     </h1>
     <p class="lead"><i class="material-icons lead-icon">keyboard_arrow_right</i>
-      <!-- <?= h($poll->title) ?> -->
+      {{poll.title}}
     </p>
 
-    <p class="lead">
-      <!-- <?php
-          if($poll->place!=null){
-            echo "<i class='material-icons lead-icon'>place</i>";
-            echo h($poll->place);
-          } else {
-            echo "- ".__("Location not specified"." -");
-          } 
-        ?> -->
-    </p>
+    <div *ngIf="hasPlace; else noPlace">
+      <p class="lead">
+        <i class='material-icons lead-icon'>place</i>
+        {{poll.place}}
+      </p>
+    </div>
+
+    <ng-template #noPlace>
+      <p class="lead" i18n>
+        <i class='material-icons lead-icon'>place</i>
+        - Location not specified -
+      </p>
+    </ng-template>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -29,11 +32,12 @@
           </i>
         </span>
       </div>
-      <input type="text" class="form-control poll-link" value="<?=$_SERVER[" HTTP_HOST"]?>/polls/view/
-      <!-- <?= h($poll->url) ?>" disabled id="copyValue"> -->
+
+      <input type="text" class="form-control poll-link" value="localhost/!!!{{poll.url}}" disabled id="copyValue">
+
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" onclick="copy()">
-          <!-- <?=__("COPY")?> -->
+        <button class="btn btn-outline-secondary" type="button" onclick="copy()" i18n>
+          COPY
         </button>
       </div>
     </div>
@@ -42,20 +46,17 @@
       <table class="table text-center">
         <thead>
           <tr>
-            <th scope="col">
-              <!-- <?=__("Gaps")?> -->
+            <th scope="col" i18n>
+              Gaps
             </th>
-            <!-- <?php foreach ($users as $user): ?> -->
-            <th scope="col">
-              <!-- <?= h($user->name) ?> -->
+
+            <th scope="col" i18n *ngFor="let user of users">
+              {{user.name}}
             </th>
-            <!-- <?php endforeach; 
-               if($gaps->count()!=0){
-              ?> -->
-            <th scope="col" class="font-weight-light">
-              <!-- <?=__("Total")?> -->
+
+            <th scope="col" class="font-weight-light" i18n *ngIf="gaps.length!=0">
+              Total
             </th>
-            <!-- <?php } ?> -->
           </tr>
         </thead>
         <tbody>
@@ -66,20 +67,22 @@
                 $gapCount=0;
               ?> -->
 
-          <tr id="TR<?php echo $gap['gap_id'] ?>">
+          <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps">
             <th scope="row">
-              <!-- <p> -->
-              <!-- <?= h($gap->start_date) ?> -->
-              <!-- <p> -->
-              <!-- <p> -->
-              <!-- <?= h($gap->end_date) ?> -->
-              <!-- </p> -->
+              <p>
+                {{gap.start_date}}
+                <!-- <?= h($gap->start_date) ?> -->
+              </p>
+              <p>
+                {{gap.end_date}}
+                <!-- <?= h($gap->end_date) ?> -->
+              </p>
             </th>
 
             <!-- <?php foreach ($users as $user): 
                   $isAssignated=false;
                   ?> -->
-            <td>
+            <td *ngFor="let user of users">
               <!-- <?php 
                       foreach($assignations as $assignation):
                           if($assignation['user_id']==$user->user_id && $assignation['gap_id']==$gap->gap_id){
@@ -94,35 +97,31 @@
 
                       if($isAssignated){
                       ?> -->
-              <button type="button" class="btn btn-success btn-sm btn-disabled" disabled>
-                <!-- <?php
-                      }else{
-                      ?> -->
-                <!-- <button type="button" class="btn btn-outline-success btn-sm btn-disabled" disabled> -->
-                <!-- <?php
-                      }
-                      ?> -->
+
+              <button type="button" class="btn btn-success btn-sm btn-disabled" disabled *ngIf="assignationsMap.get(user.user_id)!=null && assignationsMap.get(user.user_id).indexOf(gap.gap_id)>-1 else notAssigned">
                 <i class="material-icons">
                   done
                 </i>
               </button>
+
+              <ng-template #notAssigned>
+                <button type="button" class="btn btn-outline-success btn-sm btn-disabled" disabled>
+
+                  <i class="material-icons">
+                    done
+                  </i>
+                </button>
+              </ng-template>
             </td>
-            <!-- <?php endforeach; 
-                if($gapCount>$maxGapCount) {
-                  $maxGapCount=$gapCount;
-                }
-                ?> -->
             <td>
-              <a class="font-weight-light" id="count<?php echo $gap['gap_id'] ?>">
+              <a class="font-weight-light" id="count{{gap.gap_id}}">
+                0
                 <!-- <?php echo $gapCount?> -->
               </a>
             </td>
-
-            <!-- <?php endforeach; 
-              } else {?> -->
             <td>
-              <a class="lead">
-                <!-- <?= __("Nobody has participated yet. Be the first!")?> -->
+              <a class="lead" i18n >
+                Nobody has participated yet. Be the first!
               </a>
             </td>
             <!-- <?php  }?> -->

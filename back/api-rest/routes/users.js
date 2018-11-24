@@ -52,14 +52,13 @@ router.get('/:id', function (req, res, next) {
 const bcrypt = require('bcrypt');
 
 // POST user
-router.post('/', function (req, res) {
+router.post('/register', function (req, res) {
   console.log(req.body);
-  let hashedPass = bcrypt.hashSync(req.body.password, 10);
-  console.log("Hashed pass: " + hashedPass);
   res.locals.connection.query('INSERT INTO users (username, name, email, password) VALUES (?,?,?,?)',
-    [req.body.username, req.body.name, req.body.email, hashedPass],
+    [req.body.data.username, req.body.data.name, req.body.data.email, req.body.data.password],
     function (error, results) {
       if (error) {
+        res.status(500);
         res.json({
           "status": 500,
           "error": error,
