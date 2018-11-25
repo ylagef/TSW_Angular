@@ -48,6 +48,30 @@ router.get('/:id', function (req, res, next) {
     });
 });
 
+// GET gap by id
+router.get('/poll/:id', function (req, res, next) {
+  console.log(req.params);
+  res.locals.connection.query('SELECT * FROM gaps WHERE poll_id=' + req.params.id,
+    function (error, results, fields) {
+      if (error) {
+        res.status(500);
+        res.json({
+          "status": 500,
+          "error": error,
+          "response": null
+        });
+        //If there is error, we send the error in the error section with 500 status
+      } else {
+        res.json({
+          "status": 200,
+          "error": null,
+          "response": results
+        });
+        //If there is no error, all is good and response is 200OK.
+      }
+    });
+});
+
 // POST gap
 router.post('/', function (req, res) {
   console.log(req.body);

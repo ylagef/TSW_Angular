@@ -33,7 +33,10 @@
                   </p>
                 </th>
                 <td>
-                  <button routerLink="/polls/view/{{poll.poll_id}}" class="btn btn-outline-info  btn-sm text-uppercase" i18n>view</button>
+
+                  <button routerLink="/polls/view/{{poll.url}}" class="btn btn-outline-info  btn-sm text-uppercase"
+                    i18n>view</button>
+
                   <!-- <?= $this->Html->link(__('View'), ['action' => 'view', $poll->url],['class'=>'btn btn-outline-info  btn-sm text-uppercase']) ?> -->
                 </td>
               </tr>

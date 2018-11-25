@@ -47,7 +47,7 @@
             - Fields are mandatory -
           </small>
           <small id="help" class="form-text font-weight-light text-center">
-            <a href="registration">
+            <a [routerLink]="['/registration']" routerLinkActive="router-link-active">
               Sign up
             </a>
           </small>
@@ -55,7 +55,8 @@
           <div class="form-group row submit-button text-center">
             <div class="col-sm-12">
               <!-- Login button -->
-              <button class="btn btn-outline-secondary" type="submit" id="login-button" [disabled]="!loginForm.valid" title="All fields must be filled for login">Login</button>
+              <button class="btn btn-outline-secondary" type="submit" id="login-button" [disabled]="!loginForm.valid"
+                title="All fields must be filled for login">Login</button>
             </div>
           </div>
         </form>

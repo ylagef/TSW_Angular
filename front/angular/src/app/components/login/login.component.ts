@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value["username"], this.loginForm.value["password"]).subscribe(
       () => {
         this.toastr.success('User is correct!');
-        this.router.navigate(["/polls/index"]);
+        this.router.navigate(["/polls"]);
       },
       error => {
         console.log(error);
@@ -50,19 +50,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
-  // logIn(username: string, password: string, event: Event) {
-  //   event.preventDefault(); // Avoid default action for the submit button of the login form
-
-  //   this.authenticationService.login(username, password)
-  //     .subscribe(
-  //       data => {
-  //         this.toastr.success('User is correct!');
-  //         this.router.navigate(["/polls/index"]);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //         this.toastr.error('User is not on Database.', 'ERROR', { progressBar: true });
-  //       });
-  // }
 }

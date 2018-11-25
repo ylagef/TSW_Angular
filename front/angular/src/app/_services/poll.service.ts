@@ -8,7 +8,7 @@ import { Poll } from '../_models/poll.model';
 export class PollService {
   private url: string = "http://localhost:3000/api/v1/polls/";
   private headers: HttpHeaders;
-  
+
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -20,8 +20,9 @@ export class PollService {
     return this.http.get<Poll[]>(this.url, { headers: this.headers });
   }
 
-  getById(id) {
-    return this.http.get<Poll>(this.url + "/" + id, { headers: this.headers });
+  getByUrl(poll_url) {
+    console.log("Service-" + poll_url)
+    return this.http.get<Poll>(this.url + poll_url, { headers: this.headers });
   }
 
 }

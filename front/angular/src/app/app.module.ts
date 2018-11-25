@@ -17,6 +17,7 @@ import { PollViewComponent } from './components/poll/poll-view/poll-view.compone
 import { PollIndexComponent } from './components/poll/poll-index/poll-index.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PollAddComponent } from './components/poll/poll-add/poll-add.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PageNotFoundComponent,
     PollViewComponent,
     PollIndexComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PollAddComponent
   ],
   imports: [
     BrowserModule,

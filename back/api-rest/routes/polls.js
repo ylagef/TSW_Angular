@@ -24,12 +24,13 @@ router.get('/', function (req, res, next) {
     });
 });
 
-// GET poll by id
-router.get('/:id', function (req, res, next) {
+// GET poll by url
+router.get('/:url', function (req, res, next) {
   console.log(req.params);
-  res.locals.connection.query('SELECT * FROM polls WHERE poll_id=' + req.params.id,
+  res.locals.connection.query('SELECT * FROM polls WHERE url="' + req.params.url.toUpperCase() + '"',
     function (error, results, fields) {
       if (error) {
+        console.log(error);
         res.status(500);
         res.json({
           "status": 500,
@@ -54,7 +55,7 @@ router.post('/', function (req, res) {
   var md5 = require('md5');
   const url = md5(req.body.title + "Hashing text");
   res.locals.connection.query('INSERT INTO polls (title, place, author, url) VALUES (?,?,?,?)',
-    [req.body.title, req.body.place, req.body.author, url],
+    [req.body.title, req.body.place, req.body.author, url.toUpperCase],
     function (error, results) {
       if (error) {
         res.status(500);

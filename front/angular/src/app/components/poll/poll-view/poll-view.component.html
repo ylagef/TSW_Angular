@@ -1,6 +1,3 @@
-<!-- <?= $this->Html->css('pollView') ?>
-<?= $participatedOnPoll=false;?> -->
-<!-- CENTRAL JUMBOTRON -->
 <div class="jumbotron jumbotron-fluid rounded">
   <div class="container">
     <h1 class="display-4" i18n>
@@ -60,44 +57,21 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <?php 
-            $maxGapCount=0;
-            if($gaps->count()!=0){
-              foreach ($gaps as $gap):
-                $gapCount=0;
-              ?> -->
 
-          <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps">
+          <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps" [ngClass]="{'table-success':gapsMap.get(gap.gap_id)[1]==maxParticipants}">
+
             <th scope="row">
               <p>
-                {{gap.start_date}}
-                <!-- <?= h($gap->start_date) ?> -->
+                {{gap.start_date.split("T")[0]}}
               </p>
-              <p>
-                {{gap.end_date}}
-                <!-- <?= h($gap->end_date) ?> -->
+              <p class="font-weight-light">
+                {{gap.start_date.split("T")[1].split(":00.000")[0]}}
+                -
+                {{gap.end_date.split("T")[1].split(":00.000")[0]}}
               </p>
             </th>
 
-            <!-- <?php foreach ($users as $user): 
-                  $isAssignated=false;
-                  ?> -->
             <td *ngFor="let user of users">
-              <!-- <?php 
-                      foreach($assignations as $assignation):
-                          if($assignation['user_id']==$user->user_id && $assignation['gap_id']==$gap->gap_id){
-                              $isAssignated=true;
-                              $gapCount++;
-                          }
-
-                          if($assignation['user_id']==$this->request->getSession()->read('Auth.User.user_id')){
-                            $participatedOnPoll=true;
-                        }
-                      endforeach;
-
-                      if($isAssignated){
-                      ?> -->
-
               <button type="button" class="btn btn-success btn-sm btn-disabled" disabled *ngIf="assignationsMap.get(user.user_id)!=null && assignationsMap.get(user.user_id).indexOf(gap.gap_id)>-1 else notAssigned">
                 <i class="material-icons">
                   done
@@ -115,16 +89,19 @@
             </td>
             <td>
               <a class="font-weight-light" id="count{{gap.gap_id}}">
-                0
-                <!-- <?php echo $gapCount?> -->
+                <ng-container *ngIf="gapsMap.get(gap.gap_id)==undefined; else elseTemplate">
+                  0
+                </ng-container>
+                <ng-template #elseTemplate>
+                  {{gapsMap.get(gap.gap_id)[1]}}
+                </ng-template>
               </a>
             </td>
             <td>
-              <a class="lead" i18n >
+              <a class="lead" i18n *ngIf="assignationsMap==null">
                 Nobody has participated yet. Be the first!
               </a>
             </td>
-            <!-- <?php  }?> -->
           </tr>
         </tbody>
       </table>
@@ -139,21 +116,18 @@
       </script> -->
 
       <hr class="my-3">
-
     </div>
   </div>
 
   <div class="other-option-button text-center">
-    <!-- <?php if(!$participatedOnPoll){?>
-    <a>
-      <?= $this->Html->link(__('Participate'), ['controller'=>'assignations','action' => 'add', $poll->url],["class"=>"btn btn-outline-info"]) ?></a>
-    <?php }else{ ?>
-    <a>
-      <?= $this->Html->link(__('Modify participation'), ['controller'=>'assignations','action' => 'edit', $poll->url],["class"=>"btn btn-outline-info"]) ?></a>
-    <?php } ?>
-    <?php if($this->request->getSession()->read('Auth.User.user_id')==$poll->author){ ?>
-    <a>
-      <?= $this->Html->link(__('Edit poll'), ['controller'=>'polls','action' => 'edit', $poll->url],["class"=>"btn btn-outline-info"]) ?></a>
-    <?php } ?> -->
+    <a href="/assignations/add/{{poll.url}}" *ngIf="!hasParticipated">
+      <button class="btn btn-outline-info" i18n>Participate</button>
+    </a>
+    <a href="/assignations/edit/{{poll.url}}" *ngIf="hasParticipated">
+      <button class="btn btn-outline-info" i18n>Modify participation</button>
+    </a>
+    <a href="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id==poll.author">
+      <button class="btn btn-outline-info" i18n>Edit poll</button>
+    </a>
   </div>
 </div>

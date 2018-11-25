@@ -23,4 +23,8 @@ export class GapService {
     return this.http.get(this.url + "/" + id, { headers: this.headers });
   }
 
+  getGapsOfPoll(id){
+    return this.http.get(this.url + "/poll/" + id, { headers: this.headers });
+  }
+
 }

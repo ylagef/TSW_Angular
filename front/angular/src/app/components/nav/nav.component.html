@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary nav">
-  <a class="navbar-brand nav-title font-weight-bold">U | FREE?</a>
+  <a class="navbar-brand nav-title font-weight-bold" href="/polls">U | FREE?</a>
 
   <!-- <?=$this->Html->link('U | FREE?', ['controller' => 'Polls', 'action' => 'index'], ['class' => 'navbar-brand nav-title font-weight-bold']);?> -->
 
@@ -14,14 +14,14 @@
       <li class="nav-item active"></li>
       <!-- <?php } else {?> -->
       <li class="nav-item">
-        <a class="nav-link">Create Poll</a>
+        <a class="nav-link" href="/polls/add">Create Poll</a>
         <!-- <?php }?>
           
         <?=$this->Html->link(__('Create Poll'), ['controller' => 'Polls', 'action' => 'add'], ['class' => 'nav-link']);?> -->
       </li>
       <!-- <?php if ($this->request->getParam('controller') == 'Polls' && $this->request->getParam('action') == 'index') {?> -->
       <li class="nav-item active">
-        <a class="nav-link">My Polls</a>
+        <a class="nav-link" href="/polls">My Polls</a>
       </li>
       <!-- <?php } else {?> -->
       <li class="nav-item"></li>

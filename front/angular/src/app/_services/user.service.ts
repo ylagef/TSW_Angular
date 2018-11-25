@@ -10,10 +10,12 @@ export class UserService {
     private headers: HttpHeaders;
 
     constructor(private http: HttpClient) {
-        this.headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token
-        })
+        if (JSON.parse(localStorage.getItem("currentUser")) != null) {
+            this.headers = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token
+            })
+        }
     }
 
     register(data) {

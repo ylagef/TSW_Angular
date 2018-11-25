@@ -15,14 +15,17 @@ import { AssignationService } from 'src/app/_services/assignation.service';
   styleUrls: ['./poll-view.component.scss']
 })
 export class PollViewComponent implements OnInit {
-  private id: number;
+  private url: string;
   private poll: Poll;
   private hasPlace: any = false;
   private users: User[];
   private gaps: Gap[];
   private assignations: Assignation[];
   private assignationsMap: Map<number, number[]>;
-  private gapsMap: Map<number, Gap[]>;
+  private gapsMap: Map<number, any>;
+  private currentUser: User;
+  private hasParticipated: boolean;
+  private maxParticipants: number;
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private userService: UserService,
     private gapsService: GapService, private assignationsService: AssignationService) {
@@ -32,73 +35,106 @@ export class PollViewComponent implements OnInit {
     this.assignations = [];
     this.assignationsMap = new Map<number, number[]>();
     this.gapsMap = new Map<number, Gap[]>();
+    this.hasParticipated = false;
+    this.maxParticipants = 0;
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
     this.route.params.subscribe(
-      params => {
-        this.id = +params['id'];
-        this.pollService.getById(this.id).subscribe(
-          data => {
-            this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title, data["response"][0].place
-              , data["response"][0].author, data["response"][0].url);
-
-            if (this.poll.getPlace() != null) {
-              this.hasPlace = true;
-            }
-          },
-          error => console.log(error)
-        )
-      }
-    );
-
-    this.gapsService.getAll().subscribe(
-      (data) => {
-        this.gaps = data["response"];
-        this.gaps.forEach(gap => {
-          if (this.gapsMap.get(gap["gap_id"])) {
-            // If key already exists
-            let gaps: Gap[] = this.gapsMap.get(gap["gap_id"]);
-            gaps.push(gap);
-          } else {
-            let gaps: Gap[] = [];
-            gaps.push(gap);
-            this.gapsMap.set(gap["gap_id"], gaps);
-          }
-
-        });
-        console.log(this.gapsMap);
-      }
-    );
-
-    this.assignationsService.getAll().subscribe(
-      (data) => {
-        this.assignations = data["response"];
-
-        this.assignations.forEach(assignation => {
-          if (this.assignationsMap.get(assignation["user_id"])) {
-            // If key already exists
-            let gaps: number[] = this.assignationsMap.get(assignation["user_id"]);
-            gaps.push(assignation["gap_id"]);
-          } else {
-            let gaps: number[] = [];
-            gaps.push(assignation["gap_id"]);
-            this.assignationsMap.set(assignation["user_id"], gaps);
-          }
-
-        });
-
-        this.userService.getAll().subscribe(
+      (params) => {
+        this.url = params['url'];
+        console.log(this.url);
+        this.pollService.getByUrl(this.url).subscribe(
           (data) => {
-            const allUsers = data["response"];
-            console.log(this.assignationsMap);
-            allUsers.forEach(user => {
-              if (this.assignationsMap.get(user["user_id"]) != null) {
-                this.users.push(user);
-              }
-            });
-            console.log(this.users);
-          }
+            this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title, data["response"][0].place, data["response"][0].author, data["response"][0].url);
+
+            if (this.poll.getPlace() != null) this.hasPlace = true;
+
+            this.gapsService.getGapsOfPoll(this.poll["poll_id"]).subscribe(
+              (data) => {
+                this.gaps = data["response"];
+                console.log(this.gaps);
+                console.log(this.gaps);
+                this.gaps.forEach(gap => {
+                  if (gap["poll_id"] == this.poll["poll_id"]) {
+                    // If gap is of this poll
+                    if (this.gapsMap.get(gap["gap_id"])) {
+                      // If key already exists
+                      let gaps: Gap[] = this.gapsMap.get(gap["gap_id"]);
+                      gaps.push(gap);
+                    } else {
+                      let gaps: Gap[] = [];
+                      gaps.push(gap);
+                      this.gapsMap.set(gap["gap_id"], gaps);
+                    }
+
+                    // Set gap count to 0
+                    this.gapsMap.get(gap["gap_id"])[1] = 0;
+                  }
+                });
+
+                console.log("Gaps Map:");
+                console.log(this.gapsMap);
+
+                this.assignationsService.getAll().subscribe(
+                  (data) => {
+                    this.assignations = data["response"];
+                    console.log("Assignations:");
+                    console.log(this.assignations);
+
+                    this.assignations.forEach(assignation => {
+                      if (this.gapsMap.get(assignation["gap_id"]) != null) {
+                        // If assigntation gap is on this poll gap map
+                        if (this.assignationsMap.get(assignation["user_id"])) {
+                          // If key already exists
+                          let gaps: number[] = this.assignationsMap.get(assignation["user_id"]);
+                          gaps.push(assignation["gap_id"]);
+                        } else {
+                          let gaps: number[] = [];
+                          gaps.push(assignation["gap_id"]);
+                          this.assignationsMap.set(assignation["user_id"], gaps);
+
+                          if (assignation["user_id"] == this.currentUser["user_id"]) {
+                            this.hasParticipated = true;
+                          }
+                        }
+
+                        // Set gap assignations count
+                        this.gapsMap.get(assignation["gap_id"])[1]++;
+                        if (this.maxParticipants < this.gapsMap.get(assignation["gap_id"])[1]) {
+                          this.maxParticipants = this.gapsMap.get(assignation["gap_id"])[1];
+                        }
+                      }
+                    }
+                    );
+
+                    console.log("Assignations Map:");
+                    console.log(this.assignationsMap);
+
+                    this.userService.getAll().subscribe(
+                      (data) => {
+                        const allUsers = data["response"];
+                        allUsers.forEach(user => {
+                          if (this.assignationsMap.get(user["user_id"]) != null) {
+                            this.users.push(user);
+                          }
+                        });
+
+                        console.log("Users:");
+                        console.log(this.users);
+                      },
+                      (error) => console.log(error)
+                    );
+                  },
+                  (error) => console.log(error)
+                );
+              },
+              (error) => console.log(error)
+            );
+          },
+          (error) => console.log(error)
         );
       }
     );

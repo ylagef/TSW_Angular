@@ -7,6 +7,7 @@ import { PollIndexComponent } from './components/poll/poll-index/poll-index.comp
 import { PollViewComponent } from './components/poll/poll-view/poll-view.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { PollAddComponent } from './components/poll/poll-add/poll-add.component';
 
 
 const routes: Routes = [
@@ -27,18 +28,18 @@ const routes: Routes = [
   },
   {
     path: 'polls',
-    component: PollComponent,
-    pathMatch: 'full',
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'polls/index',
     component: PollIndexComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
   {
-    path: 'polls/view/:id',
+    path: 'polls/add',
+    component: PollAddComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'polls/view/:url',
     component: PollViewComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
