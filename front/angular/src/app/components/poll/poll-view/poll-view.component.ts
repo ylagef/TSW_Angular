@@ -17,7 +17,6 @@ import { AssignationService } from 'src/app/_services/assignation.service';
 export class PollViewComponent implements OnInit {
   private url: string;
   private poll: Poll;
-  private hasPlace: any = false;
   private users: User[];
   private gaps: Gap[];
   private assignations: Assignation[];
@@ -49,8 +48,6 @@ export class PollViewComponent implements OnInit {
         this.pollService.getByUrl(this.url).subscribe(
           (data) => {
             this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title, data["response"][0].place, data["response"][0].author, data["response"][0].url);
-
-            if (this.poll.getPlace() != null) this.hasPlace = true;
 
             this.gapsService.getGapsOfPoll(this.poll["poll_id"]).subscribe(
               (data) => {

@@ -7,7 +7,7 @@
       {{poll.title}}
     </p>
 
-    <div *ngIf="hasPlace; else noPlace">
+    <div *ngIf="poll.place!=''; else noPlace">
       <p class="lead">
         <i class='material-icons lead-icon'>place</i>
         {{poll.place}}
@@ -97,37 +97,27 @@
                 </ng-template>
               </a>
             </td>
+          </tr>
+          <tr *ngIf="assignationsMap.size==0">
             <td>
-              <a class="lead" i18n *ngIf="assignationsMap==null">
+              <a class="lead" i18n>
                 Nobody has participated yet. Be the first!
               </a>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <!-- <script>
-        <?php foreach ($gaps as $gap):?>
-        if (document.getElementById("count<?php echo $gap['gap_id'] ?>").innerHTML == "<?php echo $maxGapCount?>" &&
-          document.getElementById("count<?php echo $gap['gap_id'] ?>").innerHTML != "0") {
-          document.getElementById("TR<?php echo $gap['gap_id'] ?>").classList.add("table-success");
-        }
-        <?php endforeach; ?>
-      </script> -->
-
       <hr class="my-3">
     </div>
   </div>
 
   <div class="other-option-button text-center">
-    <a href="/assignations/add/{{poll.url}}" *ngIf="!hasParticipated">
-      <button class="btn btn-outline-info" i18n>Participate</button>
-    </a>
-    <a href="/assignations/edit/{{poll.url}}" *ngIf="hasParticipated">
-      <button class="btn btn-outline-info" i18n>Modify participation</button>
-    </a>
-    <a href="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id==poll.author">
-      <button class="btn btn-outline-info" i18n>Edit poll</button>
-    </a>
+    <button routerLink="/assignations/add/{{poll.url}}" *ngIf="!hasParticipated" class="btn btn-outline-info" i18n>Participate</button>
+
+    <button routerLink="/assignations/edit/{{poll.url}}" *ngIf="hasParticipated" class="btn btn-outline-info" i18n>Modify
+      participation</button>
+
+    <button routerLink="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id==poll.author" class="btn btn-outline-info"
+      i18n>Edit poll</button>
   </div>
 </div>

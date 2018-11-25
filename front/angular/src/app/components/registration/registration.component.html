@@ -83,7 +83,6 @@
           <small class="error" *ngIf="registrationForm.errors?.passwordValidation  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)">Password
             doesn't match.</small>
 
-          <small id="help" class="form-text text-muted">- Fields are mandatory -</small>
           <small id="help" class="form-text font-weight-light">
             <a [routerLink]="['/login']" routerLinkActive="router-link-active" i18n>Return to login</a>
           </small>

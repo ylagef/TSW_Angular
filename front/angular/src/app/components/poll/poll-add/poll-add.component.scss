@@ -1,0 +1,53 @@
+small {
+  margin-bottom: 1rem;
+}
+
+.jumbotron {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  width: 80% !important;
+  padding-bottom: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.submit-button {
+  float: right;
+}
+
+.location {
+  margin-top: 1rem;
+}
+
+.error {
+  margin-left: 4rem;
+  border-top: 1px solid #a94442;
+  color: #a94442;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+  .jumbotron {
+    width: 70% !important;
+    padding-bottom: 2rem 1rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+  .location {
+    margin-top: 0rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}

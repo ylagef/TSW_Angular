@@ -1,3 +1,60 @@
-<p>
-  poll-add works!
-</p>
+<!-- CENTRAL JUMBOTRON -->
+<div class="jumbotron jumbotron-fluid rounded">
+  <div class="container">
+    <h1 class="display-4" i18n>
+      Create your poll
+    </h1>
+    <p class="lead" i18n>
+      First, we need some things...
+    </p>
+    <form class="form" [formGroup]="pollAddForm" (ngSubmit)="onSubmit()">
+      <div class="input-group mb-3">
+        <div class="form-group row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label i18n>
+              Why?
+            </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    keyboard_arrow_right
+                  </i>
+                </div>
+              </div>
+              <input type="text" class="form-control" placeholder="Reason" formControlName="title">
+            </div>
+            <small class="error" *ngIf="pollAddForm.controls.title.errors && (pollAddForm.controls.title.touched || pollAddForm.controls.title.dirty)">
+              This field is required.
+            </small>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label i18n>
+              Where?
+            </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    place
+                  </i>
+                </div>
+              </div>
+              <input type="text" class="form-control" placeholder="Location" formControlName="place">
+            </div>
+          </div>
+        </div>
+      </div>
+      <small class="form-text text-muted" id="help" i18n>
+        - Reason is mandatory -
+      </small>
+      <div class="form-group row submit-button">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-outline-secondary" [disabled]="!pollAddForm.valid" title="Some fields must be filled for continue"
+            i18n>Continue</button>
+        </div>
+      </div>
+      <!-- <?= $this->Form->hidden('author', ["value"=>($this->request->getSession()->read('Auth.User.user_id'))]); -->
+    </form>
+  </div>
+</div>

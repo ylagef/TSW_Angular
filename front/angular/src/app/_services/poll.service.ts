@@ -25,4 +25,9 @@ export class PollService {
     return this.http.get<Poll>(this.url + poll_url, { headers: this.headers });
   }
 
+  create(data) {
+    data["author"] = JSON.parse(localStorage.getItem("currentUser"))["user_id"];
+    return this.http.post<any>(`http://localhost:3000/api/v1/polls/`, { data });
+  }
+
 }

@@ -51,13 +51,14 @@ router.get('/:url', function (req, res, next) {
 
 // POST poll
 router.post('/', function (req, res) {
-  console.log(req.body);
+  console.log(req.body["data"]);
   var md5 = require('md5');
-  const url = md5(req.body.title + "Hashing text");
+  const url = md5(req.body["data"].title + "Hashing text" + req.body["data"].place);
   res.locals.connection.query('INSERT INTO polls (title, place, author, url) VALUES (?,?,?,?)',
-    [req.body.title, req.body.place, req.body.author, url.toUpperCase],
+    [req.body["data"].title, req.body["data"].place, req.body["data"].author, url.toUpperCase()],
     function (error, results) {
       if (error) {
+        console.log(error);
         res.status(500);
         res.json({
           "status": 500,
@@ -69,7 +70,7 @@ router.post('/', function (req, res) {
         res.json({
           "status": 200,
           "error": null,
-          "response": results
+          "response": url.toUpperCase()
         });
         //If there is no error, all is good and response is 200OK.
       }

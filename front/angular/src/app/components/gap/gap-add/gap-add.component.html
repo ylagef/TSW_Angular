@@ -1,0 +1,77 @@
+<!-- CENTRAL JUMBOTRON -->
+<!-- <?=$this->Form->create($gap, array('onsubmit' => "return setArray(" . $poll_id . ");"));?> -->
+<form class="form" [formGroup]="gapsAddForm" (ngSubmit)="onSubmit()">
+  <div class="jumbotron jumbotron-fluid rounded">
+    <div class="container">
+      <h1 class="display-4">
+        Create poll
+      </h1>
+
+      <p class="lead">
+        Now, tell us the possible dates
+      </p>
+
+      <div class="table-responsive">
+        <table class="table text-center" id="gapsTable">
+          <thead>
+            <tr>
+              <th scope="col">Start date & time</th>
+              <th scope="col"> </th>
+              <th scope="col">End date & time</th>
+              <th scope="col"> </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let gap of gaps">
+              <td>
+                {{gap.gap_id}}
+                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" min="{{today}}" placeholder="Start Time" class="form-control floating-label text-center date"
+                  formControlName="start{{gap.gap_id}}">
+                <owl-date-time #dt1 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
+                <small class="error" *ngIf="gapsAddForm.controls.start.errors  && (gapsAddForm.controls.start.touched || gapsAddForm.controls.start.dirty)">
+                  This field is required.
+                </small>
+              </td>
+              <td>
+                <i class="material-icons">
+                  arrow_forward
+                </i>
+              </td>
+              <td>
+                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" min="{{today}}" placeholder="End Time" class="form-control floating-label text-center date"
+                  formControlName="end">
+                <owl-date-time #dt2 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
+                <small class="error" *ngIf="gapsAddForm.controls.end.errors  && (gapsAddForm.controls.end.touched || gapsAddForm.controls.end.dirty)">
+                  This field is required.
+                </small>
+              </td>
+              <td>
+                <button class='btn btn-outline-danger btn-sm' (click)='deleteRow(gap)' type='button'>
+                  <i class='material-icons'>delete</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <hr class="my-3">
+        <div class="other-option-button">
+          <button class="btn btn-outline-success" (click)="addRow()" type="button">
+            Add other option </button>
+        </div>
+      </div>
+
+      <div class="col-sm-10 accept-button">
+        <button class="btn btn-outline-secondary" [routerLink]="['/polls/view/url']" routerLinkActive="router-link-active">End</button>
+        <!-- <?= $this->Form->button(__('End'), ["class"=>"btn btn-outline-secondary"]) ?> -->
+      </div>
+
+    </div>
+  </div>
+  <div id="inputs"></div>
+</form>
+<!-- <?=$this->Form->end()?> -->
+
+<!-- <?=$this->Html->script('gaps');?> -->

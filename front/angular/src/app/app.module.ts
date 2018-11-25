@@ -11,13 +11,17 @@ import { UserService } from './_services/user.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { PollComponent } from './components/poll/poll.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PollViewComponent } from './components/poll/poll-view/poll-view.component';
 import { PollIndexComponent } from './components/poll/poll-index/poll-index.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PollAddComponent } from './components/poll/poll-add/poll-add.component';
+import { AssignationAddComponent } from './components/assignation/assignation-add/assignation-add.component';
+import { AssignationEditComponent } from './components/assignation/assignation-edit/assignation-edit.component';
+import { GapAddComponent } from './components/gap/gap-add/gap-add.component';
+import { GapViewComponent } from './components/gap/gap-view/gap-view.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -25,12 +29,15 @@ import { PollAddComponent } from './components/poll/poll-add/poll-add.component'
     NavComponent,
     LoginComponent,
     LanguageComponent,
-    PollComponent,
     PageNotFoundComponent,
     PollViewComponent,
     PollIndexComponent,
     RegistrationComponent,
-    PollAddComponent
+    PollAddComponent,
+    AssignationAddComponent,
+    AssignationEditComponent,
+    GapAddComponent,
+    GapViewComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,9 @@ import { PollAddComponent } from './components/poll/poll-add/poll-add.component'
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [
     UserService
