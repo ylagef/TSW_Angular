@@ -1,20 +1,29 @@
 form {
-    text-align: center;
+  text-align: center;
 }
+
 .row {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 .jumbotron {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
+
 .submit-button {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
+
 .passwd {
-    margin-top: 1rem;
+  margin-top: 1rem;
+}
+
+.error {
+  border-top: 1px solid #a94442;
+  color: #a94442;
 }

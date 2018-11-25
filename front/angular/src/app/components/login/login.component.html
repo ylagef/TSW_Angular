@@ -2,7 +2,7 @@
   <div class="row h-100 justify-content-center align-items-center">
     <div class="jumbotron jumbotron-fluid rounded">
       <div class="container">
-        <form class="form">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <h1 class="display-4" i18n>
             Log you in!
           </h1>
@@ -10,7 +10,6 @@
             We just need two things
           </p>
           <hr class="my-4">
-
 
           <div class="form-group">
             <div class="input-group">
@@ -22,9 +21,11 @@
                 </div>
               </div>
               <!-- Input username -->
-              <input class="form-control" type="text" #username name="username" placeholder="Username">
-              <!-- <?= $this->Form->control('username',["class"=>"form-control","placeholder"=>__("Username"),"label"=>false]) ?> -->
+              <input class="form-control" type="text" #username placeholder="Username" formControlName="username">
             </div>
+            <small class="error" *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.touched || loginForm.controls.username.dirty)">
+              This field is required.
+            </small>
 
             <div class="input-group passwd">
               <div class="input-group-prepend">
@@ -35,31 +36,26 @@
                 </div>
               </div>
               <!-- Input password -->
-              <input class="form-control" type="password" #password name="password" placeholder="Password">
-              <!-- <?= $this->Form->control('password',["class"=>"form-control","placeholder"=>__("Password"),"label"=>false]) ?> -->
+              <input class="form-control" type="password" #password placeholder="Password" formControlName="password">
             </div>
+            <small class="error" *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.touched || loginForm.controls.password.dirty)">
+              This field is required.
+            </small>
           </div>
-
 
           <small id="help" class="form-text text-muted text-center" i18n>
             - Fields are mandatory -
           </small>
-          <!-- <small id="help" class="form-text font-weight-light"><a href="#">Olvidé mi contraseña</a></small> -->
           <small id="help" class="form-text font-weight-light text-center">
             <a href="registration">
-              <!-- Sign up button -->
               Sign up
-              <!-- <?= $this->Html->link(__("Sign up"), array('controller' => 'Users','action'=> 'add'))?> -->
             </a>
           </small>
 
           <div class="form-group row submit-button text-center">
             <div class="col-sm-12">
               <!-- Login button -->
-              <button class="btn btn-outline-secondary" type="submit" (click)="logIn(username.value, password.value, $event)"
-                id="login-button">Login</button>
-              <!-- <button class="btn btn-outline-secondary">Login</button> -->
-              <!-- <?= $this->Form->button(__('Login'),["class"=>"btn btn-outline-secondary"]); ?> -->
+              <button class="btn btn-outline-secondary" type="submit" id="login-button" [disabled]="!loginForm.valid" title="All fields must be filled for login">Login</button>
             </div>
           </div>
         </form>
