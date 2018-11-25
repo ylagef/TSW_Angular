@@ -90,7 +90,7 @@ router.post('/register', function (req, res) {
           "status": 500,
           "error": error,
           "response": null
-        });        
+        });
       } else {
         // If nor error on query, we check if already exists or not
         if (results.length > 0) {
@@ -115,7 +115,7 @@ router.post('/register', function (req, res) {
                   "status": 500,
                   "error": error,
                   "response": null
-                });  
+                });
               } else {
                 // If nor error on query, we check if already exists or not
                 if (results.length > 0) {
@@ -179,19 +179,15 @@ router.post('/login', function (req, res) {
         //If there is error, we send the error in the error section with 500 status
       } else {
         if (results.length == 1) {
-          console.log(results);
-
           var claims = {
-            iss: "http://myapp.com/", // The URL of your service
-            sub: "users/user1234", // The UID of the user in your system
             scope: "self, admins"
           }
           var secretKey = secureRandom(256, {
             type: 'Buffer'
           }); // Create a highly random byte array of 256 bytes
+
           var jwt = nJwt.create(claims, secretKey);
-          // console.log(jwt.compact());
-          console.log(results.push(jwt.compact()));
+          results.push(jwt.compact());
 
           res.json({
             "status": 200,

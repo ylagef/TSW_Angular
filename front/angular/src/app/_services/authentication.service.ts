@@ -8,8 +8,6 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-
-
     loggedUser = new Subject();
 
     constructor(private http: HttpClient, private router: Router) { }

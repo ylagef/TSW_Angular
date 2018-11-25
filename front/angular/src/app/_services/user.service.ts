@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../_models/user.model';
 import { Md5 } from "md5-typescript";
@@ -7,8 +7,14 @@ import { Md5 } from "md5-typescript";
 @Injectable({ providedIn: 'root' })
 export class UserService {
     private url: string = "http://localhost:3000/api/v1/users/";
+    private headers: HttpHeaders;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        this.headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("currentUser")).token
+        })
+    }
 
     register(data) {
         data["password"] = Md5.init(data["password"]);
@@ -18,10 +24,10 @@ export class UserService {
     }
 
     getAll() {
-        return this.http.get<User[]>(this.url);
+        return this.http.get<User[]>(this.url, { headers: this.headers });
     }
 
     getById(id) {
-        return this.http.get<User>(this.url + "/" + id);
+        return this.http.get<User>(this.url + "/" + id, { headers: this.headers });
     }
 }
