@@ -6,10 +6,19 @@ router.get('/', function (req, res, next) {
   res.locals.connection.query('SELECT * FROM gaps',
     function (error, results, fields) {
       if (error) {
-        res.json({ "status": 500, "error": error, "response": null });
+        res.status(500);
+        res.json({
+          "status": 500,
+          "error": error,
+          "response": null
+        });
         //If there is error, we send the error in the error section with 500 status
       } else {
-        res.json({ "status": 200, "error": null, "response": results });
+        res.json({
+          "status": 200,
+          "error": null,
+          "response": results
+        });
         //If there is no error, all is good and response is 200OK.
       }
     });
@@ -21,10 +30,19 @@ router.get('/:id', function (req, res, next) {
   res.locals.connection.query('SELECT * FROM gaps WHERE gap_id=' + req.params.id,
     function (error, results, fields) {
       if (error) {
-        res.json({ "status": 500, "error": error, "response": null });
+        res.status(500);
+        res.json({
+          "status": 500,
+          "error": error,
+          "response": null
+        });
         //If there is error, we send the error in the error section with 500 status
       } else {
-        res.json({ "status": 200, "error": null, "response": results });
+        res.json({
+          "status": 200,
+          "error": null,
+          "response": results
+        });
         //If there is no error, all is good and response is 200OK.
       }
     });
@@ -37,10 +55,19 @@ router.post('/', function (req, res) {
     [req.body.poll_id, req.body.start_date, req.body.end_date],
     function (error, results) {
       if (error) {
-        res.json({ "status": 500, "error": error, "response": null });
+        res.status(500);
+        res.json({
+          "status": 500,
+          "error": error,
+          "response": null
+        });
         //If there is error, we send the error in the error section with 500 status
       } else {
-        res.json({ "status": 200, "error": null, "response": results });
+        res.json({
+          "status": 200,
+          "error": null,
+          "response": results
+        });
         //If there is no error, all is good and response is 200OK.
       }
     });
@@ -52,10 +79,19 @@ router.delete('/:id', function (req, res, next) {
   res.locals.connection.query('DELETE FROM gaps WHERE gap_id=' + req.params.id,
     function (error, results, fields) {
       if (error) {
-        res.json({ "status": 500, "error": error, "response": null });
+        res.status(500);
+        res.json({
+          "status": 500,
+          "error": error,
+          "response": null
+        });
         //If there is error, we send the error in the error section with 500 status
       } else {
-        res.json({ "status": 200, "error": null, "response": results });
+        res.json({
+          "status": 200,
+          "error": null,
+          "response": results
+        });
         //If there is no error, all is good and response is 200OK.
       }
     });

@@ -50,13 +50,16 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.userService.register(this.registrationForm.value).subscribe(
-      (response) => {
+      () => {
         this.toastr.success('User created correctly!');
         this.router.navigate(["/"]);
       },
       (error) => {
-        console.log(error);
-        this.toastr.error('User could not be created. Please try again.');
+        if (error.error.response == null) {
+          this.toastr.error('Error on insert. Please try again.');
+        } else {
+          this.toastr.error(error.error.response + '. Please try again.');
+        }
       }
     );
   }
