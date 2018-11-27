@@ -37,6 +37,7 @@ export class AuthenticationService {
             this.loggedUser.next(JSON.parse(localStorage.getItem('currentUser')));
         }
     }
+
     logout() {
         // remove user from local storage to log user out
         this.loggedUser.next(undefined);

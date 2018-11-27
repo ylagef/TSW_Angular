@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PollService } from 'src/app/_services/poll.service';
 import { Poll } from '../../../_models/poll.model';
 import { User } from 'src/app/_models/user.model';
@@ -8,6 +8,7 @@ import { GapService } from 'src/app/_services/gap.service';
 import { Gap } from 'src/app/_models/gap.model';
 import { Assignation } from 'src/app/_models/assignation.model';
 import { AssignationService } from 'src/app/_services/assignation.service';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-poll-view',
@@ -25,6 +26,7 @@ export class PollViewComponent implements OnInit {
   private currentUser: User;
   private hasParticipated: boolean;
   private maxParticipants: number;
+  private host: string;
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private userService: UserService,
     private gapsService: GapService, private assignationsService: AssignationService) {
@@ -36,6 +38,7 @@ export class PollViewComponent implements OnInit {
     this.gapsMap = new Map<number, Gap[]>();
     this.hasParticipated = false;
     this.maxParticipants = 0;
+    this.host = window.location.host;
   }
 
   ngOnInit() {
@@ -44,16 +47,16 @@ export class PollViewComponent implements OnInit {
     this.route.params.subscribe(
       (params) => {
         this.url = params['url'];
-        console.log(this.url);
+
         this.pollService.getByUrl(this.url).subscribe(
           (data) => {
-            this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title, data["response"][0].place, data["response"][0].author, data["response"][0].url);
+            this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title,
+              data["response"][0].place, data["response"][0].author, data["response"][0].url);
 
             this.gapsService.getGapsOfPoll(this.poll["poll_id"]).subscribe(
               (data) => {
                 this.gaps = data["response"];
-                console.log(this.gaps);
-                console.log(this.gaps);
+
                 this.gaps.forEach(gap => {
                   if (gap["poll_id"] == this.poll["poll_id"]) {
                     // If gap is of this poll
@@ -137,4 +140,19 @@ export class PollViewComponent implements OnInit {
     );
   }
 
+  copy() {
+    const val = "http://" + this.host + "/polls/view/" + this.poll["url"];
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+
+  }
 }

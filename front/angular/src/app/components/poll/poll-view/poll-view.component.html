@@ -16,7 +16,7 @@
 
     <ng-template #noPlace>
       <p class="lead" i18n>
-        <i class='material-icons lead-icon'>place</i>
+        <i class='material-icons lead-icon' i18n>place</i>
         - Location not specified -
       </p>
     </ng-template>
@@ -30,10 +30,11 @@
         </span>
       </div>
 
-      <input type="text" class="form-control poll-link" value="localhost/!!!{{poll.url}}" disabled id="copyValue">
+      <input type="text" class="form-control poll-link" value="http://{{host}}/polls/view/{{poll.url}}" disabled id="copyValue">
 
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" onclick="copy()" i18n>
+        <button class="btn btn-outline-secondary" (click)="copy()"
+          i18n>
           COPY
         </button>
       </div>
@@ -43,7 +44,7 @@
       <table class="table text-center">
         <thead>
           <tr>
-            <th scope="col" i18n>
+            <th scope="col" *ngIf="assignationsMap.size!=0" i18n>
               Gaps
             </th>
 
@@ -51,53 +52,58 @@
               {{user.name}}
             </th>
 
-            <th scope="col" class="font-weight-light" i18n *ngIf="gaps.length!=0">
+            <th scope="col" class="font-weight-light" i18n *ngIf="gaps.length!=0 && assignationsMap.size!=0">
               Total
             </th>
           </tr>
         </thead>
         <tbody>
+          <ng-container *ngIf="assignationsMap.size!=0">
+            <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps" [ngClass]="{'table-success':gapsMap.get(gap.gap_id)[1]==maxParticipants && assignationsMap.size!=0}">
+              <th scope="row">
+                <p>
+                  {{gap.start_date.split("T")[0]}}
+                  <a class="font-weight-light">
+                    {{gap.start_date.split("T")[1].split(".000Z")[0].split(":")[0]}}:{{gap.start_date.split("T")[1].split(".000Z")[0].split(":")[1]}}
+                  </a>
+                </p>
 
-          <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps" [ngClass]="{'table-success':gapsMap.get(gap.gap_id)[1]==maxParticipants}">
+                <p>
+                  {{gap.end_date.split("T")[0]}}
+                  <a class="font-weight-light">
+                    {{gap.end_date.split("T")[1].split(".000Z")[0].split(":")[0]}}:{{gap.end_date.split("T")[1].split(".000Z")[0].split(":")[1]}}
+                  </a>
+                </p>
 
-            <th scope="row">
-              <p>
-                {{gap.start_date.split("T")[0]}}
-              </p>
-              <p class="font-weight-light">
-                {{gap.start_date.split("T")[1].split(":00.000")[0]}}
-                -
-                {{gap.end_date.split("T")[1].split(":00.000")[0]}}
-              </p>
-            </th>
+              </th>
 
-            <td *ngFor="let user of users">
-              <button type="button" class="btn btn-success btn-sm btn-disabled" disabled *ngIf="assignationsMap.get(user.user_id)!=null && assignationsMap.get(user.user_id).indexOf(gap.gap_id)>-1 else notAssigned">
-                <i class="material-icons">
-                  done
-                </i>
-              </button>
-
-              <ng-template #notAssigned>
-                <button type="button" class="btn btn-outline-success btn-sm btn-disabled" disabled>
-
+              <td *ngFor="let user of users">
+                <button type="button" class="btn btn-success btn-sm btn-disabled" disabled *ngIf="assignationsMap.get(user.user_id)!=null && assignationsMap.get(user.user_id).indexOf(gap.gap_id)>-1 else notAssigned">
                   <i class="material-icons">
                     done
                   </i>
                 </button>
-              </ng-template>
-            </td>
-            <td>
-              <a class="font-weight-light" id="count{{gap.gap_id}}">
-                <ng-container *ngIf="gapsMap.get(gap.gap_id)==undefined; else elseTemplate">
-                  0
-                </ng-container>
-                <ng-template #elseTemplate>
-                  {{gapsMap.get(gap.gap_id)[1]}}
+
+                <ng-template #notAssigned>
+                  <button type="button" class="btn btn-outline-success btn-sm btn-disabled" disabled>
+                    <i class="material-icons">
+                      done
+                    </i>
+                  </button>
                 </ng-template>
-              </a>
-            </td>
-          </tr>
+              </td>
+              <td *ngIf="assignationsMap.size!=0">
+                <a class="font-weight-light" id="count{{gap.gap_id}}">
+                  <ng-container *ngIf="gapsMap.get(gap.gap_id)==undefined; else elseTemplate">
+                    0
+                  </ng-container>
+                  <ng-template #elseTemplate>
+                    {{gapsMap.get(gap.gap_id)[1]}}
+                  </ng-template>
+                </a>
+              </td>
+            </tr>
+          </ng-container>
           <tr *ngIf="assignationsMap.size==0">
             <td>
               <a class="lead" i18n>
@@ -114,10 +120,13 @@
   <div class="other-option-button text-center">
     <button routerLink="/assignations/add/{{poll.url}}" *ngIf="!hasParticipated" class="btn btn-outline-info" i18n>Participate</button>
 
-    <button routerLink="/assignations/edit/{{poll.url}}" *ngIf="hasParticipated" class="btn btn-outline-info" i18n>Modify
-      participation</button>
+    <button routerLink="/assignations/edit/{{poll.url}}" *ngIf="hasParticipated" class="btn btn-outline-info" i18n>
+      Modify participation
+    </button>
 
-    <button routerLink="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id==poll.author" class="btn btn-outline-info"
-      i18n>Edit poll</button>
+    <button routerLink="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id==poll.author" class="btn btn-outline-info edit-button"
+      i18n>
+      Edit poll
+    </button>
   </div>
 </div>

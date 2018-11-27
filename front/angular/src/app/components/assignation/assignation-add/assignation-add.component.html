@@ -1,169 +1,126 @@
-<!-- <?=$this->Html->script('scripts')?> -->
 <!-- CENTRAL JUMBOTRON -->
-<form>
+<form class="form" (ngSubmit)="onSubmit()">
   <div class="jumbotron jumbotron-fluid rounded">
     <div class="container">
       <h1 class="display-4">
         Participate on poll
       </h1>
-      <p class="lead">
-        <i class="material-icons lead-icon">
-          keyboard_arrow_right
-        </i>
-        <!-- <?=h($poll->title)?> -->
+      <p class="lead"><i class="material-icons lead-icon">keyboard_arrow_right</i>
+        {{poll.title}}
       </p>
-      <p class="lead">
-        <!-- <?php
-          if($poll->place!=null){
-            echo "<i class='material-icons lead-icon'>place</i> ";
-            echo h($poll->place);
-          } else {
-            echo "- Ubicación no especificada -";
-          } 
-        ?> -->
-      </p>
+
+      <div *ngIf="poll.place!=''; else noPlace">
+        <p class="lead">
+          <i class='material-icons lead-icon'>place</i>
+          {{poll.place}}
+        </p>
+      </div>
+
+      <ng-template #noPlace>
+        <p class="lead" i18n>
+          <i class='material-icons lead-icon' i18n>place</i>
+          - Location not specified -
+        </p>
+      </ng-template>
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text link-icon">
-            <i class="material-icons ">
+            <i class="material-icons">
               link
             </i>
           </span>
         </div>
-        <!-- <input type="text" class="form-control poll-link" value="<?=$_SERVER[" HTTP_HOST"]?>/polls/view/<?= h($poll->url) ?>" disabled id="copyValue"> -->
+
+        <input type="text" class="form-control poll-link" value="http://{{host}}/polls/view/{{poll.url}}" disabled id="copyValue">
+
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" onclick="copy()">
+          <button class="btn btn-outline-secondary" (click)="copy()" i18n>
             COPY
           </button>
         </div>
-        <!-- </input> -->
       </div>
 
       <div class="table-responsive">
         <table class="table text-center">
           <thead>
             <tr>
-              <th scope="col">
+            <tr>
+              <th scope="col" *ngIf="assignationsMap.size!=0" i18n>
+                Gaps
               </th>
-              <!-- <?php if($gaps->count()!=0){foreach ($users as $user): ?> -->
-              <th scope="col">
-                <!-- <?=h($user->name)?> -->
+
+              <th scope="col" i18n *ngFor="let user of users">
+                {{user.name}}
               </th>
-              <!-- <?php endforeach;}?> -->
-              <th scope="col">
-                <!-- <?php if($gaps->count()!=0){echo $this->
-                            request->getSession()->read('Auth.User.name');}?> -->
+              <th scope="col" i18n>
+                {{currentUser.name}}
               </th>
             </tr>
           </thead>
 
           <tbody>
-            <!-- <?php 
-                    if($gaps->count()!=0){
-                    foreach ($gaps as $gap): ?> -->
-            <tr>
-              <th scope="row">
-                <p>
-                  <!-- <?=h($gap->
-                                start_date)?> -->
-                </p>
-                <p>
-                  <!-- <?=h($gap->
-                                    end_date)?> -->
-                </p>
-              </th>
-              <!-- <?php foreach ($users as $user):
-                                $isAssigned = false;
-                                ?> -->
-              <td>
-                <!-- <?php foreach ($assignations as $assign):
-                                        if ($assign['user_id'] == $user->
-                                                            user_id && $assign['gap_id'] == $gap->gap_id) {
-                                            $isAssigned = true;
-                                        }
-                                    endforeach;
+            <ng-container *ngIf="assignationsMap.size!=0">
+              <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps">
+                <th scope="row">
+                  <p>
+                    {{gap.start_date.split("T")[0]}}
+                    <a class="font-weight-light">
+                      {{gap.start_date.split("T")[1].split(".000Z")[0].split(":")[0]}}:{{gap.start_date.split("T")[1].split(".000Z")[0].split(":")[1]}}
+                    </a>
+                  </p>
 
-                                    if ($isAssigned) {
-                                        ?> -->
+                  <p>
+                    {{gap.end_date.split("T")[0]}}
+                    <a class="font-weight-light">
+                      {{gap.end_date.split("T")[1].split(".000Z")[0].split(":")[0]}}:{{gap.end_date.split("T")[1].split(".000Z")[0].split(":")[1]}}
+                    </a>
+                  </p>
+                </th>
 
-                <button class="btn btn-success btn-sm" disabled="" type="button">
-                  <!-- <?php
-                                    } else {
-                                    ?> -->
-                  <button class="btn btn-outline-success btn-sm" disabled="" type="button">
-                    <!-- <?php
-                                    }
-                                    ?> -->
+                <td *ngFor="let user of users">
+                  <button type="button" class="btn btn-success btn-sm btn-disabled" disabled *ngIf="assignationsMap.get(user.user_id)!=null && assignationsMap.get(user.user_id).indexOf(gap.gap_id)>-1 else notAssigned">
                     <i class="material-icons">
                       done
                     </i>
                   </button>
-                </button>
-              </td>
-              <!-- <?php endforeach;?> -->
+
+                  <ng-template #notAssigned>
+                    <button type="button" class="btn btn-outline-success btn-sm btn-disabled" disabled>
+                      <i class="material-icons">
+                        done
+                      </i>
+                    </button>
+                  </ng-template>
+                </td>
+                <td>
+                  <button type="button" id="{{gap.gap_id}}" class="btn btn-outline-success btn-sm btn-disabled" (click)="buttonClicked(gap)">
+                    <i class="material-icons">
+                      done
+                    </i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+            <tr *ngIf="gapsMap.size==0">
               <td>
-                <!-- <button class="btn btn-outline-success btn-sm" onclick="toggle.call(this, <?=$this->request->getSession()->read('Auth.User.user_id')?>, <?=h($gap->gap_id)?>)"
-                  type="button"> -->
-                <i class="material-icons">
-                  done
-                </i>
-                <!-- </button> -->
+                <a class="lead" i18n>
+                  There are not gaps on this poll.
+                </a>
               </td>
             </tr>
-            <!-- <?php endforeach;
-                    } else {
-                    ?> -->
-            <td>
-              <a class="lead">
-                There are not gaps yet.
-              </a>
-            </td>
-            <!-- <?php } ?> -->
           </tbody>
         </table>
 
         <hr class="my-3">
 
-        <!-- <?php 
-            $input=0;
-            foreach ($gaps as $gap): ?> -->
-        <input type="checkbox" id="G<?=h($gap->gap_id)?>.<?=$this->request->getSession()->read('Auth.User.user_id')?>"
-          name="<?=$input?>[gap_id]" value="<?=h($gap->gap_id)?>" hidden>
-        <input type="checkbox" id="U<?=h($gap->gap_id)?>.<?=$this->request->getSession()->read('Auth.User.user_id')?>"
-          name="<?=$input?>[user_id]" value="<?=$this->request->getSession()->read('Auth.User.user_id')?>" hidden>
-        <!-- <?php $input++; endforeach;?> -->
-
         <div class="col-sm-10 accept-button">
-          <!-- <?php if($gaps->count()!=0){
-                echo $this->Form->button(__('Send'), ["class" => "btn btn-outline-secondary"]);
-            } else {
-                echo $this->Form->button(__('Back'), ["controller"=>"poll","action"=>"view",$poll->url,"class" => "btn btn-outline-secondary"]);
-            }
-                ?> -->
+          <button type="submit" class="btn btn-outline-secondary" *ngIf="gapsMap.size>0 && assignationsForAdd.size>0"
+            i18n>Send</button>
+          <button [routerLink]="['/polls/view/'+poll.url]" routerLinkActive="router-link-active" class="btn btn-outline-secondary"
+            *ngIf="gapsMap.size==0 || assignationsForAdd.size==0" i18n>Back</button>
         </div>
-
       </div>
     </div>
   </div>
 </form>
-<!-- <?=$this->Form->end()?> -->
-
-<script>
-  function toggle(user_id, gap_id) {
-
-    // TODO change remove-add to toggle!
-    if ($(this)[0].classList.contains('btn-outline-success')) {
-      $(this).removeClass("btn-outline-success");
-      $(this).addClass("btn-success");
-      document.getElementById("G" + gap_id + "." + user_id).checked = true;
-      document.getElementById("U" + gap_id + "." + user_id).checked = true;
-    } else {
-      $(this).addClass("btn-outline-success");
-      $(this).removeClass("btn-success");
-      document.getElementById("G" + gap_id + "." + user_id).checked = false;
-      document.getElementById("U" + gap_id + "." + user_id).checked = false;
-    }
-  }
-
-</script>

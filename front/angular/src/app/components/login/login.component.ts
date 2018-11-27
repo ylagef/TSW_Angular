@@ -17,8 +17,9 @@ export class LoginComponent implements OnInit {
   private loading = false;
   private submitted = false;
   private error = '';
+  private returnUrl = "";
 
-  constructor(private router: Router, private toastr: ToastrService,
+  constructor(private router: Router, private toastr: ToastrService, private route: ActivatedRoute,
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
@@ -36,13 +37,21 @@ export class LoginComponent implements OnInit {
         ])
     }
     );
+
+    if (this.route.snapshot.queryParams['returnUrl'] != undefined) {
+      this.toastr.warning('You must be logged for this action.', 'Authentication', {
+        positionClass: 'toast-top-center'
+      });
+    }
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/polls';
   }
 
   onSubmit() {
     this.authenticationService.login(this.loginForm.value["username"], this.loginForm.value["password"]).subscribe(
       () => {
         this.toastr.success('User is correct!');
-        this.router.navigate(["/polls"]);
+        this.router.navigate([this.returnUrl]);
       },
       error => {
         console.log(error);

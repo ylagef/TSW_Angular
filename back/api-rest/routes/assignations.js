@@ -50,11 +50,17 @@ router.get('/:id', function (req, res, next) {
 
 // POST assignations
 router.post('/', function (req, res) {
-  console.log(req.body);
-  res.locals.connection.query('INSERT INTO assignations (user_id, gap_id) VALUES (?,?)',
-    [req.body.user_id, req.body.gap_id],
+  console.log(req.body["data"]);
+
+  const assignations = [];
+  req.body["data"].forEach(d => {
+    assignations.push([d["user_id"], d["gap_id"]])
+  });
+
+  res.locals.connection.query('INSERT INTO assignations (user_id, gap_id) VALUES ?', [assignations],
     function (error, results) {
       if (error) {
+        console.log(error);
         res.status(500);
         res.json({
           "status": 500,

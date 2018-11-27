@@ -51,6 +51,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'assignations/add/:url',
+    component: AssignationAddComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

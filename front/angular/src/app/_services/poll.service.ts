@@ -21,7 +21,6 @@ export class PollService {
   }
 
   getByUrl(poll_url) {
-    console.log("Service-" + poll_url)
     return this.http.get<Poll>(this.url + poll_url, { headers: this.headers });
   }
 

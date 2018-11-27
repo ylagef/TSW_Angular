@@ -21,7 +21,8 @@
                 </div>
               </div>
               <!-- Input username -->
-              <input class="form-control" type="text" #username placeholder="Username" formControlName="username">
+              <input class="form-control" type="text" #username placeholder="Username" formControlName="username"
+                autocomplete="username">
             </div>
             <small class="error" *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.touched || loginForm.controls.username.dirty)">
               This field is required.
@@ -36,7 +37,8 @@
                 </div>
               </div>
               <!-- Input password -->
-              <input class="form-control" type="password" #password placeholder="Password" formControlName="password">
+              <input class="form-control" type="password" #password placeholder="Password" formControlName="password"
+                autocomplete="current-password">
             </div>
             <small class="error" *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.touched || loginForm.controls.password.dirty)">
               This field is required.

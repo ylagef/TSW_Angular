@@ -74,11 +74,19 @@ router.get('/poll/:id', function (req, res, next) {
 
 // POST gap
 router.post('/', function (req, res) {
-  console.log(req.body);
-  res.locals.connection.query('INSERT INTO gaps (poll_id, start_date, end_date) VALUES (?,?,?)',
-    [req.body.poll_id, req.body.start_date, req.body.end_date],
+  console.log(req.body["data"]);
+
+  const gaps = [];
+  req.body["data"].forEach(d => {
+    gaps.push([d["poll_id"], d["start_date"], d["end_date"]])
+  });
+
+  console.log(gaps);
+
+  res.locals.connection.query('INSERT INTO gaps (poll_id, start_date, end_date) VALUES ?', [gaps],
     function (error, results) {
       if (error) {
+        console.log(error);
         res.status(500);
         res.json({
           "status": 500,
