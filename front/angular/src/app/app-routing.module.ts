@@ -9,6 +9,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { PollAddComponent } from './components/poll/poll-add/poll-add.component';
 import { AssignationAddComponent } from './components/assignation/assignation-add/assignation-add.component';
 import { GapAddComponent } from './components/gap/gap-add/gap-add.component';
+import { AssignationEditComponent } from './components/assignation/assignation-edit/assignation-edit.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,12 @@ const routes: Routes = [
   {
     path: 'assignations/add/:url',
     component: AssignationAddComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'assignations/edit/:url',
+    component: AssignationEditComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },

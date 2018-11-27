@@ -75,14 +75,14 @@ export class PollViewComponent implements OnInit {
                   }
                 });
 
-                console.log("Gaps Map:");
-                console.log(this.gapsMap);
+                // console.log("Gaps Map:");
+                // console.log(this.gapsMap);
 
                 this.assignationsService.getAll().subscribe(
                   (data) => {
                     this.assignations = data["response"];
-                    console.log("Assignations:");
-                    console.log(this.assignations);
+                    // console.log("Assignations:");
+                    // console.log(this.assignations);
 
                     this.assignations.forEach(assignation => {
                       if (this.gapsMap.get(assignation["gap_id"]) != null) {
@@ -110,8 +110,8 @@ export class PollViewComponent implements OnInit {
                     }
                     );
 
-                    console.log("Assignations Map:");
-                    console.log(this.assignationsMap);
+                    // console.log("Assignations Map:");
+                    // console.log(this.assignationsMap);
 
                     this.userService.getAll().subscribe(
                       (data) => {
@@ -122,8 +122,8 @@ export class PollViewComponent implements OnInit {
                           }
                         });
 
-                        console.log("Users:");
-                        console.log(this.users);
+                        // console.log("Users:");
+                        // console.log(this.users);
                       },
                       (error) => console.log(error)
                     );
