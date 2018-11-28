@@ -77,6 +77,8 @@ export class AssignationAddComponent implements OnInit {
                   }
                 });
 
+                console.log("Gap array:");
+                console.log(this.gaps);
                 console.log("Gaps Map:");
                 console.log(this.gapsMap);
 

@@ -46,7 +46,7 @@
           <thead>
             <tr>
             <tr>
-              <th scope="col" *ngIf="assignationsMap.size!=0" i18n>
+              <th scope="col"  i18n>
                 Gaps
               </th>
 
@@ -60,7 +60,7 @@
           </thead>
 
           <tbody>
-            <ng-container *ngIf="assignationsMap.size!=0">
+            <ng-container>
               <tr id="TR{{gap.gap_id}}" *ngFor="let gap of gaps">
                 <th scope="row">
                   <p>
