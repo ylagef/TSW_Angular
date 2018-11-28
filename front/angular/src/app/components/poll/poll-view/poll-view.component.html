@@ -7,18 +7,19 @@
       {{poll.title}}
     </p>
 
-    <div *ngIf="poll.place!=''; else noPlace">
-      <p class="lead">
-        <i class='material-icons lead-icon'>place</i>
-        {{poll.place}}
-      </p>
-    </div>
-
-    <ng-template #noPlace>
+    <div *ngIf="poll.place==null || poll.place==''; else place">
       <p class="lead" i18n>
         <i class='material-icons lead-icon' i18n>place</i>
         - Location not specified -
       </p>
+    </div>
+
+    <ng-template #place>
+      <p class="lead">
+        <i class='material-icons lead-icon'>place</i>
+        {{poll.place}}
+      </p>
+
     </ng-template>
 
     <div class="input-group mb-3">
@@ -33,8 +34,7 @@
       <input type="text" class="form-control poll-link" value="http://{{host}}/polls/view/{{poll.url}}" disabled id="copyValue">
 
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" (click)="copy()"
-          i18n>
+        <button class="btn btn-outline-secondary" (click)="copy()" i18n>
           COPY
         </button>
       </div>

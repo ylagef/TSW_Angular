@@ -25,6 +25,10 @@ export class AssignationService {
     return this.http.get(this.url + "/" + id, { headers: this.headers });
   }
 
+  getGapsOfUser(user_id:number) {
+    return this.http.get(this.url + "/user/" + user_id, { headers: this.headers });
+  }
+
   addAssignations(assignations: Map<number, Assignation>) {
     console.log("Assignations:");
     console.log(assignations);

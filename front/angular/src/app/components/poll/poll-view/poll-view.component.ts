@@ -8,7 +8,6 @@ import { GapService } from 'src/app/_services/gap.service';
 import { Gap } from 'src/app/_models/gap.model';
 import { Assignation } from 'src/app/_models/assignation.model';
 import { AssignationService } from 'src/app/_services/assignation.service';
-import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-poll-view',
@@ -52,6 +51,8 @@ export class PollViewComponent implements OnInit {
           (data) => {
             this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title,
               data["response"][0].place, data["response"][0].author, data["response"][0].url);
+
+            console.log(this.poll);
 
             this.gapsService.getGapsOfPoll(this.poll["poll_id"]).subscribe(
               (data) => {
@@ -103,12 +104,14 @@ export class PollViewComponent implements OnInit {
 
                         // Set gap assignations count
                         this.gapsMap.get(assignation["gap_id"])[1]++;
+
                         if (this.maxParticipants < this.gapsMap.get(assignation["gap_id"])[1]) {
                           this.maxParticipants = this.gapsMap.get(assignation["gap_id"])[1];
                         }
                       }
                     }
                     );
+                    console.log(this.gapsMap);
 
                     // console.log("Assignations Map:");
                     // console.log(this.assignationsMap);
