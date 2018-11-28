@@ -22,6 +22,7 @@ import { AssignationEditComponent } from './components/assignation/assignation-e
 import { GapAddComponent } from './components/gap/gap-add/gap-add.component';
 import { GapViewComponent } from './components/gap/gap-view/gap-view.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { PollEditComponent } from './components/poll/poll-edit/poll-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     AssignationAddComponent,
     AssignationEditComponent,
     GapAddComponent,
-    GapViewComponent
+    GapViewComponent,
+    PollEditComponent
   ],
   imports: [
     BrowserModule,

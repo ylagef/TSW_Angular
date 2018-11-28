@@ -10,6 +10,7 @@ import { PollAddComponent } from './components/poll/poll-add/poll-add.component'
 import { AssignationAddComponent } from './components/assignation/assignation-add/assignation-add.component';
 import { GapAddComponent } from './components/gap/gap-add/gap-add.component';
 import { AssignationEditComponent } from './components/assignation/assignation-edit/assignation-edit.component';
+import { PollEditComponent } from './components/poll/poll-edit/poll-edit.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,12 @@ const routes: Routes = [
   {
     path: 'polls/view/:url',
     component: PollViewComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'polls/edit/:url',
+    component: PollEditComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
