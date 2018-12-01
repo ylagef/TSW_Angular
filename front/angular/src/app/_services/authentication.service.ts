@@ -13,7 +13,6 @@ export class AuthenticationService {
     constructor(private http: HttpClient, private router: Router) { }
 
     login(username: string, password: string) {
-
         return this.http.post<any>(`http://localhost:3000/api/v1/users/login`, { username, password })
             .pipe(map(res => {
                 // login successful if there's a jwt token in the response

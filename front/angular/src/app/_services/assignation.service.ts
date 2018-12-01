@@ -22,11 +22,11 @@ export class AssignationService {
   }
 
   getById(id: number) {
-    return this.http.get(this.url + "/" + id, { headers: this.headers });
+    return this.http.get(this.url + id, { headers: this.headers });
   }
 
-  getGapsOfUser(user_id:number) {
-    return this.http.get(this.url + "/user/" + user_id, { headers: this.headers });
+  getGapsOfUser(user_id: number) {
+    return this.http.get(this.url + "user/" + user_id, { headers: this.headers });
   }
 
   addAssignations(assignations: Map<number, Assignation>) {
@@ -37,7 +37,7 @@ export class AssignationService {
     const data = Array.from(assignations.values());
     console.log(data);
 
-    return this.http.post(this.url + "/", { headers: this.headers, data: data });
+    return this.http.post(this.url, data, { headers: this.headers, });
   }
 
   editAssignations(assignationsForEdit: Map<String, Assignation>, beforeAssignations: String[], currentUser: User) {
@@ -46,7 +46,7 @@ export class AssignationService {
     // If new map don't has assignation from actual -> Delete it
     beforeAssignations.forEach(a => {
       if (!assignationsForEdit.has(a)) {
-        this.http.delete(this.url + "/" + a.split("-")[0] + "/" + a.split("-")[1], { headers: this.headers }).subscribe(
+        this.http.delete(this.url + a.split("-")[0] + "/" + a.split("-")[1], { headers: this.headers }).subscribe(
           data => {
             console.log("Deleted ok!");
             console.log(data["response"]);
@@ -63,7 +63,7 @@ export class AssignationService {
     // If actual map don't has assignation from edit map -> Add it
     assignationsForEdit.forEach(a => {
       if (!beforeAssignations.includes(a["gap_id"] + "-" + currentUser["user_id"])) {
-        this.http.post(this.url + "/", { headers: this.headers, data: [a] }).subscribe(
+        this.http.post(this.url, [a], { headers: this.headers }).subscribe(
           data => console.log("Success - " + data),
           error => {
             console.error(error)

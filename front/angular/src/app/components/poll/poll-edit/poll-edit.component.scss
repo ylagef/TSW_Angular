@@ -61,6 +61,7 @@ input {
 }
 
 .other-option-button {
+  width: 9rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5rem;
@@ -117,6 +118,27 @@ input {
   vertical-align: middle;
 }
 
+.delete-td {
+  width: 1rem;
+}
+
+.delete-icon {
+  vertical-align: middle;
+}
+
+.error {
+  border-top: 1px solid #a94442;
+  color: #a94442;
+}
+
+.poll-link {
+  padding-right: 0;
+}
+
+.title{
+  margin-bottom: 2rem;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 
 @media (min-width: 576px) {
@@ -132,6 +154,11 @@ input {
   footer {
     display: block;
   }
+}
+
+.my-2 {
+  width: 10rem;
+  margin-bottom: 1rem !important;
 }
 
 /* Medium devices (tablets, 768px and up) */

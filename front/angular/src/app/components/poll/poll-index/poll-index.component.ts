@@ -4,6 +4,8 @@ import { Poll } from '../../../_models/poll.model';
 import { User } from '../../../_models/user.model';
 import { GapService } from 'src/app/_services/gap.service';
 import { AssignationService } from 'src/app/_services/assignation.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-poll-index',
@@ -16,7 +18,8 @@ export class PollIndexComponent implements OnInit {
   private gapsOfPoll: Map<number, number>;
   private participatedPollsId: number[];
 
-  constructor(private pollService: PollService, private gapService: GapService, private assignationService: AssignationService) {
+  constructor(private pollService: PollService, private gapService: GapService, private assignationService: AssignationService,
+    private toastr: ToastrService, private router: Router) {
     this.gapsOfPoll = new Map();
     this.participatedPollsId = [];
     this.polls = [];
@@ -34,27 +37,31 @@ export class PollIndexComponent implements OnInit {
               data["response"].forEach(element => {
                 this.gapsOfPoll.set(element["gap_id"], poll["poll_id"]);
               });
-
-              // console.log(this.gapsOfPoll);
-            }
+            },
+            error => this.toastrError(error)
           );
         });
 
         this.assignationService.getGapsOfUser(this.currentUser["user_id"]).subscribe(
           data => {
             data["response"].forEach(element => {
-              // console.log(element["gap_id"]);
-              if (this.gapsOfPoll.has(element["gap_id"])) {
-                // console.log(this.gapsOfPoll.get(element["gap_id"]));
-                this.participatedPollsId.push(this.gapsOfPoll.get(element["gap_id"]));
-              }
-              // console.log(this.gapsOfPoll.has(element["gap_id"]));
+              if (this.gapsOfPoll.has(element["gap_id"])) this.participatedPollsId.push(this.gapsOfPoll.get(element["gap_id"]));
             });
-            console.log(this.participatedPollsId);
-          }
+          },
+          error => this.toastrError(error)
         );
       },
-      error => console.log(error)
+      error => this.toastrError(error)
     );
+  }
+
+  toastrError(error) {
+    console.error(error);
+    if (error.error.status == 401) {
+      this.toastr.warning('You are not authorized for this site!', 'Authorization');
+      this.router.navigate(["/login"]);
+    } else {
+      this.toastr.error('Query error, please try again later.', 'Error');
+    }
   }
 }

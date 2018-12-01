@@ -37,16 +37,34 @@ export class GapAddComponent implements OnInit {
           (data) => {
             this.poll = data["response"][0];
             this.addRow();
+          },
+          (error) => {
+            console.error(error);
+            if (error.error.status == 401) {
+              this.toastr.warning('You are not authorized for this site!', 'Authorization');
+              this.router.navigate(["/login"]);
+            } else {
+              this.toastr.error('Query error, please try again later.', 'Error');
+            }
           }
         );
+      },
+      (error) => {
+        console.error(error);
+        if (error.error.status == 401) {
+          this.toastr.warning('You are not authorized for this site!', 'Authorization');
+          this.router.navigate(["/login"]);
+        } else {
+          this.toastr.error('Query error, please try again later.', 'Error');
+        }
       });
   }
 
   addRow() {
     this.gaps.push(new Gap(++this.lastIndex, this.poll["poll_id"], new Date(), new Date()));
-    console.warn("Gap added!");
-    console.log("Gaps:");
-    console.log(this.gaps);
+    // console.warn("Gap added!");
+    // console.log("Gaps:");
+    // console.log(this.gaps);
 
     this.gapsAddForm.addControl('start' + this.lastIndex,
       new FormControl('',
@@ -61,37 +79,47 @@ export class GapAddComponent implements OnInit {
         ])
     );
 
-    console.log(this.gapsAddForm);
+    // console.log(this.gapsAddForm);
   }
 
   deleteRow(gap: Gap) {
     const index = this.gaps.indexOf(gap);
 
-    console.log("Before delete..." + index)
-    console.log(this.gapsAddForm);
+    // console.log("Before delete..." + index)
+    // console.log(this.gapsAddForm);
 
     this.gapsAddForm.removeControl('start' + (index + 1));
     this.gapsAddForm.removeControl('end' + (index + 1));
 
     this.gaps.splice(index, 1);
 
-    console.warn("Gap deleted!");
-    console.log("Gaps:");
-    console.log(this.gaps);
+    // console.warn("Gap deleted!");
+    // console.log("Gaps:");
+    // console.log(this.gaps);
 
-    console.log(this.gapsAddForm);
+    // console.log(this.gapsAddForm);
   }
 
   onSubmit() {
     this.gapService.addGaps(this.gaps).subscribe(
       () => {
         this.toastr.success('Gaps added successful!');
-        this.router.navigate(["/polls/view/" + this.poll["url"]]);
+        this.router.navigate(["/polls/edit/" + this.poll["url"]]);
       },
       error => {
         console.log(error);
         this.toastr.error('User is not on Database.', 'ERROR', { progressBar: true });
       }
     );
+  }
+
+  toastrError(error) {
+    console.error(error);
+    if (error.error.status == 401) {
+      this.toastr.warning('You are not authorized for this site!', 'Authorization');
+      this.router.navigate(["/login"]);
+    } else {
+      this.toastr.error('Query error, please try again later.', 'Error');
+    }
   }
 }

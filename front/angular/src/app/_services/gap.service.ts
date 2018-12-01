@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Gap } from '../_models/gap.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,25 +22,28 @@ export class GapService {
   }
 
   getById(id) {
-    return this.http.get(this.url + "/" + id, { headers: this.headers });
+    return this.http.get(this.url + id, { headers: this.headers });
   }
 
   getGapsOfPoll(id) {
-    return this.http.get(this.url + "/poll/" + id, { headers: this.headers });
+    return this.http.get(this.url + "poll/" + id, { headers: this.headers });
   }
 
   addGaps(gaps: Gap[]) {
-    console.log("Gap service. Gaps for add:");
-    console.log(gaps);
-
-
     gaps.forEach(gap => {
       gap["start_date"] = gap["dates"][0];
       gap["end_date"] = gap["dates"][1];
       gap["dates"] = null;
     });
 
-    return this.http.post(this.url + "/", { headers: this.headers, data: gaps });
+    return this.http.post(this.url, gaps, { headers: this.headers });
   }
 
+  deleteGap(id: number) {
+    return this.http.delete(this.url + "/" + id, { headers: this.headers });
+  }
+
+  editGap(gap: Gap) {
+    return this.http.put(this.url, gap, { headers: this.headers });
+  }
 }

@@ -55,10 +55,12 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(["/"]);
       },
       (error) => {
-        if (error.error.response == null) {
-          this.toastr.error('Error on insert. Please try again.');
+        console.error(error);
+        if (error.error.status == 401) {
+          this.toastr.warning('You are not authorized for this site!', 'Authorization');
+          this.router.navigate(["/login"]);
         } else {
-          this.toastr.error(error.error.response + '. Please try again.');
+          this.toastr.error('Query error, please try again later.', 'Error');
         }
       }
     );

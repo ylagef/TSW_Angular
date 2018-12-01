@@ -1,20 +1,27 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var pollsRouter = require('./routes/polls');
-var gapsRouter = require('./routes/gaps');
-var assignationsRouter = require('./routes/assignations');
-var cors = require('cors')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const pollsRouter = require('./routes/polls');
+const gapsRouter = require('./routes/gaps');
+const assignationsRouter = require('./routes/assignations');
+const cors = require('cors')
+const secureRandom = require('secure-random');
+nJwt = require('njwt');
 
-var app = express();
+const app = express();
 app.use(cors());
 
-var mysql = require("mysql");
+secretKey = secureRandom(256, {
+  type: 'Buffer'
+}); // Create a highly random byte array of 256 bytes
+
+
+const mysql = require("mysql");
 //Database connection
 app.use(function (req, res, next) {
   res.locals.connection = mysql.createConnection({
@@ -32,7 +39,9 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

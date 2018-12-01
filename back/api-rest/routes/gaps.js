@@ -1,132 +1,258 @@
 var express = require('express');
 var router = express.Router();
 
+
 // GET gaps listing
 router.get('/', function (req, res, next) {
-  res.locals.connection.query('SELECT * FROM gaps',
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('SELECT * FROM gaps',
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 // GET gap by id
 router.get('/:id', function (req, res, next) {
-  console.log(req.params);
-  res.locals.connection.query('SELECT * FROM gaps WHERE gap_id=' + req.params.id,
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+  // console.log(req.params);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('SELECT * FROM gaps WHERE gap_id=' + req.params.id,
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 // GET gap by id
 router.get('/poll/:id', function (req, res, next) {
-  console.log(req.params);
-  res.locals.connection.query('SELECT * FROM gaps WHERE poll_id=' + req.params.id,
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+  // console.log(req["headers"]["authorization"]);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('SELECT * FROM gaps WHERE poll_id=' + req.params.id,
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 // POST gap
 router.post('/', function (req, res) {
-  console.log(req.body["data"]);
+  console.log(req.body);
 
-  const gaps = [];
-  req.body["data"].forEach(d => {
-    gaps.push([d["poll_id"], d["start_date"], d["end_date"]])
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      const gaps = [];
+      req.body.forEach(d => {
+        gaps.push([d["poll_id"], d["start_date"], d["end_date"]])
+      });
+
+      console.log(gaps);
+
+      res.locals.connection.query('INSERT INTO gaps (poll_id, start_date, end_date) VALUES ?', [gaps],
+        function (error, results) {
+          if (error) {
+            // console.log(error);
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
+        });
+    }
   });
-
-  console.log(gaps);
-
-  res.locals.connection.query('INSERT INTO gaps (poll_id, start_date, end_date) VALUES ?', [gaps],
-    function (error, results) {
-      if (error) {
-        console.log(error);
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
-        });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
 });
 
 // DELETE gap by id
 router.delete('/:id', function (req, res, next) {
-  console.log(req.params);
-  res.locals.connection.query('DELETE FROM gaps WHERE gap_id=' + req.params.id,
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+  // console.log(req.params);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('DELETE FROM gaps WHERE gap_id=' + req.params.id,
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
+    }
+  });
+});
+
+// PUT gap
+router.put('/', function (req, res) {
+  console.log(req);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      // console.log(verifiedJwt); // Will contain the header and body
+      res.locals.connection.query('UPDATE gaps SET poll_id="' + req.body["poll_id"] + '", start_date="' + req.body["start_date"] + '", end_date="' + req.body["end_date"] + '" WHERE gap_id = ' + req.body["gap_id"],
+        function (error, results) {
+          if (error) {
+            console.log(error);
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 module.exports = router;

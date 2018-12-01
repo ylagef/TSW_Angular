@@ -1,154 +1,95 @@
-<!-- <?= $this->Html->css('pollEdit') ?>
-<?= $participatedOnPoll=false;?> -->
-
-<!-- <?= $this->Form->create($poll, array('onsubmit' => "return setArray(" . $poll->poll_id . ");"));?> -->
-<!-- CENTRAL JUMBOTRON -->
-<!-- <script>var rows=[];</script> -->
-<div class="jumbotron jumbotron-fluid rounded">
-  <div class="container">
-    <h1 class="display-4" i18n>
-      Edit poll
-    </h1>
-    <!-- <p class="lead"><i class="material-icons lead-icon">keyboard_arrow_right</i><?= h($poll->title) ?></p> -->
-    <div class="row editRow">
-      <p class="lead"><i class="material-icons lead-icon edit-icons">keyboard_arrow_right</i>
-        <!-- <?=$this->
-                Form->control('title', ["class" => "form-control", "value" => h($poll->title), "label" => false, "placeholder"=>"Título"])?> -->
-      </p>
-    </div>
-    <div class="row editRow">
-      <p class="lead"><i class="material-icons lead-icon edit-icons">place</i>
-        <!-- <?=$this->
-                Form->control('place', ["class" => "form-control", "value" => h($poll->place), "label" => false, "placeholder"=>"Ubicación"])?> -->
-      </p>
-    </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text link-icon">
-          <i class="material-icons">
-            link
-          </i>
-        </span>
+<form class="form" [formGroup]="pollEditForm" (ngSubmit)="onSubmit()">
+  <div class="jumbotron jumbotron-fluid rounded">
+    <div class="container">
+      <h1 class="display-4 title" i18n>
+        Edit poll
+      </h1>
+      <div class="row editRow">
+        <i class="material-icons lead-icon">keyboard_arrow_right</i>
+        <p class="lead">
+          <input type="text" class="form-control" placeholder="Title" formControlName="title" required>
+          <small class="error" *ngIf="pollEditForm.controls.title.errors">
+            This field is required.
+          </small>
+        </p>
       </div>
-      <!-- <input type="text" class="form-control poll-link" value="<?=$_SERVER[" HTTP_HOST"]?>/polls/view/
-      <?= h($poll->url) ?>" disabled id="copyValue"> -->
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary " type="button" onclick="copy()" id="copyButton">
-          COPY
-        </button>
+
+      <div class="
+          row editRow">
+        <i class="material-icons lead-icon">place</i>
+        <p class="lead">
+          <input type="text" class="form-control" placeholder="Place" formControlName="place">
+        </p>
       </div>
-    </div>
 
-    <div class="table-responsive">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text link-icon">
+            <i class="material-icons">
+              link
+            </i>
+          </span>
+        </div>
 
-      <table class="table text-center" id="gapsTable">
-        <thead>
-          <tr>
-            <th scope="col" i18n>
-              Day
-            </th>
-            <th scope="col" i18n>
-              Start Hour
-            </th>
-            <th scope="col" i18n>
-              End Hour
-            </th>
-            <th scope="col">
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <?php foreach($gaps as $gap){?>
-          <script> rows.push(<?=$gap->gap_id?>);</script> -->
+        <input type="text" class="form-control poll-link" value="http://{{host}}/polls/view/{{poll.url}}" disabled id="copyValue">
 
-          <!-- <input id="<?=$gap->gap_id?>" hidden> -->
-
-          <tr>
-            <td>
-              <!-- <input class="form-control floating-label text-center date edit-disabled" id="date<?=$gap->gap_id?>"
-                placeholder="<?=__(" Date")?>" type="text"
-              value="
-              <?php 
-                  if($this->request->getCookie("lang")=="es_ES"){
-                    $date=explode(' ', $gap->start_date)[0];
-                    $month=explode('/', $date)[1];
-                    $day=explode('/', $date)[0];
-                    $year=explode('/', $date)[2];
-                    echo "20".$year."-".$month."-".$day;
-                  }else{
-                    $date=explode(', ', $gap->start_date)[0];
-                    $month=explode('/', $date)[1];
-                    $day=explode('/', $date)[0];
-                    $year=explode('/', $date)[2];
-                    echo $year."-".$month."-".$day;
-                  }
-                  ?>"
-              disabled> -->
-            </td>
-            <td>
-              <!-- <input class="form-control floating-label text-center startTime edit-disabled" id="startTime<?=$gap->gap_id?>"
-                placeholder="<?=__(" Start Hour")?>"
-              type="text" value="
-              <?php
-                  if($this->request->getCookie("lang")=="es_ES"){
-                    $time=explode(' ', $gap->start_date)[1];
-                  }else{
-                   $time=explode(', ', $gap->start_date)[1];
-                  }
-
-                   $aux=explode(' ',$time)[0];
-                   $hour=explode(":",$aux)[0];
-                   if(strpos($time,"PM")){
-                     $hour=$hour+12;
-                   }
-                   $minute=explode(":",$aux)[1];
-                   echo $hour.":".$minute;
-                   ?>"
-              disabled> -->
-            </td>
-            <td>
-              <!-- <input class="form-control floating-label text-center endTime edit-disabled" id="endTime<?=$gap->gap_id?>"
-                placeholder="<?=__(" End Hour")?>" type="text"
-              value="
-              <?php
-                  if($this->request->getCookie("lang")=="es_ES"){
-                    $time=explode(' ', $gap->end_date)[1];
-                  }else{
-                   $time=explode(', ', $gap->end_date)[1];
-                  }
-
-                   $aux=explode(' ',$time)[0];
-                   $hour=explode(":",$aux)[0];
-                   if(strpos($time,"PM")){
-                     $hour=$hour+12;
-                   }
-                   $minute=explode(":",$aux)[1];
-                   echo $hour.":".$minute;
-                   ?>"
-              disabled> -->
-            </td>
-            <td>
-              <!-- <button class='btn btn-outline-danger btn-sm' onClick='deleteRow(<?=$gap->gap_id?>)' type='button'><i
-                  class='material-icons'>delete</i></button> -->
-            </td>
-          </tr>
-          <!-- <?php }?> -->
-        </tbody>
-      </table>
-
-      <div class="add-option-button">
-        <button class="btn btn-outline-success" onClick="addRow()" type="button" i18n>
-          Add other option
-        </button>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="copy()" i18n>
+            COPY
+          </button>
+        </div>
       </div>
-      <hr class="my-3">
-      <div class="other-option-button text-center">
-        <!-- <?= $this->Form->button(__('Edit'), ["class"=>"btn btn-outline-info"]) ?> -->
+
+      <div class="table-responsive">
+        <table class="table text-center" id="gapsTable">
+          <thead>
+            <tr>
+              <th scope="col">Start date & time</th>
+              <th scope="col"> </th>
+              <th scope="col">End date & time</th>
+              <th scope="col"> </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let gap of gaps">
+              <td>
+                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" min="{{today}}" placeholder="Start Time" class="form-control floating-label text-center date"
+                  formControlName="gap-{{gap.gap_id}}" [selectMode]="'rangeFrom'" [(ngModel)]="gap.dates">
+                <owl-date-time #dt1 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
+              </td>
+
+              <td>
+                <i class="material-icons">
+                  arrow_forward
+                </i>
+              </td>
+
+              <td>
+                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" min="{{today}}" placeholder="End Time" class="form-control floating-label text-center date"
+                  formControlName="gap-{{gap.gap_id}}" [selectMode]="'rangeTo'" [(ngModel)]="gap.dates">
+                <owl-date-time #dt2 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
+              </td>
+
+              <td>
+                <button class='btn btn-outline-danger btn-sm' (click)='deleteRow(gap)' type='button'>
+                  <i class='material-icons'>delete</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr class="my-3">
+
+        <div class="other-option-button">
+          <button class="btn btn-outline-success" (click)="addRow()" type="button">
+            Add other option </button>
+        </div>
+        <div class="col-sm-10 accept-button">
+          <button type="submit" class="btn btn-outline-secondary" [disabled]="pollEditForm.controls.title.errors" title="Title field must be filled">End</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div id="inputs"></div>
-<!-- <?= $this->Form->end() ?>
-
-<?=$this->Html->script('gaps');?> -->
+</form>

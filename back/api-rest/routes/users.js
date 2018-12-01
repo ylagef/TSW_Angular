@@ -1,89 +1,137 @@
 var express = require('express');
 var router = express.Router();
 var md5 = require('md5');
-var nJwt = require('njwt');
-var secureRandom = require('secure-random');
 
 // GET users listing
 router.get('/', function (req, res, next) {
-  res.locals.connection.query('SELECT * FROM users',
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('SELECT * FROM users',
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 // GET user by id
 router.get('/:id', function (req, res, next) {
-  console.log(req.params);
-  res.locals.connection.query('SELECT * FROM users WHERE user_id=' + req.params.id,
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+  // console.log(req.params);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('SELECT * FROM users WHERE user_id=' + req.params.id,
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 // DELETE user by id
 router.delete('/:id', function (req, res, next) {
-  console.log(req.params);
-  res.locals.connection.query('DELETE FROM users WHERE user_id=' + req.params.id,
-    function (error, results, fields) {
-      if (error) {
-        res.status(500);
-        res.json({
-          "status": 500,
-          "error": error,
-          "response": null
+  // console.log(req.params);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+
+      res.locals.connection.query('DELETE FROM users WHERE user_id=' + req.params.id,
+        function (error, results, fields) {
+          if (error) {
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
         });
-        //If there is error, we send the error in the error section with 500 status
-      } else {
-        res.json({
-          "status": 200,
-          "error": null,
-          "response": results
-        });
-        //If there is no error, all is good and response is 200OK.
-      }
-    });
+    }
+  });
 });
 
 // REGISTER user
 router.post('/register', function (req, res) {
-  console.log(req.body["data"]);
+  // console.log(req.body["data"]);
 
-  console.log("Checking username...");
+  // console.log("Checking username...");
   res.locals.connection.query('SELECT * FROM users WHERE username="' + req.body["data"].username + '"',
     function (error, results, fields) {
       if (error) {
-        console.log(error);
+        // console.log(error);
 
         res.status(500);
         res.json({
@@ -94,7 +142,7 @@ router.post('/register', function (req, res) {
       } else {
         // If nor error on query, we check if already exists or not
         if (results.length > 0) {
-          console.log("Username already exists");
+          // console.log("Username already exists");
 
           res.status(500);
           res.json({
@@ -104,11 +152,12 @@ router.post('/register', function (req, res) {
           });
         } else {
           // Is username not exists, we check the email
-          console.log("Checking email...");
+          // console.log("Checking email...");
+
           res.locals.connection.query('SELECT * FROM users WHERE email="' + req.body["data"].email + '"',
             function (error, results, fields) {
               if (error) {
-                console.log(error);
+                // console.log(error);
 
                 res.status(500);
                 res.json({
@@ -119,7 +168,7 @@ router.post('/register', function (req, res) {
               } else {
                 // If nor error on query, we check if already exists or not
                 if (results.length > 0) {
-                  console.log("Email already exists");
+                  // console.log("Email already exists");
 
                   res.status(500);
                   res.json({
@@ -129,7 +178,7 @@ router.post('/register', function (req, res) {
                   });
                 } else {
                   // If username and email not exist, we add the new user.
-                  console.log("Adding user...");
+                  // console.log("Adding user...");
                   res.locals.connection.query('INSERT INTO users (username, name, email, password) VALUES (?,?,?,?)',
                     [req.body.data.username, req.body.data.name, req.body.data.email, req.body.data.password],
                     function (error, results) {
@@ -142,7 +191,7 @@ router.post('/register', function (req, res) {
                         });
                         //If there is error, we send the error in the error section with 500 status
                       } else {
-                        console.log("User created succesful.")
+                        // console.log("User created succesful.")
                         res.json({
                           "status": 200,
                           "error": null,
@@ -157,14 +206,12 @@ router.post('/register', function (req, res) {
         }
       }
     });
-
-
 });
 
-
-// POST user
+// LOGIN user
 router.post('/login', function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
+
   let hashedPass = md5(req.body.password);
 
   res.locals.connection.query('SELECT user_id, username, name, email FROM users WHERE username="' + req.body.username + '" AND password="' + hashedPass + '"',
@@ -176,15 +223,15 @@ router.post('/login', function (req, res) {
           "error": error,
           "response": null
         });
+
         //If there is error, we send the error in the error section with 500 status
       } else {
         if (results.length == 1) {
+
           var claims = {
-            scope: "self, admins"
+            user_id: results[0]["user_id"],
+            username: results[0]["username"]
           }
-          var secretKey = secureRandom(256, {
-            type: 'Buffer'
-          }); // Create a highly random byte array of 256 bytes
 
           var jwt = nJwt.create(claims, secretKey);
           results.push(jwt.compact());

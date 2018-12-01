@@ -143,16 +143,48 @@ export class AssignationEditComponent implements OnInit {
                         // console.log("Users:");
                         // console.log(this.users);
                       },
-                      (error) => console.log(error)
+                      (error) => {
+                        console.error(error);
+                        if (error.error.status == 401) {
+                          this.toastr.warning('You are not authorized for this site!', 'Authorization');
+                          this.router.navigate(["/login"]);
+                        } else {
+                          this.toastr.error('Query error, please try again later.', 'Error');
+                        }
+                      }
                     );
                   },
-                  (error) => console.log(error)
+                  (error) => {
+                    console.error(error);
+                    if (error.error.status == 401) {
+                      this.toastr.warning('You are not authorized for this site!', 'Authorization');
+                      this.router.navigate(["/login"]);
+                    } else {
+                      this.toastr.error('Query error, please try again later.', 'Error');
+                    }
+                  }
                 );
               },
-              (error) => console.log(error)
+              (error) => {
+                console.error(error);
+                if (error.error.status == 401) {
+                  this.toastr.warning('You are not authorized for this site!', 'Authorization');
+                  this.router.navigate(["/login"]);
+                } else {
+                  this.toastr.error('Query error, please try again later.', 'Error');
+                }
+              }
             );
           },
-          (error) => console.log(error)
+          (error) => {
+            console.error(error);
+            if (error.error.status == 401) {
+              this.toastr.warning('You are not authorized for this site!', 'Authorization');
+              this.router.navigate(["/login"]);
+            } else {
+              this.toastr.error('Query error, please try again later.', 'Error');
+            }
+          }
         );
       }
     );
@@ -198,6 +230,16 @@ export class AssignationEditComponent implements OnInit {
     } else {
       this.toastr.success('Assignations edited correctly!');
       this.router.navigate(["/polls/view/" + this.poll["url"]]);
+    }
+  }
+
+  toastrError(error) {
+    console.error(error);
+    if (error.error.status == 401) {
+      this.toastr.warning('You are not authorized for this site!', 'Authorization');
+      this.router.navigate(["/login"]);
+    } else {
+      this.toastr.error('Query error, please try again later.', 'Error');
     }
   }
 }

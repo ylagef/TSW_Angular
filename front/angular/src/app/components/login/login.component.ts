@@ -20,12 +20,11 @@ export class LoginComponent implements OnInit {
   private returnUrl = "";
 
   constructor(private router: Router, private toastr: ToastrService, private route: ActivatedRoute,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService) {
+    this.authenticationService.logout();
+  }
 
   ngOnInit() {
-    // reset login status
-    this.authenticationService.logout();
-
     this.loginForm = new FormGroup({
       username: new FormControl('',
         [

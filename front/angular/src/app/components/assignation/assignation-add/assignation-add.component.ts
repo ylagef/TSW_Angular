@@ -129,16 +129,16 @@ export class AssignationAddComponent implements OnInit {
                         console.log("Users:");
                         console.log(this.users);
                       },
-                      (error) => console.log(error)
+                      (error) => this.toastrError(error)
                     );
                   },
-                  (error) => console.log(error)
+                  (error) => this.toastrError(error)
                 );
               },
-              (error) => console.log(error)
+              (error) => this.toastrError(error)
             );
           },
-          (error) => console.log(error)
+          (error) => this.toastrError(error)
         );
       }
     );
@@ -193,5 +193,15 @@ export class AssignationAddComponent implements OnInit {
         }
       }
     );
+  }
+
+  toastrError(error) {
+    console.error(error);
+    if (error.error.status == 401) {
+      this.toastr.warning('You are not authorized for this site!', 'Authorization');
+      this.router.navigate(["/login"]);
+    } else {
+      this.toastr.error('Query error, please try again later.', 'Error');
+    }
   }
 }

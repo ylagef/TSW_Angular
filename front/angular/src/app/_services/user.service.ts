@@ -30,6 +30,6 @@ export class UserService {
     }
 
     getById(id) {
-        return this.http.get<User>(this.url + "/" + id, { headers: this.headers });
+        return this.http.get<User>(this.url + id, { headers: this.headers });
     }
 }

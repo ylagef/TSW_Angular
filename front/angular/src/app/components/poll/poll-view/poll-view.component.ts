@@ -8,6 +8,7 @@ import { GapService } from 'src/app/_services/gap.service';
 import { Gap } from 'src/app/_models/gap.model';
 import { Assignation } from 'src/app/_models/assignation.model';
 import { AssignationService } from 'src/app/_services/assignation.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-poll-view',
@@ -28,7 +29,8 @@ export class PollViewComponent implements OnInit {
   private host: string;
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private userService: UserService,
-    private gapsService: GapService, private assignationsService: AssignationService) {
+    private gapsService: GapService, private assignationsService: AssignationService, private toastr: ToastrService,
+    private router: Router) {
     this.poll = new Poll();
     this.users = [];
     this.gaps = [];
@@ -52,8 +54,6 @@ export class PollViewComponent implements OnInit {
             this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title,
               data["response"][0].place, data["response"][0].author, data["response"][0].url);
 
-            console.log(this.poll);
-
             this.gapsService.getGapsOfPoll(this.poll["poll_id"]).subscribe(
               (data) => {
                 this.gaps = data["response"];
@@ -76,14 +76,9 @@ export class PollViewComponent implements OnInit {
                   }
                 });
 
-                // console.log("Gaps Map:");
-                // console.log(this.gapsMap);
-
                 this.assignationsService.getAll().subscribe(
                   (data) => {
                     this.assignations = data["response"];
-                    // console.log("Assignations:");
-                    // console.log(this.assignations);
 
                     this.assignations.forEach(assignation => {
                       if (this.gapsMap.get(assignation["gap_id"]) != null) {
@@ -111,10 +106,6 @@ export class PollViewComponent implements OnInit {
                       }
                     }
                     );
-                    console.log(this.gapsMap);
-
-                    // console.log("Assignations Map:");
-                    // console.log(this.assignationsMap);
 
                     this.userService.getAll().subscribe(
                       (data) => {
@@ -124,20 +115,17 @@ export class PollViewComponent implements OnInit {
                             this.users.push(user);
                           }
                         });
-
-                        // console.log("Users:");
-                        // console.log(this.users);
                       },
-                      (error) => console.log(error)
+                      (error) => this.toastrError(error)
                     );
                   },
-                  (error) => console.log(error)
+                  (error) => this.toastrError(error)
                 );
               },
-              (error) => console.log(error)
+              (error) => this.toastrError(error)
             );
           },
-          (error) => console.log(error)
+          (error) => this.toastrError(error)
         );
       }
     );
@@ -156,6 +144,15 @@ export class PollViewComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+  }
 
+  toastrError(error) {
+    console.error(error);
+    if (error.error.status == 401) {
+      this.toastr.warning('You are not authorized for this site!', 'Authorization');
+      this.router.navigate(["/login"]);
+    } else {
+      this.toastr.error('Query error, please try again later.', 'Error');
+    }
   }
 }

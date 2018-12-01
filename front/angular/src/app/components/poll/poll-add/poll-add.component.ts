@@ -33,10 +33,16 @@ export class PollAddComponent implements OnInit {
         this.router.navigate(["/gaps/add/" + data["response"]]);
       },
       (error) => {
-        if (error.error.response == null) {
-          this.toastr.error('Error on poll creation. Please try again.');
+        console.error(error);
+        if (error.error.status == 401) {
+          this.toastr.warning('You are not authorized for this site!', 'Authorization');
+          this.router.navigate(["/login"]);
         } else {
-          this.toastr.error(error.error.response + '. Please try again.');
+          if (error.error.response == null) {
+            this.toastr.error('Error on poll creation. Please try again.');
+          } else {
+            this.toastr.error(error.error.response + '. Please try again.');
+          }
         }
       }
     );
