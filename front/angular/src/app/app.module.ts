@@ -24,6 +24,11 @@ import { GapViewComponent } from './components/gap/gap-view/gap-view.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { PollEditComponent } from './components/poll/poll-edit/poll-edit.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+
+registerLocaleData(localeEn);
+
 @NgModule({
   declarations: [
     AppComponent,
