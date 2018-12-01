@@ -1,0 +1,73 @@
+<div class="container h-100">
+  <form class="form" [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="jumbotron jumbotron-fluid rounded">
+        <div class="container">
+          <h1 class="display-4">
+            {{user.username}}
+          </h1>
+          <p class="lead" i18n>
+            Modify your data
+          </p>
+
+          <hr class="my-4">
+
+          <div class="form-group">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    mail_outline
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" i18n-placeholder placeholder="Email" type="email" formControlName="email">
+            </div>
+            <small class="error" *ngIf="userEditForm.controls.email.errors && (userEditForm.controls.email.touched || userEditForm.controls.email.dirty)"
+              i18n>
+              This field is required.
+            </small>
+
+            <div class="input-group passwd">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    mail_outline
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" i18n-placeholder placeholder="Username" type="text" formControlName="username">
+            </div>
+            <small class="error" *ngIf="userEditForm.controls.username.errors && (userEditForm.controls.username.touched || userEditForm.controls.username.dirty)"
+              i18n>
+              This field is required.
+            </small>
+
+            <div class="input-group passwd">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">
+                    person
+                  </i>
+                </div>
+              </div>
+              <input class="form-control" i18n-placeholder placeholder="Name" type="text" formControlName="name">
+            </div>
+            <small class="error" *ngIf="userEditForm.controls.name.errors && (userEditForm.controls.name.touched || userEditForm.controls.name.dirty)"
+              i18n>
+              This field is required.
+            </small>
+          </div>
+
+          <div class="form-group row submit-button">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-outline-info" [disabled]="!userEditForm.valid" i18n-title title="All fields must be filled for edit"
+                i18n>Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

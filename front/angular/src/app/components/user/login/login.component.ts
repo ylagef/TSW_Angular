@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../../_models/user.model';
+import { User } from '../../../_models/user.model';
 import { ToastrService } from 'ngx-toastr';
-import { AppComponent } from '../../app.component';
-import { AuthenticationService } from '../../_services/authentication.service';
+import { AppComponent } from '../../../app.component';
+import { AuthenticationService } from '../../../_services/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({

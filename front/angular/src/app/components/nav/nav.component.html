@@ -26,7 +26,8 @@
         {{currentUser.name}}
       </button>
       <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" i18n>Profile</button>
+        <button class="dropdown-item" [routerLink]="['/user/edit']" routerLinkActive="router-link-active"
+          i18n>Profile</button>
         <button (click)="logout()" class="dropdown-item" i18n>Logout</button>
       </div>
     </div>
