@@ -16,18 +16,18 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./assignation-add.component.scss']
 })
 export class AssignationAddComponent implements OnInit {
-  private url: string;
-  private poll: Poll;
-  private users: User[];
-  private gaps: Gap[];
-  private assignations: Assignation[];
-  private assignationsMap: Map<number, number[]>;
-  private gapsMap: Map<number, any>;
-  private currentUser: User;
-  private hasParticipated: boolean;
-  private maxParticipants: number;
-  private host: string;
-  private assignationsForAdd: Map<number, Assignation>;
+  url: string;
+  poll: Poll;
+  users: User[];
+  gaps: Gap[];
+  assignations: Assignation[];
+  assignationsMap: Map<number, number[]>;
+  gapsMap: Map<number, any>;
+  currentUser: User;
+  hasParticipated: boolean;
+  maxParticipants: number;
+  host: string;
+  assignationsForAdd: Map<number, Assignation>;
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private userService: UserService,
     private gapsService: GapService, private assignationsService: AssignationService, private toastr: ToastrService,

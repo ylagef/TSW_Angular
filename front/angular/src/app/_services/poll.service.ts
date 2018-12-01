@@ -6,8 +6,8 @@ import { Poll } from '../_models/poll.model';
   providedIn: 'root'
 })
 export class PollService {
-  private url: string = "http://localhost:3000/api/v1/polls/";
-  private headers: HttpHeaders;
+  url: string = "http://localhost:3000/api/v1/polls/";
+  headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({

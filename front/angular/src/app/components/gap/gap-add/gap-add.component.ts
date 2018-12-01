@@ -14,11 +14,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./gap-add.component.scss']
 })
 export class GapAddComponent implements OnInit {
-  private today: string;
-  private gapsAddForm: FormGroup;
-  private gaps: Gap[];
-  private lastIndex: number;
-  private poll: Poll;
+  today: string;
+  gapsAddForm: FormGroup;
+  gaps: Gap[];
+  lastIndex: number;
+  poll: Poll;
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private gapService: GapService,
     private toastr: ToastrService, private router: Router) {

@@ -1,9 +1,9 @@
 export class User {
-    private user_id: number;
-    private username: string;
-    private name: string;
-    private email: string;
-    private token: string = null;
+    user_id: number;
+    username: string;
+    name: string;
+    email: string;
+    token: string = null;
 
     constructor(user_id, username, name, email) {
         this.user_id = user_id;

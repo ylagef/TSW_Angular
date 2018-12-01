@@ -16,15 +16,15 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./poll-edit.component.scss']
 })
 export class PollEditComponent {
-  private url: string;
-  private poll: Poll;
-  private gaps: Gap[];
-  private currentUser: User;
-  private host: string;
-  private pollEditForm: FormGroup;
-  private lastIndex: number;
-  private today: string;
-  private newGapsId: number[];
+  url: string;
+  poll: Poll;
+  gaps: Gap[];
+  currentUser: User;
+  host: string;
+  pollEditForm: FormGroup;
+  lastIndex: number;
+  today: string;
+  newGapsId: number[];
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private gapsService: GapService,
     private toastr: ToastrService, private router: Router) {
@@ -79,7 +79,7 @@ export class PollEditComponent {
                   g.dates = [new Date(gap["start_date"]), new Date(gap["end_date"])];
 
                   this.gaps.push(g);
-                  
+
                   // Add form controls for gaps
                   this.pollEditForm.addControl('gap-' + gap["gap_id"], new FormControl(''));
                   // this.pollEditForm.addControl('end' + gap["gap_id"], new FormControl(''));

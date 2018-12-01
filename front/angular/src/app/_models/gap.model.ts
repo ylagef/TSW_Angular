@@ -1,8 +1,8 @@
 export class Gap {
-    private gap_id: number;
-    private poll_id: number;
-    private start_date: Date;
-    private end_date: Date;
+    gap_id: number;
+    poll_id: number;
+    start_date: Date;
+    end_date: Date;
     public dates: Date[];
 
     constructor(gap_id = 0, poll_id = null, start_date = null, end_date = null) {

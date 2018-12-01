@@ -7,8 +7,8 @@ import { User } from '../_models/user.model';
   providedIn: 'root'
 })
 export class AssignationService {
-  private url: string = "http://localhost:3000/api/v1/assignations/";
-  private headers: HttpHeaders;
+  url: string = "http://localhost:3000/api/v1/assignations/";
+  headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({

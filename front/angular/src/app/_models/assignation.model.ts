@@ -1,7 +1,7 @@
 export class Assignation {
-    private assignation_id: number;
-    private user_id: number;
-    private gap_id: number;
+     assignation_id: number;
+     user_id: number;
+     gap_id: number;
 
     constructor(assignation_id = null, user_id, gap_id) {
         this.assignation_id = assignation_id;

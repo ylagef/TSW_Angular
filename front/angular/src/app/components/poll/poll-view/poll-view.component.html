@@ -9,7 +9,7 @@
 
     <div *ngIf="poll.place==null || poll.place==''; else place">
       <p class="lead" i18n>
-        <i class='material-icons lead-icon' i18n>place</i>
+        <i class='material-icons lead-icon'>place</i>
         - Location not specified -
       </p>
     </div>
@@ -47,7 +47,7 @@
               Gaps
             </th>
 
-            <th scope="col" i18n *ngFor="let user of users">
+            <th scope="col" *ngFor="let user of users">
               {{user.name}}
             </th>
 
@@ -123,7 +123,7 @@
       Modify participation
     </button>
 
-    <button routerLink="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id==poll.author" class="btn btn-outline-info edit-button"
+    <button routerLink="/polls/edit/{{poll.url}}" *ngIf="currentUser.user_id+''==poll.author+''" class="btn btn-outline-info edit-button"
       i18n>
       Edit poll
     </button>

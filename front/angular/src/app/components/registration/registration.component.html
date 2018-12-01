@@ -20,9 +20,10 @@
                   </i>
                 </div>
               </div>
-              <input class="form-control" placeholder="Email" type="email" formControlName="email">
+              <input class="form-control" i18n-placeholder placeholder="Email" type="email" formControlName="email">
             </div>
-            <small class="error" *ngIf="registrationForm.controls.email.errors && (registrationForm.controls.email.touched || registrationForm.controls.email.dirty)">
+            <small class="error" *ngIf="registrationForm.controls.email.errors && (registrationForm.controls.email.touched || registrationForm.controls.email.dirty)"
+              i18n>
               Must be a@b.com format and is required.
             </small>
 
@@ -34,10 +35,10 @@
                   </i>
                 </div>
               </div>
-              <input class="form-control" placeholder="Username" formControlName="username">
+              <input class="form-control" i18n-placeholder placeholder="Username" formControlName="username">
             </div>
-            <small class="error" *ngIf="registrationForm.controls.username.errors && (registrationForm.controls.username.touched || registrationForm.controls.username.dirty)">This
-              field is required. Size > 4.</small>
+            <small class="error" *ngIf="registrationForm.controls.username.errors && (registrationForm.controls.username.touched || registrationForm.controls.username.dirty)"
+              i18n>This field is required. Size > 4.</small>
 
             <div class="input-group passwd">
               <div class="input-group-prepend">
@@ -47,10 +48,10 @@
                   </i>
                 </div>
               </div>
-              <input class="form-control" placeholder="Name" formControlName="name">
+              <input class="form-control" i18n-placeholder placeholder="Name" formControlName="name">
             </div>
-            <small class="error" *ngIf="registrationForm.controls.name.errors  && (registrationForm.controls.name.touched || registrationForm.controls.name.dirty)">This
-              field is required.</small>
+            <small class="error" *ngIf="registrationForm.controls.name.errors  && (registrationForm.controls.name.touched || registrationForm.controls.name.dirty)"
+              i18n>This field is required.</small>
 
             <div class="input-group passwd">
               <div class="input-group-prepend">
@@ -60,10 +61,10 @@
                   </i>
                 </div>
               </div>
-              <input class="form-control" placeholder="Password" type="password" formControlName="password">
+              <input class="form-control" i18n-placeholder placeholder="Password" type="password" formControlName="password">
             </div>
-            <small class="error" *ngIf="registrationForm.controls.password.errors  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)">This
-              field is required. Size > 5.</small>
+            <small class="error" *ngIf="registrationForm.controls.password.errors  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)"
+              i18n>This field is required. Size > 5.</small>
 
             <div class="input-group passwd">
               <div class="input-group-prepend">
@@ -73,15 +74,15 @@
                   </i>
                 </div>
               </div>
-              <input class="form-control" name="password_confirm" placeholder="Repeat password" type="password"
+              <input class="form-control" name="password_confirm" i18n-placeholder placeholder="Repeat password" type="password"
                 formControlName="password_confirm">
             </div>
-            <small class="error" *ngIf="registrationForm.controls.password_confirm.errors  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)">This
-              field is required.</small>
+            <small class="error" *ngIf="registrationForm.controls.password_confirm.errors  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)"
+              i18n>This field is required.</small>
           </div>
 
-          <small class="error" *ngIf="registrationForm.errors?.passwordValidation  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)">Password
-            doesn't match.</small>
+          <small class="error" *ngIf="registrationForm.errors?.passwordValidation  && (registrationForm.controls.password.touched || registrationForm.controls.password.dirty)  && (registrationForm.controls.password_confirm.touched || registrationForm.controls.password_confirm.dirty)"
+            i18n>Password doesn't match.</small>
 
           <small id="help" class="form-text font-weight-light">
             <a [routerLink]="['/login']" routerLinkActive="router-link-active" i18n>Return to login</a>
@@ -89,13 +90,11 @@
 
           <div class="form-group row submit-button">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-outline-secondary" [disabled]="!registrationForm.valid" title="All fields must be filled for register"
-                i18n> Sign
-                up</button>
+              <button type="submit" class="btn btn-outline-secondary" [disabled]="!registrationForm.valid" i18n-title
+                title="All fields must be filled for register" i18n>Sign up</button>
             </div>
           </div>
         </form>
-
       </div>
     </div>
   </div>

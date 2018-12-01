@@ -22,9 +22,10 @@
                   </i>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Reason" formControlName="title">
+              <input type="text" class="form-control" i18n-placeholder placeholder="Reason" formControlName="title">
             </div>
-            <small class="error" *ngIf="pollAddForm.controls.title.errors && (pollAddForm.controls.title.touched || pollAddForm.controls.title.dirty)">
+            <small class="error" *ngIf="pollAddForm.controls.title.errors && (pollAddForm.controls.title.touched || pollAddForm.controls.title.dirty)"
+              i18n>
               This field is required.
             </small>
           </div>
@@ -40,7 +41,7 @@
                   </i>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Location" formControlName="place">
+              <input type="text" class="form-control" i18n-placeholder placeholder="Location" formControlName="place">
             </div>
           </div>
         </div>
@@ -54,7 +55,6 @@
             i18n>Continue</button>
         </div>
       </div>
-      <!-- <?= $this->Form->hidden('author', ["value"=>($this->request->getSession()->read('Auth.User.user_id'))]); -->
     </form>
   </div>
 </div>

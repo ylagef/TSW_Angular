@@ -1,4 +1,7 @@
-<div class="container h-100">
+<div class="container h-100 login">
+
+  <app-language></app-language>
+
   <div class="row h-100 justify-content-center align-items-center">
     <div class="jumbotron jumbotron-fluid rounded">
       <div class="container">
@@ -21,10 +24,11 @@
                 </div>
               </div>
               <!-- Input username -->
-              <input class="form-control" type="text" #username placeholder="Username" formControlName="username"
+              <input class="form-control" type="text" #username i18n-placeholder placeholder="Username" formControlName="username"
                 autocomplete="username">
             </div>
-            <small class="error" *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.touched || loginForm.controls.username.dirty)">
+            <small class="error" *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.touched || loginForm.controls.username.dirty)"
+              i18n>
               This field is required.
             </small>
 
@@ -37,10 +41,11 @@
                 </div>
               </div>
               <!-- Input password -->
-              <input class="form-control" type="password" #password placeholder="Password" formControlName="password"
-                autocomplete="current-password">
+              <input class="form-control" type="password" #password i18n-placeholder placeholder="Password"
+                formControlName="password" autocomplete="current-password">
             </div>
-            <small class="error" *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.touched || loginForm.controls.password.dirty)">
+            <small class="error" *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.touched || loginForm.controls.password.dirty)"
+              i18n>
               This field is required.
             </small>
           </div>
@@ -49,7 +54,7 @@
             - Fields are mandatory -
           </small>
           <small id="help" class="form-text font-weight-light text-center">
-            <a [routerLink]="['/registration']" routerLinkActive="router-link-active">
+            <a [routerLink]="['/registration']" routerLinkActive="router-link-active" i18n>
               Sign up
             </a>
           </small>
@@ -58,7 +63,7 @@
             <div class="col-sm-12">
               <!-- Login button -->
               <button class="btn btn-outline-secondary" type="submit" id="login-button" [disabled]="!loginForm.valid"
-                title="All fields must be filled for login">Login</button>
+                i18n-title title="All fields must be filled for login">Login</button>
             </div>
           </div>
         </form>

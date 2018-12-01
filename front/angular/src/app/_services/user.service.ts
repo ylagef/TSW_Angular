@@ -6,8 +6,8 @@ import { Md5 } from "md5-typescript";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    private url: string = "http://localhost:3000/api/v1/users/";
-    private headers: HttpHeaders;
+    url: string = "http://localhost:3000/api/v1/users/";
+    headers: HttpHeaders;
 
     constructor(private http: HttpClient) {
         if (JSON.parse(localStorage.getItem("currentUser")) != null) {

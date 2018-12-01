@@ -10,7 +10,7 @@ import { PollService } from 'src/app/_services/poll.service';
   styleUrls: ['./poll-add.component.scss']
 })
 export class PollAddComponent implements OnInit {
-  private pollAddForm: FormGroup;
+  pollAddForm: FormGroup;
 
   constructor(private pollService: PollService, private router: Router, private toastr: ToastrService) { }
 

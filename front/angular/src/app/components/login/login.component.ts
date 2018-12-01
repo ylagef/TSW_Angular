@@ -12,12 +12,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginForm: FormGroup;
+  loginForm: FormGroup;
 
-  private loading = false;
-  private submitted = false;
-  private error = '';
-  private returnUrl = "";
+  loading = false;
+  submitted = false;
+  error = '';
+  returnUrl = "";
 
   constructor(private router: Router, private toastr: ToastrService, private route: ActivatedRoute,
     private authenticationService: AuthenticationService) {

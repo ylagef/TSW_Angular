@@ -16,19 +16,19 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./assignation-edit.component.scss']
 })
 export class AssignationEditComponent implements OnInit {
-  private url: string;
-  private poll: Poll;
-  private users: User[];
-  private gaps: Gap[];
-  private assignations: Assignation[];
-  private assignationsMap: Map<number, number[]>;
-  private gapsMap: Map<number, any>;
-  private currentUser: User;
-  private hasParticipated: boolean;
-  private maxParticipants: number;
-  private host: string;
-  private assignationsForEdit: Map<String, Assignation>;
-  private beforeAssignations: String[];
+  url: string;
+  poll: Poll;
+  users: User[];
+  gaps: Gap[];
+  assignations: Assignation[];
+  assignationsMap: Map<number, number[]>;
+  gapsMap: Map<number, any>;
+  currentUser: User;
+  hasParticipated: boolean;
+  maxParticipants: number;
+  host: string;
+  assignationsForEdit: Map<String, Assignation>;
+  beforeAssignations: String[];
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private userService: UserService,
     private gapsService: GapService, private assignationsService: AssignationService, private toastr: ToastrService,

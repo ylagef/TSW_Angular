@@ -7,8 +7,8 @@
       <div class="row editRow">
         <i class="material-icons lead-icon">keyboard_arrow_right</i>
         <p class="lead">
-          <input type="text" class="form-control" placeholder="Title" formControlName="title" required>
-          <small class="error" *ngIf="pollEditForm.controls.title.errors">
+          <input type="text" class="form-control" i18n-placeholder placeholder="Title" formControlName="title" required>
+          <small class="error" *ngIf="pollEditForm.controls.title.errors" i18n>
             This field is required.
           </small>
         </p>
@@ -18,7 +18,7 @@
           row editRow">
         <i class="material-icons lead-icon">place</i>
         <p class="lead">
-          <input type="text" class="form-control" placeholder="Place" formControlName="place">
+          <input type="text" class="form-control" i18n-placeholder placeholder="Place" formControlName="place">
         </p>
       </div>
 
@@ -44,9 +44,9 @@
         <table class="table text-center" id="gapsTable">
           <thead>
             <tr>
-              <th scope="col">Start date & time</th>
+              <th scope="col" i18n>Start date & time</th>
               <th scope="col"> </th>
-              <th scope="col">End date & time</th>
+              <th scope="col" i18n>End date & time</th>
               <th scope="col"> </th>
             </tr>
           </thead>
@@ -54,7 +54,7 @@
           <tbody>
             <tr *ngFor="let gap of gaps">
               <td>
-                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" min="{{today}}" placeholder="Start Time" class="form-control floating-label text-center date"
+                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" min="{{today}}" i18n-placeholder placeholder="Start Time" class="form-control floating-label text-center date"
                   formControlName="gap-{{gap.gap_id}}" [selectMode]="'rangeFrom'" [(ngModel)]="gap.dates">
                 <owl-date-time #dt1 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
               </td>
@@ -66,7 +66,7 @@
               </td>
 
               <td>
-                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" min="{{today}}" placeholder="End Time" class="form-control floating-label text-center date"
+                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" min="{{today}}" i18n-placeholder placeholder="End Time" class="form-control floating-label text-center date"
                   formControlName="gap-{{gap.gap_id}}" [selectMode]="'rangeTo'" [(ngModel)]="gap.dates">
                 <owl-date-time #dt2 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
               </td>
@@ -83,11 +83,11 @@
         <hr class="my-3">
 
         <div class="other-option-button">
-          <button class="btn btn-outline-success" (click)="addRow()" type="button">
+          <button class="btn btn-outline-success" (click)="addRow()" type="button" i18n>
             Add other option </button>
         </div>
         <div class="col-sm-10 accept-button">
-          <button type="submit" class="btn btn-outline-secondary" [disabled]="pollEditForm.controls.title.errors" title="Title field must be filled">End</button>
+          <button type="submit" class="btn btn-outline-secondary" [disabled]="pollEditForm.controls.title.errors" i18n-title title="Title field must be filled" i18n>End</button>
         </div>
       </div>
     </div>

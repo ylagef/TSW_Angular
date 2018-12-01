@@ -10,9 +10,11 @@ import { AuthenticationService } from './_services/authentication.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private local: User;
+  local: User;
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(public auth: AuthenticationService) {
+    console.log("Language " + localStorage.getItem('locale'));
+  }
 
   ngOnInit() {
     this.auth.loggedUser.subscribe(
@@ -21,4 +23,6 @@ export class AppComponent {
 
     this.auth.reLogin();
   }
+
+  
 }

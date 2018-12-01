@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GapService {
-  private url: string = "http://localhost:3000/api/v1/gaps/";
-  private headers: HttpHeaders;
+  url: string = "http://localhost:3000/api/v1/gaps/";
+  headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,14 +20,8 @@ import { PollAddComponent } from './components/poll/poll-add/poll-add.component'
 import { AssignationAddComponent } from './components/assignation/assignation-add/assignation-add.component';
 import { AssignationEditComponent } from './components/assignation/assignation-edit/assignation-edit.component';
 import { GapAddComponent } from './components/gap/gap-add/gap-add.component';
-import { GapViewComponent } from './components/gap/gap-view/gap-view.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { PollEditComponent } from './components/poll/poll-edit/poll-edit.component';
-
-import { registerLocaleData } from '@angular/common';
-import localeEn from '@angular/common/locales/en';
-
-registerLocaleData(localeEn);
 
 @NgModule({
   declarations: [
@@ -43,7 +37,6 @@ registerLocaleData(localeEn);
     AssignationAddComponent,
     AssignationEditComponent,
     GapAddComponent,
-    GapViewComponent,
     PollEditComponent
   ],
   imports: [

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  private currentUser: User;
+  currentUser: User;
   constructor(private authService: AuthenticationService) {
   }
 

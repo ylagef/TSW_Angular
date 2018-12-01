@@ -53,6 +53,13 @@
                 "maximumWarning": "2mb",
                 "maximumError": "5mb"
               }]
+            },
+            "es": {
+              "aot": true,
+              "outputPath": "dist/my-project-es/",
+              "i18nFile": "src/locale/messages.es.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "es"
             }
           }
         },
@@ -64,6 +71,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular:build:production"
+            },
+            "es": {
+              "browserTarget": "angular:build:es"
             }
           }
         },

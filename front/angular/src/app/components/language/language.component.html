@@ -4,9 +4,7 @@
     Language
   </button>
   <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right login-lang">
-    <a class="dropdown-item">Spanish</a>
-    <a class="dropdown-item">English</a>
-    <!-- <?=$this->Html->link(__("Spanish"), ['controller' => 'App', 'action' => 'changeLanguage', "es_ES"], ['class' => 'dropdown-item']);?>
-    <?=$this->Html->link(__("English"), ['controller' => 'App', 'action' => 'changeLanguage', "en_GB"], ['class' => 'dropdown-item']);?> -->
+    <a class="dropdown-item" (click)="spanish()" i18n>Spanish</a>
+    <a class="dropdown-item" (click)="english()" i18n>English</a>
   </div>
 </div>

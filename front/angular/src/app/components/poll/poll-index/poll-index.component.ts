@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./poll-index.component.scss']
 })
 export class PollIndexComponent implements OnInit {
-  private polls: Poll[];
-  private currentUser: User;
-  private gapsOfPoll: Map<number, number>;
-  private participatedPollsId: number[];
+  polls: Poll[];
+  currentUser: User;
+  gapsOfPoll: Map<number, number>;
+   participatedPollsId: number[];
 
   constructor(private pollService: PollService, private gapService: GapService, private assignationService: AssignationService,
     private toastr: ToastrService, private router: Router) {

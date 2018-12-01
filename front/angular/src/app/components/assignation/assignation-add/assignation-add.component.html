@@ -18,7 +18,7 @@
 
       <ng-template #noPlace>
         <p class="lead" i18n>
-          <i class='material-icons lead-icon' i18n>place</i>
+          <i class='material-icons lead-icon'>place</i>
           - Location not specified -
         </p>
       </ng-template>
@@ -46,10 +46,9 @@
           <thead>
             <tr>
             <tr>
-              <th scope="col"  i18n>
+              <th scope="col" i18n>
                 Gaps
               </th>
-
               <th scope="col" i18n *ngFor="let user of users">
                 {{user.name}}
               </th>

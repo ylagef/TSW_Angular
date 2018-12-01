@@ -1,11 +1,11 @@
 <form class="form" [formGroup]="gapsAddForm" (ngSubmit)="onSubmit()">
   <div class="jumbotron jumbotron-fluid rounded">
     <div class="container">
-      <h1 class="display-4">
+      <h1 class="display-4" i18n>
         Create poll
       </h1>
 
-      <p class="lead">
+      <p class="lead" i18n>
         Now, tell us the possible dates
       </p>
 
@@ -13,9 +13,9 @@
         <table class="table text-center" id="gapsTable">
           <thead>
             <tr>
-              <th scope="col">Start date & time</th>
+              <th scope="col" i18n>Start date & time</th>
               <th scope="col"> </th>
-              <th scope="col">End date & time</th>
+              <th scope="col" i18n>End date & time</th>
               <th scope="col"> </th>
             </tr>
           </thead>
@@ -23,7 +23,7 @@
           <tbody>
             <tr *ngFor="let gap of gaps">
               <td>
-                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" min="{{today}}" placeholder="Start Time" class="form-control floating-label text-center date"
+                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" min="{{today}}" i18n-placeholder placeholder="Start Time" class="form-control floating-label text-center date"
                   formControlName="start{{gap.gap_id}}" [selectMode]="'rangeFrom'" [(ngModel)]="gap.dates" required>
                 <owl-date-time #dt1 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
               </td>
@@ -35,7 +35,7 @@
               </td>
 
               <td>
-                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" min="{{today}}" placeholder="End Time" class="form-control floating-label text-center date"
+                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" min="{{today}}" i18n-placeholder placeholder="End Time" class="form-control floating-label text-center date"
                   formControlName="end{{gap.gap_id}}" [selectMode]="'rangeTo'" [(ngModel)]="gap.dates" required>
                 <owl-date-time #dt2 firstDayOfWeek="1" pickerMode="dialog"></owl-date-time>
               </td>
@@ -52,19 +52,19 @@
         <hr class="my-3">
 
         <div class="other-option-button">
-          <button class="btn btn-outline-success" (click)="addRow()" type="button">
+          <button class="btn btn-outline-success" (click)="addRow()" type="button" i18n>
             Add other option </button>
         </div>
 
         <div class="text-center">
-          <small class="error" [style.display]="!gapsAddForm.valid ? 'inline' : 'none'">
+          <small class="error" [style.display]="!gapsAddForm.valid ? 'inline' : 'none'" i18n>
             All fields are required.
           </small>
         </div>
       </div>
 
       <div class="col-sm-10 accept-button">
-        <button type="submit" class="btn btn-outline-secondary" [disabled]="!gapsAddForm.valid" title="All fields must be filled">End</button>
+        <button type="submit" class="btn btn-outline-secondary" [disabled]="!gapsAddForm.valid" i18n-title title="All fields must be filled" i18n>End</button>
       </div>
     </div>
   </div>
