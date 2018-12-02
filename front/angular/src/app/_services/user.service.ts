@@ -32,4 +32,8 @@ export class UserService {
     getById(id) {
         return this.http.get<User>(this.url + id, { headers: this.headers });
     }
+
+    edit(user: User) {
+        return this.http.put<User>(this.url, user, { headers: this.headers });
+    }
 }

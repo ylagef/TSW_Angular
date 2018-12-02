@@ -22,4 +22,8 @@ export class NavComponent implements OnInit {
     this.authService.logout();
   }
 
+  reloadUser() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
 }

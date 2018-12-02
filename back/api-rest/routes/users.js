@@ -256,4 +256,46 @@ router.post('/login', function (req, res) {
     });
 });
 
+// EDIT user
+router.put('/', function (req, res) {
+  console.log(req);
+
+  const token = req["headers"]["authorization"].split(" ")[1];
+
+  nJwt.verify(token, secretKey, function (err, verifiedJwt) {
+    if (err) {
+      // console.error(err); // Token has expired, has been tampered with, etc
+      res.status(401);
+      res.json({
+        "status": 401,
+        "error": err,
+        "response": null
+      });
+    } else {
+      //      // console.log(verifiedJwt); // Will contain the header and body
+      res.locals.connection.query('UPDATE users SET username="' + req.body["username"] +
+        '", name="' + req.body["name"] + '", email="' + req.body["email"] + '" WHERE user_id = ' + req.body["user_id"],
+        function (error, results) {
+          if (error) {
+            console.log(error);
+            res.status(500);
+            res.json({
+              "status": 500,
+              "error": error,
+              "response": null
+            });
+            //If there is error, we send the error in the error section with 500 status
+          } else {
+            res.json({
+              "status": 200,
+              "error": null,
+              "response": results
+            });
+            //If there is no error, all is good and response is 200OK.
+          }
+        });
+    }
+  });
+});
+
 module.exports = router;
