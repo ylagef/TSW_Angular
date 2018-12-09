@@ -30,13 +30,13 @@ Coded with Angular 7 + Bootstrap 4 frameworks.
 
 **Location:**
 
-*front/*
+*/front/*
 
 **Start command:**
 
 `$ cd front`
 
-`$ npm install`
+`$ npm i`
 
 `$ ng serve`
 
@@ -48,15 +48,15 @@ Coded with ExpressJS framework.
 
 **Location:**
 
-*back/api-rest/*
+*/back/*
 
 **Start command:**
 
-`$ cd back/rest`
+`$ cd back`
 
-`$ npm install`
+`$ npm i`
 
-`$ npm start`
+`$ nodemon`
 
 Will serve API REST at *localhost:3000/*
 
@@ -66,4 +66,4 @@ Coded in mysql.
 
 **Location:**
 
-*database.sql*
+*/database.sql*

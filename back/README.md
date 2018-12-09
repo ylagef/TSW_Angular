@@ -2,8 +2,7 @@
 
 ## Starting the api:
 
-`$ cd rest`
-`$ npm install`
+`$ npm i`
 `$ nodemon`
 
 > It will start servering the API REST on localhost:3000/
