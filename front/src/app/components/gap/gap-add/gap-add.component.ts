@@ -62,9 +62,6 @@ export class GapAddComponent implements OnInit {
 
   addRow() {
     this.gaps.push(new Gap(++this.lastIndex, this.poll["poll_id"], new Date(), new Date()));
-    // console.warn("Gap added!");
-    // console.log("Gaps:");
-    // console.log(this.gaps);
 
     this.gapsAddForm.addControl('start' + this.lastIndex,
       new FormControl('',
@@ -78,26 +75,15 @@ export class GapAddComponent implements OnInit {
           Validators.required
         ])
     );
-
-    // console.log(this.gapsAddForm);
   }
 
   deleteRow(gap: Gap) {
     const index = this.gaps.indexOf(gap);
 
-    // console.log("Before delete..." + index)
-    // console.log(this.gapsAddForm);
-
     this.gapsAddForm.removeControl('start' + (index + 1));
     this.gapsAddForm.removeControl('end' + (index + 1));
 
     this.gaps.splice(index, 1);
-
-    // console.warn("Gap deleted!");
-    // console.log("Gaps:");
-    // console.log(this.gaps);
-
-    // console.log(this.gapsAddForm);
   }
 
   onSubmit() {
@@ -107,7 +93,7 @@ export class GapAddComponent implements OnInit {
         this.router.navigate(["/polls/edit/" + this.poll["url"]]);
       },
       error => {
-        console.log(error);
+        console.error(error);
         this.toastr.error('User is not on Database.', 'ERROR', { progressBar: true });
       }
     );

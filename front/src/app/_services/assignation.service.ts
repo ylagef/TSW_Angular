@@ -30,12 +30,7 @@ export class AssignationService {
   }
 
   addAssignations(assignations: Map<number, Assignation>) {
-    console.log("Assignations:");
-    console.log(assignations);
-    console.log("Entries:");
-    console.log(assignations.values());
     const data = Array.from(assignations.values());
-    console.log(data);
 
     return this.http.post(this.url, data, { headers: this.headers, });
   }
@@ -47,9 +42,7 @@ export class AssignationService {
     beforeAssignations.forEach(a => {
       if (!assignationsForEdit.has(a)) {
         this.http.delete(this.url + a.split("-")[0] + "/" + a.split("-")[1], { headers: this.headers }).subscribe(
-          data => {
-            console.log("Deleted ok!");
-            console.log(data["response"]);
+          () => {
           },
           error => {
             console.error(error)
@@ -64,7 +57,7 @@ export class AssignationService {
     assignationsForEdit.forEach(a => {
       if (!beforeAssignations.includes(a["gap_id"] + "-" + currentUser["user_id"])) {
         this.http.post(this.url, [a], { headers: this.headers }).subscribe(
-          data => console.log("Success - " + data),
+          () => {},
           error => {
             console.error(error)
             error = true;

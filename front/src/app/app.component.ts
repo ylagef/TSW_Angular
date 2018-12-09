@@ -13,7 +13,7 @@ export class AppComponent {
   local: User;
 
   constructor(public auth: AuthenticationService) {
-    console.log("Language " + localStorage.getItem('locale'));
+    
   }
 
   ngOnInit() {

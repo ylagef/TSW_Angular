@@ -77,16 +77,9 @@ export class AssignationAddComponent implements OnInit {
                   }
                 });
 
-                console.log("Gap array:");
-                console.log(this.gaps);
-                console.log("Gaps Map:");
-                console.log(this.gapsMap);
-
                 this.assignationsService.getAll().subscribe(
                   (data) => {
                     this.assignations = data["response"];
-                    console.log("Assignations:");
-                    console.log(this.assignations);
 
                     this.assignations.forEach(assignation => {
                       if (this.gapsMap.get(assignation["gap_id"]) != null) {
@@ -114,9 +107,6 @@ export class AssignationAddComponent implements OnInit {
                     }
                     );
 
-                    console.log("Assignations Map:");
-                    console.log(this.assignationsMap);
-
                     this.userService.getAll().subscribe(
                       (data) => {
                         const allUsers = data["response"];
@@ -125,9 +115,6 @@ export class AssignationAddComponent implements OnInit {
                             this.users.push(user);
                           }
                         });
-
-                        console.log("Users:");
-                        console.log(this.users);
                       },
                       (error) => this.toastrError(error)
                     );
@@ -163,7 +150,6 @@ export class AssignationAddComponent implements OnInit {
   }
 
   buttonClicked(gap: Gap) {
-    console.log(gap);
     if (document.getElementById(String(gap["gap_id"])).classList.contains("btn-outline-success")) {
       // Add gap
       document.getElementById(String(gap["gap_id"])).classList.remove("btn-outline-success");
@@ -175,13 +161,11 @@ export class AssignationAddComponent implements OnInit {
       document.getElementById(String(gap["gap_id"])).classList.remove("btn-success");
       this.assignationsForAdd.delete(gap["gap_id"]);
     }
-    console.log(this.assignationsForAdd);
   }
 
   onSubmit() {
     this.assignationsService.addAssignations(this.assignationsForAdd).subscribe(
       (data) => {
-        console.log(data);
         this.toastr.success('Assignations added correctly!');
         this.router.navigate(["/polls/view/" + this.poll["url"]]);
       },
@@ -196,7 +180,6 @@ export class AssignationAddComponent implements OnInit {
   }
 
   toastrError(error) {
-    console.error(error);
     if (error.error.status == 401) {
       this.toastr.warning('You are not authorized for this site!', 'Authorization');
       this.router.navigate(["/login"]);

@@ -8,7 +8,6 @@ router.get('/', function (req, res, next) {
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -16,8 +15,6 @@ router.get('/', function (req, res, next) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
-
       res.locals.connection.query('SELECT * FROM users',
         function (error, results, fields) {
           if (error) {
@@ -43,13 +40,10 @@ router.get('/', function (req, res, next) {
 
 // GET user by id
 router.get('/:id', function (req, res, next) {
-  // console.log(req.params);
-
   const token = req["headers"]["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -57,8 +51,6 @@ router.get('/:id', function (req, res, next) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
-
       res.locals.connection.query('SELECT * FROM users WHERE user_id=' + req.params.id,
         function (error, results, fields) {
           if (error) {
@@ -84,13 +76,10 @@ router.get('/:id', function (req, res, next) {
 
 // DELETE user by id
 router.delete('/:id', function (req, res, next) {
-  // console.log(req.params);
-
   const token = req["headers"]["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -98,8 +87,6 @@ router.delete('/:id', function (req, res, next) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
-
       res.locals.connection.query('DELETE FROM users WHERE user_id=' + req.params.id,
         function (error, results, fields) {
           if (error) {
@@ -125,14 +112,9 @@ router.delete('/:id', function (req, res, next) {
 
 // REGISTER user
 router.post('/register', function (req, res) {
-  // console.log(req.body["data"]);
-
-  // console.log("Checking username...");
   res.locals.connection.query('SELECT * FROM users WHERE username="' + req.body["data"].username + '"',
     function (error, results, fields) {
       if (error) {
-        // console.log(error);
-
         res.status(500);
         res.json({
           "status": 500,
@@ -142,8 +124,6 @@ router.post('/register', function (req, res) {
       } else {
         // If nor error on query, we check if already exists or not
         if (results.length > 0) {
-          // console.log("Username already exists");
-
           res.status(500);
           res.json({
             "status": 500,
@@ -152,13 +132,9 @@ router.post('/register', function (req, res) {
           });
         } else {
           // Is username not exists, we check the email
-          // console.log("Checking email...");
-
           res.locals.connection.query('SELECT * FROM users WHERE email="' + req.body["data"].email + '"',
             function (error, results, fields) {
               if (error) {
-                // console.log(error);
-
                 res.status(500);
                 res.json({
                   "status": 500,
@@ -168,8 +144,6 @@ router.post('/register', function (req, res) {
               } else {
                 // If nor error on query, we check if already exists or not
                 if (results.length > 0) {
-                  // console.log("Email already exists");
-
                   res.status(500);
                   res.json({
                     "status": 500,
@@ -178,7 +152,6 @@ router.post('/register', function (req, res) {
                   });
                 } else {
                   // If username and email not exist, we add the new user.
-                  // console.log("Adding user...");
                   res.locals.connection.query('INSERT INTO users (username, name, email, password) VALUES (?,?,?,?)',
                     [req.body.data.username, req.body.data.name, req.body.data.email, req.body.data.password],
                     function (error, results) {
@@ -191,7 +164,6 @@ router.post('/register', function (req, res) {
                         });
                         //If there is error, we send the error in the error section with 500 status
                       } else {
-                        // console.log("User created succesful.")
                         res.json({
                           "status": 200,
                           "error": null,
@@ -210,8 +182,6 @@ router.post('/register', function (req, res) {
 
 // LOGIN user
 router.post('/login', function (req, res) {
-  // console.log(req.body);
-
   let hashedPass = md5(req.body.password);
 
   res.locals.connection.query('SELECT user_id, username, name, email FROM users WHERE username="' + req.body.username + '" AND password="' + hashedPass + '"',
@@ -258,13 +228,10 @@ router.post('/login', function (req, res) {
 
 // EDIT user
 router.put('/', function (req, res) {
-  console.log(req);
-
   const token = req["headers"]["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -272,12 +239,10 @@ router.put('/', function (req, res) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
       res.locals.connection.query('UPDATE users SET username="' + req.body["username"] +
         '", name="' + req.body["name"] + '", email="' + req.body["email"] + '" WHERE user_id = ' + req.body["user_id"],
         function (error, results) {
           if (error) {
-            console.log(error);
             res.status(500);
             res.json({
               "status": 500,

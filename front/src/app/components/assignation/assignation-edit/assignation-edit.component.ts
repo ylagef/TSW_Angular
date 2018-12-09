@@ -79,14 +79,9 @@ export class AssignationEditComponent implements OnInit {
                   }
                 });
 
-                // console.log("Gaps Map:");
-                // console.log(this.gapsMap);
-
                 this.assignationsService.getAll().subscribe(
                   (data) => {
                     this.assignations = data["response"];
-                    // console.log("Assignations:");
-                    // console.log(this.assignations);
 
                     this.assignations.forEach(assignation => {
                       if (this.gapsMap.get(assignation["gap_id"]) != null) {
@@ -123,14 +118,6 @@ export class AssignationEditComponent implements OnInit {
                       this.beforeAssignations.push(a["gap_id"] + "-" + this.currentUser["user_id"]);
                     });
 
-                    // console.log("Assignations before:");
-                    // console.log(this.beforeAssignations);
-                    // console.log("Assignations for edit:");
-                    // console.log(this.assignationsForEdit);
-
-                    // console.log("Assignations Map:");
-                    // console.log(this.assignationsMap);
-
                     this.userService.getAll().subscribe(
                       (data) => {
                         const allUsers = data["response"];
@@ -140,8 +127,6 @@ export class AssignationEditComponent implements OnInit {
                           }
                         });
 
-                        // console.log("Users:");
-                        // console.log(this.users);
                       },
                       (error) => {
                         console.error(error);
@@ -209,7 +194,6 @@ export class AssignationEditComponent implements OnInit {
   }
 
   buttonClicked(gap: Gap, user: User) {
-    // console.log(gap, user);
     if (document.getElementById(String(gap["gap_id"] + "-" + user["user_id"])).classList.contains("btn-outline-success")) {
       // Add gap
       document.getElementById(String(gap["gap_id"] + "-" + user["user_id"])).classList.remove("btn-outline-success");
@@ -221,7 +205,6 @@ export class AssignationEditComponent implements OnInit {
       document.getElementById(String(gap["gap_id"] + "-" + user["user_id"])).classList.remove("btn-success");
       this.assignationsForEdit.delete(gap["gap_id"] + "-" + this.currentUser["user_id"]);
     }
-    // console.log(this.assignationsForEdit);
   }
 
   onSubmit() {

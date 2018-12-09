@@ -32,7 +32,7 @@ front/
 
 **Start command:**
 
-`$ cd front/`
+`$ cd front`
 
 `$ npm install`
 

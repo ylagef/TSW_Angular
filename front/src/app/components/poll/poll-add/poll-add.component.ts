@@ -28,7 +28,6 @@ export class PollAddComponent implements OnInit {
   onSubmit() {
     this.pollService.create(this.pollAddForm.value).subscribe(
       (data) => {
-        console.log(data);
         this.toastr.success('Poll created correctly!');
         this.router.navigate(["/gaps/add/" + data["response"]]);
       },

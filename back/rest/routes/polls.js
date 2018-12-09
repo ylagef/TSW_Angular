@@ -8,7 +8,6 @@ router.get('/', function (req, res, next) {
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -16,8 +15,6 @@ router.get('/', function (req, res, next) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
-
       res.locals.connection.query('SELECT * FROM polls',
         function (error, results, fields) {
           if (error) {
@@ -43,13 +40,10 @@ router.get('/', function (req, res, next) {
 
 // GET poll by url
 router.get('/:url', function (req, res, next) {
-  // console.log(req.params);
-
   const token = req.headers["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -57,11 +51,9 @@ router.get('/:url', function (req, res, next) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
       res.locals.connection.query('SELECT * FROM polls WHERE url="' + req.params.url.toUpperCase() + '"',
         function (error, results, fields) {
           if (error) {
-            // console.log(error);
             res.status(500);
             res.json({
               "status": 500,
@@ -84,13 +76,10 @@ router.get('/:url', function (req, res, next) {
 
 // POST poll
 router.post('/', function (req, res) {
-  // console.log(req.body["data"]);
-
   const token = req["headers"]["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -98,14 +87,12 @@ router.post('/', function (req, res) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
       var md5 = require('md5');
       const url = md5(req.body.title + "Hashing text" + req.body.place);
       res.locals.connection.query('INSERT INTO polls (title, place, author, url) VALUES (?,?,?,?)',
         [req.body.title, req.body.place, req.body.author, url.toUpperCase()],
         function (error, results) {
           if (error) {
-            // console.log(error);
             res.status(500);
             res.json({
               "status": 500,
@@ -128,13 +115,10 @@ router.post('/', function (req, res) {
 
 // PUT poll
 router.put('/', function (req, res) {
-  console.log(req);
-
   const token = req["headers"]["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -142,13 +126,11 @@ router.put('/', function (req, res) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
       var md5 = require('md5');
       const url = md5(req.body.title + "Hashing text" + req.body.place);
       res.locals.connection.query('UPDATE polls SET title="' + req.body["title"] + '", place="' + req.body["place"] + '" WHERE poll_id = ' + req.body["poll_id"],
         function (error, results) {
           if (error) {
-            console.log(error);
             res.status(500);
             res.json({
               "status": 500,
@@ -171,13 +153,10 @@ router.put('/', function (req, res) {
 
 // DELETE poll by id
 router.delete('/:id', function (req, res, next) {
-  // console.log(req.params);
-
   const token = req["headers"]["authorization"].split(" ")[1];
 
   nJwt.verify(token, secretKey, function (err, verifiedJwt) {
     if (err) {
-      // console.error(err); // Token has expired, has been tampered with, etc
       res.status(401);
       res.json({
         "status": 401,
@@ -185,7 +164,6 @@ router.delete('/:id', function (req, res, next) {
         "response": null
       });
     } else {
-      //      // console.log(verifiedJwt); // Will contain the header and body
       res.locals.connection.query('DELETE FROM polls WHERE poll_id=' + req.params.id,
         function (error, results, fields) {
           if (error) {

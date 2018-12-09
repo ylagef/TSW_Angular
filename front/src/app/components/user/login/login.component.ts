@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       },
       error => {
-        console.log(error);
+        console.error(error);
         this.toastr.error('User is not on Database.', 'ERROR', { progressBar: true });
       }
     );
