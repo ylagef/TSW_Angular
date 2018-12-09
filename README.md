@@ -1,3 +1,4 @@
+
 # TSW Project 2018-19
 
 ## Students:
@@ -24,11 +25,12 @@
   
 
 ### Front
+
 Coded with Angular 7 + Bootstrap 4 frameworks.
 
 **Location:**
 
-front/
+*front/*
 
 **Start command:**
 
@@ -46,7 +48,7 @@ Coded with ExpressJS framework.
 
 **Location:**
 
-back/api-rest/
+*back/api-rest/*
 
 **Start command:**
 
@@ -64,4 +66,4 @@ Coded in mysql.
 
 **Location:**
 
-database.sql
+*database.sql*
