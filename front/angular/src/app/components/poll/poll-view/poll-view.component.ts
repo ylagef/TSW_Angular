@@ -82,6 +82,7 @@ export class PollViewComponent implements OnInit {
 
                     this.assignations.forEach(assignation => {
                       if (this.gapsMap.get(assignation["gap_id"]) != null) {
+
                         // If assigntation gap is on this poll gap map
                         if (this.assignationsMap.get(assignation["user_id"])) {
                           // If key already exists

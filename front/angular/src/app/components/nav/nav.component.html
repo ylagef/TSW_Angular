@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary nav">
-  <a class="navbar-brand nav-title font-weight-bold" href="/polls">U | FREE?</a>
+  <a class="navbar-brand nav-title font-weight-bold" [routerLink]="['/polls']" routerLinkActive="router-link-active">U
+    | FREE?</a>
 
   <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler "
     data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
@@ -10,10 +11,11 @@
     <ul class="navbar-nav mr-auto center">
       <li class="nav-item active"></li>
       <li class="nav-item">
-        <a class="nav-link" href="/polls/add" i18n>Create Poll</a>
+        <a class="nav-link" [ngClass]="{'active': path=='/polls/add'}" [routerLink]="['/polls/add']" routerLinkActive="router-link-active"
+          i18n>Create Poll</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/polls" i18n>My Polls ¡CHANGE ACTIVE!</a>
+      <li class="nav-item" [ngClass]="{'active': path=='/polls'}">
+        <a class="nav-link" [routerLink]="['/polls']" routerLinkActive="router-link-active" i18n>My Polls</a>
       </li>
       <li class="nav-item"></li>
     </ul>
@@ -26,8 +28,7 @@
         {{currentUser.name}}
       </button>
       <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" [routerLink]="['/user/edit']" routerLinkActive="router-link-active"
-          i18n>Profile</button>
+        <button class="dropdown-item" [routerLink]="['/user/edit']" routerLinkActive="router-link-active" i18n>Profile</button>
         <button (click)="logout()" class="dropdown-item" i18n>Logout</button>
       </div>
     </div>

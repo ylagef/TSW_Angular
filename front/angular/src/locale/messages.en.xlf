@@ -4,15 +4,15 @@
       <body>
          <trans-unit id="ece4e7934de82b5fa3c4b0b7fbfe79be8673c0b6" datatype="html">
             <source>Create Poll</source>
-            <target>Texthere</target>
+            <target>Create Poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/nav/nav.component.html</context>
                <context context-type="linenumber">13</context>
             </context-group>
          </trans-unit>
-         <trans-unit id="3e59733a048b58b1c9fa5ceec92bb1803ad27056" datatype="html">
-            <source>My Polls ¡CHANGE ACTIVE!</source>
-            <target>Texthere</target>
+         <trans-unit id="f6dda7f9c65d799748a4a43dc0c057bc3a1888ae" datatype="html">
+            <source>My Polls</source>
+            <target>My Polls</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/nav/nav.component.html</context>
                <context context-type="linenumber">16</context>
@@ -20,7 +20,7 @@
          </trans-unit>
          <trans-unit id="994363f08f9fbfa3b3994ff7b35c6904fdff18d8" datatype="html">
             <source>Profile</source>
-            <target>Texthere</target>
+            <target>Profile</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/nav/nav.component.html</context>
                <context context-type="linenumber">29</context>
@@ -28,7 +28,7 @@
          </trans-unit>
          <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
             <source>Logout</source>
-            <target>Texthere</target>
+            <target>Logout</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/nav/nav.component.html</context>
                <context context-type="linenumber">30</context>
@@ -36,7 +36,7 @@
          </trans-unit>
          <trans-unit id="75f862b5ac256a579c9c0ad3d81917fa94aebc73" datatype="html">
             <source>Log you in!</source>
-            <target>Texthere</target>
+            <target>Log you in!</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">7</context>
@@ -44,7 +44,7 @@
          </trans-unit>
          <trans-unit id="3a51e2fbae18ddc75c7224c836e6e029250f5d36" datatype="html">
             <source>We just need two things</source>
-            <target>Texthere</target>
+            <target>We just need two things</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">10</context>
@@ -52,7 +52,7 @@
          </trans-unit>
          <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
             <source>Username</source>
-            <target>Texthere</target>
+            <target>Username</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">25</context>
@@ -64,7 +64,7 @@
          </trans-unit>
          <trans-unit id="3743fe4867d1f675b05564549883ae26348e1a14" datatype="html">
             <source>This field is required.</source>
-            <target>Texthere</target>
+            <target>This field is required.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">28</context>
@@ -80,7 +80,7 @@
          </trans-unit>
          <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
             <source>Password</source>
-            <target>Texthere</target>
+            <target>Password</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">41</context>
@@ -92,7 +92,7 @@
          </trans-unit>
          <trans-unit id="3b9055b6ab033cf152b37c1720251d82f650c250" datatype="html">
             <source>- Fields are mandatory -</source>
-            <target>Texthere</target>
+            <target>- Fields are mandatory -</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">49</context>
@@ -100,7 +100,7 @@
          </trans-unit>
          <trans-unit id="b3230ec97650f404c4f276eb0c9d872027fc8f75" datatype="html">
             <source>Sign up</source>
-            <target>Texthere</target>
+            <target>Sign up</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">53</context>
@@ -108,7 +108,7 @@
          </trans-unit>
          <trans-unit id="8985c177a37c759ce96cbd0c5fbdc3e7a365345f" datatype="html">
             <source>All fields must be filled for login</source>
-            <target>Texthere</target>
+            <target>All fields must be filled for login</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/login/login.component.html</context>
                <context context-type="linenumber">62</context>
@@ -116,7 +116,7 @@
          </trans-unit>
          <trans-unit id="01be8801ff28bc386437b1ee9dbb7656aa8fb09f" datatype="html">
             <source>Language</source>
-            <target>Texthere</target>
+            <target>Language</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/language/language.component.html</context>
                <context context-type="linenumber">3</context>
@@ -124,7 +124,7 @@
          </trans-unit>
          <trans-unit id="1b2fa65763b744291e832a3c5fa0ce8641da2911" datatype="html">
             <source>Spanish</source>
-            <target>Texthere</target>
+            <target>Spanish</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/language/language.component.html</context>
                <context context-type="linenumber">7</context>
@@ -132,7 +132,7 @@
          </trans-unit>
          <trans-unit id="a0843de0a64adcc7ee6a946408b6876cd8abdcae" datatype="html">
             <source>English</source>
-            <target>Texthere</target>
+            <target>English</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/language/language.component.html</context>
                <context context-type="linenumber">8</context>
@@ -140,7 +140,7 @@
          </trans-unit>
          <trans-unit id="ae51d565bb8279d1b9f6f74d534b076d267009e5" datatype="html">
             <source>Page not found</source>
-            <target>Texthere</target>
+            <target>Page not found</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/page-not-found/page-not-found.component.html</context>
                <context context-type="linenumber">1</context>
@@ -148,7 +148,7 @@
          </trans-unit>
          <trans-unit id="a0b2763c2ae3efa325679af1d9dc51a6b60b4c89" datatype="html">
             <source>View Poll</source>
-            <target>Texthere</target>
+            <target>View Poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">3</context>
@@ -161,7 +161,7 @@
                <x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;" />
                - Location not specified -
             </source>
-            <target>Texthere</target>
+            <target>- Location not specified -</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">11</context>
@@ -169,7 +169,7 @@
          </trans-unit>
          <trans-unit id="9ed54ab3cd267009467fe7435170103aab1c5b57" datatype="html">
             <source>COPY</source>
-            <target>Texthere</target>
+            <target>COPY</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">36</context>
@@ -177,7 +177,7 @@
          </trans-unit>
          <trans-unit id="b957f2ee586bb57f6568dd2ca438fd0748257d8c" datatype="html">
             <source>Gaps</source>
-            <target>Texthere</target>
+            <target>Gaps</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">46</context>
@@ -185,7 +185,7 @@
          </trans-unit>
          <trans-unit id="71218bb1c0845af14d4500fd29403c4ac4565237" datatype="html">
             <source>Total</source>
-            <target>Texthere</target>
+            <target>Total</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">54</context>
@@ -193,7 +193,7 @@
          </trans-unit>
          <trans-unit id="b3fab48232d636e6e1555a5992c5cfa7e1231055" datatype="html">
             <source>Nobody has participated yet. Be the first!</source>
-            <target>Texthere</target>
+            <target>Nobody has participated yet. Be the first!</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">108</context>
@@ -201,7 +201,7 @@
          </trans-unit>
          <trans-unit id="99947dcbc98cf1cf3665345ee9ef500dd51d7a87" datatype="html">
             <source>Participate</source>
-            <target>Texthere</target>
+            <target>Participate</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">120</context>
@@ -209,7 +209,7 @@
          </trans-unit>
          <trans-unit id="e5ce99313bb7397560e7f99d9875c530891d413d" datatype="html">
             <source>Modify participation</source>
-            <target>Texthere</target>
+            <target>Modify participation</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">122</context>
@@ -217,7 +217,7 @@
          </trans-unit>
          <trans-unit id="cf9c99b73cbaebe9112d8a9754808d8d7fd524f5" datatype="html">
             <source>Edit poll</source>
-            <target>Texthere</target>
+            <target>Edit poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-view/poll-view.component.html</context>
                <context context-type="linenumber">127</context>
@@ -225,7 +225,7 @@
          </trans-unit>
          <trans-unit id="0cb27f8fdc25f24ca5ed43d3dcdce4a69a6d73ee" datatype="html">
             <source>My Polls</source>
-            <target>Texthere</target>
+            <target>My Polls</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-index/poll-index.component.html</context>
                <context context-type="linenumber">4</context>
@@ -233,7 +233,7 @@
          </trans-unit>
          <trans-unit id="f01e061205db819633c5f934989d5299918b8e55" datatype="html">
             <source>Polls created by me</source>
-            <target>Texthere</target>
+            <target>Polls created by me</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-index/poll-index.component.html</context>
                <context context-type="linenumber">14</context>
@@ -241,7 +241,7 @@
          </trans-unit>
          <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
             <source>View</source>
-            <target>Texthere</target>
+            <target>View</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-index/poll-index.component.html</context>
                <context context-type="linenumber">31</context>
@@ -253,7 +253,7 @@
          </trans-unit>
          <trans-unit id="6c01d1e916e328794c9499bc3658114ff7987aa5" datatype="html">
             <source>Polls in which I participate</source>
-            <target>Texthere</target>
+            <target>Polls in which I participate</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-index/poll-index.component.html</context>
                <context context-type="linenumber">44</context>
@@ -261,7 +261,7 @@
          </trans-unit>
          <trans-unit id="bbbeaa8e03874420fa152bc4dcb2f710740acabf" datatype="html">
             <source>Sign up!</source>
-            <target>Texthere</target>
+            <target>Sign up!</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">5</context>
@@ -269,7 +269,7 @@
          </trans-unit>
          <trans-unit id="bc54359ec15e7aa68588d0abe824a542927bd1dd" datatype="html">
             <source>Tell me your data</source>
-            <target>Texthere</target>
+            <target>Tell me your data</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">8</context>
@@ -277,7 +277,7 @@
          </trans-unit>
          <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
             <source>Email</source>
-            <target>Texthere</target>
+            <target>Email</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">23</context>
@@ -285,7 +285,7 @@
          </trans-unit>
          <trans-unit id="7ff698f15ce3ad70ea1b432fdf1a35edc9b2d08f" datatype="html">
             <source>Must be a@b.com format and is required.</source>
-            <target>Texthere</target>
+            <target>Must be a@b.com format and is required.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">26</context>
@@ -293,7 +293,7 @@
          </trans-unit>
          <trans-unit id="f210bd642507157df12f7c5207812e67cc928776" datatype="html">
             <source>This field is required. Size &gt; 4.</source>
-            <target>Texthere</target>
+            <target>This field is required. Size &gt; 4.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">41</context>
@@ -301,7 +301,7 @@
          </trans-unit>
          <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
             <source>Name</source>
-            <target>Texthere</target>
+            <target>Name</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">51</context>
@@ -309,7 +309,7 @@
          </trans-unit>
          <trans-unit id="7cbdabcece469fab89cfa687ab152bca18b97498" datatype="html">
             <source>This field is required.</source>
-            <target>Texthere</target>
+            <target>This field is required.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">54</context>
@@ -321,7 +321,7 @@
          </trans-unit>
          <trans-unit id="48a6b4d8e80ce2e9c18a1e29afa19c7154657904" datatype="html">
             <source>This field is required. Size &gt; 5.</source>
-            <target>Texthere</target>
+            <target>This field is required. Size &gt; 5.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">67</context>
@@ -329,7 +329,7 @@
          </trans-unit>
          <trans-unit id="d78d6fc5e90c093605d4e4f166bf074cdef1acc8" datatype="html">
             <source>Repeat password</source>
-            <target>Texthere</target>
+            <target>Repeat password</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">77</context>
@@ -337,7 +337,7 @@
          </trans-unit>
          <trans-unit id="3650536c82ab6c48d27118ae317a195d0926ee50" datatype="html">
             <source>Password doesn't match.</source>
-            <target>Texthere</target>
+            <target>Password doesn't match.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">85</context>
@@ -345,7 +345,7 @@
          </trans-unit>
          <trans-unit id="bdca963a149a6f2c95fecc57cbcdf0b390a64449" datatype="html">
             <source>Return to login</source>
-            <target>Texthere</target>
+            <target>Return to login</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">88</context>
@@ -353,7 +353,7 @@
          </trans-unit>
          <trans-unit id="c40c132843f349c3aa49730405de1d0ca733aef6" datatype="html">
             <source>Sign up</source>
-            <target>Texthere</target>
+            <target>Sign up</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">94</context>
@@ -361,7 +361,7 @@
          </trans-unit>
          <trans-unit id="b230f91b36e953902fe41feeb8e18d683045feaa" datatype="html">
             <source>All fields must be filled for register</source>
-            <target>Texthere</target>
+            <target>All fields must be filled for register</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/registration/registration.component.html</context>
                <context context-type="linenumber">94</context>
@@ -369,7 +369,7 @@
          </trans-unit>
          <trans-unit id="7daf2cd6a569e34092b9beafc9e104a24d44186a" datatype="html">
             <source>Create your poll</source>
-            <target>Texthere</target>
+            <target>Create your poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">4</context>
@@ -377,7 +377,7 @@
          </trans-unit>
          <trans-unit id="02b4cc1f2d51af8ae454658f9d83e1e569204545" datatype="html">
             <source>First, we need some things...</source>
-            <target>Texthere</target>
+            <target>First, we need some things...</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">7</context>
@@ -385,7 +385,7 @@
          </trans-unit>
          <trans-unit id="8fbeaecdea8dfed0c67db23925ca8cd7ad7dbba0" datatype="html">
             <source>Why?</source>
-            <target>Texthere</target>
+            <target>Why?</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">14</context>
@@ -393,7 +393,7 @@
          </trans-unit>
          <trans-unit id="4ba250869daa372b54d24fafc0ea934769ee4076" datatype="html">
             <source>Reason</source>
-            <target>Texthere</target>
+            <target>Reason</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">25</context>
@@ -401,7 +401,7 @@
          </trans-unit>
          <trans-unit id="6456bff4152d7a1b2675f2f96d7f1e75855b5850" datatype="html">
             <source>Where?</source>
-            <target>Texthere</target>
+            <target>Where?</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">33</context>
@@ -409,7 +409,7 @@
          </trans-unit>
          <trans-unit id="ed31c09fd77c36238c13d83635f3fe5294c733d2" datatype="html">
             <source>Location</source>
-            <target>Texthere</target>
+            <target>Location</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">44</context>
@@ -417,7 +417,7 @@
          </trans-unit>
          <trans-unit id="1e8a55981b4c4c5f66e8bf38be1c8286bf2f23dc" datatype="html">
             <source>- Reason is mandatory -</source>
-            <target>Texthere</target>
+            <target>- Reason is mandatory -</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">49</context>
@@ -425,7 +425,7 @@
          </trans-unit>
          <trans-unit id="ac10a3d9b59575640797c1a8e6aea642cf5d5e77" datatype="html">
             <source>Continue</source>
-            <target>Texthere</target>
+            <target>Continue</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-add/poll-add.component.html</context>
                <context context-type="linenumber">55</context>
@@ -433,7 +433,7 @@
          </trans-unit>
          <trans-unit id="ffe7cec1d220f76745a02f46648d22f81d3afa86" datatype="html">
             <source>Participate on poll</source>
-            <target>Texthere</target>
+            <target>Participate on poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">5</context>
@@ -446,7 +446,7 @@
                <x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;" />
                - Location not specified -
             </source>
-            <target>Texthere</target>
+            <target>- Location not specified -</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">20</context>
@@ -458,7 +458,7 @@
          </trans-unit>
          <trans-unit id="3b40aa52f762680d0e78d3f461067ef8e62bb174" datatype="html">
             <source>COPY</source>
-            <target>Texthere</target>
+            <target>COPY</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">38</context>
@@ -474,7 +474,7 @@
          </trans-unit>
          <trans-unit id="40dd55dd30571ed9aefc52af6be64b00d4a117e3" datatype="html">
             <source>Gaps</source>
-            <target>Texthere</target>
+            <target>Gaps</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">49</context>
@@ -482,35 +482,11 @@
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-edit/assignation-edit.component.html</context>
                <context context-type="linenumber">49</context>
-            </context-group>
-         </trans-unit>
-         <trans-unit id="fbab1c93b82227cd8f6ddb783ab628e230f12432" datatype="html">
-            <source>
-               <x id="INTERPOLATION" equiv-text="{{user.name}}" />
-            </source>
-            <target>Texthere</target>
-            <context-group purpose="location">
-               <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
-               <context context-type="linenumber">52</context>
-            </context-group>
-            <context-group purpose="location">
-               <context context-type="sourcefile">app/components/assignation/assignation-edit/assignation-edit.component.html</context>
-               <context context-type="linenumber">52</context>
-            </context-group>
-         </trans-unit>
-         <trans-unit id="a2bf722d2771a9c9f23f1c23f099a7c58c63041b" datatype="html">
-            <source>
-               <x id="INTERPOLATION" equiv-text="{{currentUser.name}}" />
-            </source>
-            <target>Texthere</target>
-            <context-group purpose="location">
-               <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
-               <context context-type="linenumber">55</context>
             </context-group>
          </trans-unit>
          <trans-unit id="686103891d1fb551fe154ffc2e91f814b2d7d712" datatype="html">
             <source>There are not gaps on this poll.</source>
-            <target>Texthere</target>
+            <target>There are not gaps on this poll.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">106</context>
@@ -522,7 +498,7 @@
          </trans-unit>
          <trans-unit id="2c5ff8fa9c9aaec93f97e37c9a0edcd797194573" datatype="html">
             <source>Send</source>
-            <target>Texthere</target>
+            <target>Send</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">118</context>
@@ -534,7 +510,7 @@
          </trans-unit>
          <trans-unit id="cda31dbd724cf5f4fa7a4274d9120651490c8a8c" datatype="html">
             <source>Back</source>
-            <target>Texthere</target>
+            <target>Back</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-add/assignation-add.component.html</context>
                <context context-type="linenumber">120</context>
@@ -546,7 +522,7 @@
          </trans-unit>
          <trans-unit id="2e124bd71f108cf276ce302647af5df9875f90c0" datatype="html">
             <source>Edit participation on poll</source>
-            <target>Texthere</target>
+            <target>Edit participation on poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/assignation/assignation-edit/assignation-edit.component.html</context>
                <context context-type="linenumber">5</context>
@@ -554,7 +530,7 @@
          </trans-unit>
          <trans-unit id="8d5f7235c51758ea11be29d951d2653961dda7b3" datatype="html">
             <source>Create poll</source>
-            <target>Texthere</target>
+            <target>Create poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">4</context>
@@ -562,7 +538,7 @@
          </trans-unit>
          <trans-unit id="3e0ea6264e3d733e2a22731c4636f5f6baaf27f6" datatype="html">
             <source>Now, tell us the possible dates</source>
-            <target>Texthere</target>
+            <target>Now, tell us the possible dates</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">8</context>
@@ -570,7 +546,7 @@
          </trans-unit>
          <trans-unit id="791a03cfa30b2266debbafd02ecdc04250e7e62c" datatype="html">
             <source>Start date &amp; time</source>
-            <target>Texthere</target>
+            <target>Start date &amp; time</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">16</context>
@@ -582,7 +558,7 @@
          </trans-unit>
          <trans-unit id="14f5d739a1e5b9f92ba79c0e9125de3231627126" datatype="html">
             <source>End date &amp; time</source>
-            <target>Texthere</target>
+            <target>End date &amp; time</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">18</context>
@@ -594,7 +570,7 @@
          </trans-unit>
          <trans-unit id="7c0a71d337783e527c1c8e91e433b301c5b1d8a8" datatype="html">
             <source>Start Time</source>
-            <target>Texthere</target>
+            <target>Start</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">26</context>
@@ -606,7 +582,7 @@
          </trans-unit>
          <trans-unit id="e1f10d9bf4d3c37490cd5bf82007444ae7af46b1" datatype="html">
             <source>End Time</source>
-            <target>Texthere</target>
+            <target>End</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">38</context>
@@ -618,7 +594,7 @@
          </trans-unit>
          <trans-unit id="7f04d8ffeb343d1c437c7397bab438723dc2b08b" datatype="html">
             <source>Add other option</source>
-            <target>Texthere</target>
+            <target>Add other option</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">55</context>
@@ -630,7 +606,7 @@
          </trans-unit>
          <trans-unit id="e0499c49fad122dbbaa6989e3d544c101266f049" datatype="html">
             <source>All fields are required.</source>
-            <target>Texthere</target>
+            <target>All fields are required.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">60</context>
@@ -638,7 +614,7 @@
          </trans-unit>
          <trans-unit id="b68ce78c3f2c548391d812c248217f8a212491e1" datatype="html">
             <source>End</source>
-            <target>Texthere</target>
+            <target>End</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">67</context>
@@ -650,7 +626,7 @@
          </trans-unit>
          <trans-unit id="958a9993b4c9e10ff18ad54a8cbf25ca106fcb41" datatype="html">
             <source>All fields must be filled</source>
-            <target>Texthere</target>
+            <target>All fields must be filled</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/gap/gap-add/gap-add.component.html</context>
                <context context-type="linenumber">67</context>
@@ -658,7 +634,7 @@
          </trans-unit>
          <trans-unit id="4696d28281d6027281b1ba89fba7925455bbae95" datatype="html">
             <source>Edit poll</source>
-            <target>Texthere</target>
+            <target>Edit poll</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-edit/poll-edit.component.html</context>
                <context context-type="linenumber">4</context>
@@ -666,7 +642,7 @@
          </trans-unit>
          <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
             <source>Title</source>
-            <target>Texthere</target>
+            <target>Title</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-edit/poll-edit.component.html</context>
                <context context-type="linenumber">10</context>
@@ -674,7 +650,7 @@
          </trans-unit>
          <trans-unit id="8fa4b5c061fe0bbed8595350cd49ab292a00acf6" datatype="html">
             <source>This field is required.</source>
-            <target>Texthere</target>
+            <target>This field is required.</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-edit/poll-edit.component.html</context>
                <context context-type="linenumber">11</context>
@@ -682,7 +658,7 @@
          </trans-unit>
          <trans-unit id="81d400b008d0f6bd04b506531fd2bd82c6103c78" datatype="html">
             <source>Place</source>
-            <target>Texthere</target>
+            <target>Place</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-edit/poll-edit.component.html</context>
                <context context-type="linenumber">21</context>
@@ -690,12 +666,42 @@
          </trans-unit>
          <trans-unit id="59fe890d91d935951e017dc0a998940005a7af6c" datatype="html">
             <source>Title field must be filled</source>
-            <target>Texthere</target>
+            <target>Title field must be filled</target>
             <context-group purpose="location">
                <context context-type="sourcefile">app/components/poll/poll-edit/poll-edit.component.html</context>
                <context context-type="linenumber">90</context>
             </context-group>
          </trans-unit>
+         <trans-unit id="76be822dc84de9592d06716ef638cc6dee30a4c2" datatype="html">
+            <source>
+               Modify your data
+            </source>
+            <target>
+               Modify your data
+            </target>
+            <context-group purpose="location">
+               <context context-type="sourcefile">app/components/user/user-edit/user-edit.component.html</context>
+               <context context-type="linenumber">9</context>
+            </context-group>
+         </trans-unit>
+         <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>
+         Edit
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user-edit/user-edit.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="dd0d8e292fb0289f66ba39e6690056b5d06fa063" datatype="html">
+        <source>All fields must be filled for edit</source>
+        <target>All fields must be filled for edit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user-edit/user-edit.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
       </body>
    </file>
 </xliff>
