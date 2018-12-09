@@ -15,6 +15,9 @@
  - NodeJS
  - ExpressJS
 
+### Database
+ - Mysql
+
 
 ## Project Structure
 
@@ -25,11 +28,11 @@ Coded with Angular 7 + Bootstrap 4 frameworks.
 
 **Location:**
 
-front/angular/
+front/
 
 **Start command:**
 
-`$ cd front/angular`
+`$ cd front/`
 
 `$ npm install`
 
@@ -47,10 +50,18 @@ back/api-rest/
 
 **Start command:**
 
-`$ cd back/api-rest`
+`$ cd back/rest`
 
 `$ npm install`
 
 `$ npm start`
 
 Will serve API REST at *localhost:3000/*
+
+### Database
+
+Coded in mysql.
+
+**Location:**
+
+database.sql

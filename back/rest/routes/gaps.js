@@ -83,7 +83,7 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-// GET gap by id
+// GET gap of poll by id
 router.get('/poll/:id', function (req, res, next) {
   // console.log(req["headers"]["authorization"]);
 
