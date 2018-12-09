@@ -107,10 +107,7 @@
         <hr class="my-3">
 
         <div class="col-sm-10 accept-button">
-          <button type="submit" class="btn btn-outline-secondary" *ngIf="gapsMap.size>0 && assignationsForEdit.size>0"
-            i18n>Send</button>
-          <button [routerLink]="['/polls/view/'+poll.url]" routerLinkActive="router-link-active" class="btn btn-outline-secondary"
-            *ngIf="gapsMap.size==0 || assignationsForEdit.size==0" i18n>Back</button>
+          <button type="submit" class="btn btn-outline-secondary" i18n>Send</button>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2018 at 01:11 PM
+-- Generation Time: Dec 09, 2018 at 02:01 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `areufree`
 --
-DROP DATABASE IF EXISTS `areufree`;
 CREATE DATABASE IF NOT EXISTS `areufree` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `areufree`;
 
@@ -39,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `assignations` (
   PRIMARY KEY (`assignation_id`),
   KEY `gap_id` (`gap_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `assignations`
@@ -47,25 +46,30 @@ CREATE TABLE IF NOT EXISTS `assignations` (
 
 INSERT INTO `assignations` (`assignation_id`, `user_id`, `gap_id`) VALUES
 (1, 1, 1),
-(2, 1, 14),
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 6),
-(6, 1, 8),
-(7, 1, 10),
-(8, 1, 11),
-(9, 2, 1),
-(10, 2, 3),
-(11, 2, 5),
-(12, 2, 7),
-(13, 3, 1),
-(14, 3, 2),
-(15, 3, 4),
-(16, 3, 7),
-(17, 4, 2),
-(18, 4, 3),
-(19, 5, 2),
-(20, 5, 3);
+(2, 1, 3),
+(3, 1, 6),
+(4, 1, 8),
+(5, 1, 10),
+(6, 1, 11),
+(7, 2, 1),
+(8, 2, 3),
+(9, 2, 5),
+(10, 2, 7),
+(11, 3, 1),
+(12, 3, 2),
+(13, 3, 4),
+(14, 3, 7),
+(15, 4, 2),
+(16, 4, 3),
+(17, 5, 2),
+(18, 5, 3),
+(19, 5, 1),
+(20, 5, 4),
+(21, 5, 6),
+(22, 5, 7),
+(23, 5, 8),
+(24, 5, 10),
+(25, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -81,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `gaps` (
   `end_date` datetime NOT NULL,
   PRIMARY KEY (`gap_id`),
   KEY `poll_id` (`poll_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gaps`
@@ -101,7 +105,8 @@ INSERT INTO `gaps` (`gap_id`, `poll_id`, `start_date`, `end_date`) VALUES
 (11, 5, '2018-11-10 20:00:00', '2018-11-10 22:00:00'),
 (12, 5, '2018-11-11 22:00:00', '2018-11-11 23:00:00'),
 (13, 6, '2018-11-20 18:00:00', '2018-11-20 22:00:00'),
-(14, 6, '2018-11-22 10:00:00', '2018-11-22 14:00:00');
+(14, 6, '2018-11-22 10:00:00', '2018-11-22 14:00:00'),
+(15, 1, '2018-11-30 21:00:00', '2018-11-30 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -119,19 +124,19 @@ CREATE TABLE IF NOT EXISTS `polls` (
   PRIMARY KEY (`poll_id`),
   UNIQUE KEY `url` (`url`),
   KEY `author` (`author`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `polls`
 --
 
 INSERT INTO `polls` (`poll_id`, `title`, `place`, `author`, `url`) VALUES
-(1, 'Cena de Navidad', 'Graduado', 1, '75A75A50327C82B073970AEC7CA4A891'),
+(1, 'Cena Navidad', 'Graduado', 1, '75A75A50327C82B073970AEC7CA4A891'),
 (2, 'Examen teórico TSW', 'ESEI', 2, 'DCD14BB11DD2323815D3FCA3C3E23993'),
 (3, 'Solteros vs Casados', NULL, 1, 'F18773A6C56819253AD4723F79D70AE7'),
 (4, 'Foro Empleo', 'Universidad de Vigo', 3, '69CC56944036C23D1DF5E5BFD7C885F9'),
-(5, 'Cumpleaños Arturo', NULL, 4, 'F783FD3A37BDA054972B73608E477EAA'),
-(6, 'Final Liga Universitaria', 'Gimnasio Uvigo', 3, '85D958AC151EF0695FDAF79CB013A2D5');
+(5, 'Cumpleaños Arturo', NULL, 5, 'F783FD3A37BDA054972B73608E477EAA'),
+(6, 'Final Liga Universitaria', 'Gimnasio Uvigo', 5, '85D958AC151EF0695FDAF79CB013A2D5');
 
 -- --------------------------------------------------------
 
@@ -147,18 +152,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `name`, `email`, `password`) VALUES
-(1, 'ylagef', 'Yeray Lage', 'ylagef@gmail.com', '$2y$10$IREYLr/UASL47YBjmZjOfubY9EF5aX16NZTg.eLbfw4YepP7E1Ure'),
-(2, 'ivanf', 'Iván Fernández', 'ivanf@gmail.com', '$2y$10$uwhCOnikRus.4DP7uGzc3OHi884j0wmxybvfKSWFn7SmZ4fxSsWqK'),
-(3, 'josemim', 'Josemi Morán', 'josemim@gmail.com', '$2y$10$mp7dLV62IVQsBkJ3DyxlJOrtq0jr9LYyVmwVqGhJCQZkAC4Ez6L4W'),
-(4, 'arturog', 'Arturo González', 'arturog@gmail.com', '$2y$10$GwBFRSN5oyy0pz/8rDnVa.SGJP9yHFTnAcrspqaF4SjuDP02yKP/O'),
-(5, 'root', 'Ruth', 'root@root.com', '$2y$10$xtCMMIHQAS7Zm7qe8CejkuSNbFQ4WVr2SX4ys2ulUBMu9AKY08F3S');
+(1, 'ylagef', 'Yeray Lage', 'ylagef@gmail.com', 'f327c5e0609ebf0798d1708b8f4d3010'),
+(2, 'ivanf', 'Iván Fernández', 'ivanf@gmail.com', 'f8b77a894a85a75e7ea2462954d00d3a'),
+(3, 'josemim', 'Josemi Morán', 'josemim@gmail.com', 'bb9c084de86995bb11ed1723a2dc50e0'),
+(4, 'arturog', 'Arturo González', 'arturog@gmail.com', '935237db0e4b12af6791da4ff4ce9f71'),
+(5, 'root', 'Admin', 'root@root.com', '63a9f0ea7bb98050796b649e85481845');
 
 --
 -- Constraints for dumped tables

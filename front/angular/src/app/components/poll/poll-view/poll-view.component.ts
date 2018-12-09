@@ -51,6 +51,12 @@ export class PollViewComponent implements OnInit {
 
         this.pollService.getByUrl(this.url).subscribe(
           (data) => {
+
+            if (data["response"].length == 0) {
+              this.toastr.error('This poll does not exists.', 'Error');
+              this.router.navigate(["/polls"]);
+            }
+
             this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title,
               data["response"][0].place, data["response"][0].author, data["response"][0].url);
 

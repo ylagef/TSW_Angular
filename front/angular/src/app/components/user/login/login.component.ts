@@ -14,14 +14,28 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  loading = false;
-  submitted = false;
-  error = '';
-  returnUrl = "";
+  loading: boolean = false;
+  submitted: boolean = false;
+  error: string = '';
+  returnUrl: string;
 
   constructor(private router: Router, private toastr: ToastrService, private route: ActivatedRoute,
     private authenticationService: AuthenticationService) {
     this.authenticationService.logout();
+
+    this.route.queryParams.subscribe(
+      data => {
+        if (data["returnUrl"] == undefined && this.returnUrl == undefined) {
+          this.returnUrl = '/polls';
+        } else if (data["returnUrl"] != undefined) {
+          this.toastr.warning('You must be logged for this action.', 'Authentication', {
+            positionClass: 'toast-top-center'
+          });
+          
+          this.returnUrl = data["returnUrl"];
+        }
+      }
+    );
   }
 
   ngOnInit() {
@@ -36,14 +50,6 @@ export class LoginComponent implements OnInit {
         ])
     }
     );
-
-    if (this.route.snapshot.queryParams['returnUrl'] != undefined) {
-      this.toastr.warning('You must be logged for this action.', 'Authentication', {
-        positionClass: 'toast-top-center'
-      });
-    }
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/polls';
   }
 
   onSubmit() {

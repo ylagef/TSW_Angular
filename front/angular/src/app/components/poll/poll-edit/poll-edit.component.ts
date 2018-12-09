@@ -51,28 +51,25 @@ export class PollEditComponent {
 
         this.pollService.getByUrl(this.url).subscribe(
           (data) => {
+
+            if (data["response"].length == 0) {
+              this.toastr.error('This poll does not exists.', 'Error');
+              this.router.navigate(["/polls"]);
+            }
+
             this.poll = new Poll(data["response"][0].poll_id, data["response"][0].title,
               data["response"][0].place, data["response"][0].author, data["response"][0].url);
 
             this.pollEditForm.controls["title"].setValue(this.poll["title"]);
             this.pollEditForm.controls["place"].setValue(this.poll["place"]);
 
-            // console.log("Poll constructor:");
-            // console.log(this.poll);
-            // console.log("Current user:");
-            // console.log(this.currentUser);
-
             if (+this.poll["author"] != this.currentUser["user_id"]) {
               this.toastr.warning('You are not authorized for this site!');
               this.router.navigate(["/polls"]);
             }
 
-            // console.log("Poll:");
-            // console.log(this.poll);
-
             this.gapsService.getGapsOfPoll(this.poll["poll_id"]).subscribe(
               (data) => {
-                // this.gaps = data["response"];
 
                 data["response"].forEach(gap => {
                   const g: Gap = new Gap(gap["gap_id"], gap["poll_id"], new Date(gap["start_date"]), new Date(gap["end_date"]));
@@ -82,17 +79,10 @@ export class PollEditComponent {
 
                   // Add form controls for gaps
                   this.pollEditForm.addControl('gap-' + gap["gap_id"], new FormControl(''));
-                  // this.pollEditForm.addControl('end' + gap["gap_id"], new FormControl(''));
-
-                  // console.warn(gap);
-                  // console.log(this.pollEditForm);
 
                   this.lastIndex++;
                 });
 
-
-                // console.log("Gaps: " + this.lastIndex);
-                // console.log(this.gaps);
               },
               (error) => this.toastrError(error)
             );
@@ -108,37 +98,22 @@ export class PollEditComponent {
     this.gaps.push(new Gap(++this.lastIndex, this.poll["poll_id"]));
     this.newGapsId.push(this.lastIndex);
 
-    console.warn("Gap added!");
-    console.log("Gaps:");
-    console.log(this.gaps);
-
     this.pollEditForm.addControl('gap-' + this.lastIndex,
       new FormControl('',
         [
           Validators.required
         ])
     );
-
-    console.log(this.pollEditForm);
   }
 
   deleteRow(gap: Gap) {
     const index = this.gaps.indexOf(gap);
     const indexNew = this.newGapsId.indexOf(gap["gap_id"]);
 
-    console.log("Before delete..." + index)
-    console.log(this.pollEditForm);
-
     this.pollEditForm.removeControl('gap-' + gap["gap_id"]);
 
     this.gaps.splice(index, 1);
     this.newGapsId.splice(indexNew, 1);
-
-    console.warn("Gap deleted!");
-    console.log("Gaps:");
-    console.log(this.gaps);
-
-    console.log(this.pollEditForm);
   }
 
 
@@ -159,14 +134,6 @@ export class PollEditComponent {
   }
 
   onSubmit() {
-    console.warn("Submitted");
-    console.log("Form:");
-    console.log(this.pollEditForm);
-    console.log("Gaps:");
-    console.log(this.gaps);
-    console.log("New gaps:");
-    console.log(this.newGapsId);
-
     // Set the title and place to new ones on Poll object
     this.poll["title"] = this.pollEditForm.value["title"];
     this.poll["place"] = this.pollEditForm.value["place"];
@@ -181,20 +148,17 @@ export class PollEditComponent {
           data => {
             // Gaps that are actually on db
             const gapsOnDb = data["response"];
-            console.log("On db:")
-            console.log(gapsOnDb);
+            
             gapsOnDb.forEach(element => {
               idsOnDb.push(element["gap_id"]);
               if (this.pollEditForm.value["gap-" + element["gap_id"]] != undefined) {
                 // On db and on form -> Edit on db
-                console.log("Has " + element["gap_id"]);
                 this.gapsService.editGap(element).subscribe(
                   () => { },
                   error => this.toastrError(error)
                 );
               } else {
                 // On db and NOT on form -> Delete from db
-                console.log("Does not has " + element["gap_id"]);
                 this.gapsService.deleteGap(element["gap_id"]).subscribe(
                   () => { },
                   error => this.toastrError(error)
@@ -211,8 +175,6 @@ export class PollEditComponent {
             });
 
             // If gaps are in form and not on db -> Add gaps to db
-            console.log(addGaps);
-            console.log(addGaps.length);
             if (addGaps.length > 0) {
               this.gapsService.addGaps(addGaps).subscribe(
                 () => {
@@ -233,7 +195,6 @@ export class PollEditComponent {
   }
 
   toastrError(error) {
-    console.error(error);
     if (error.error.status == 401) {
       this.toastr.warning('You are not authorized for this site!', 'Authorization');
       this.router.navigate(["/login"]);
