@@ -165,7 +165,7 @@ router.post('/register', function (req, res) {
                         //If there is error, we send the error in the error section with 500 status
                       } else {
                         res.json({
-                          "status": 200,
+                          "status": 201,
                           "error": null,
                           "response": results
                         });
@@ -240,7 +240,7 @@ router.put('/', function (req, res) {
       });
     } else {
       res.locals.connection.query('UPDATE users SET username="' + req.body["username"] +
-        '", name="' + req.body["name"] + '", email="' + req.body["email"] + '" WHERE user_id = ' + req.body["user_id"],
+        '", name="' + req.body["name"] + '", email="' + req.body["email"] + '" WHERE user_id= "' + verifiedJwt["body"]["user_id"] + '"',
         function (error, results) {
           if (error) {
             res.status(500);

@@ -16,8 +16,12 @@ export class PollService {
     })
   }
 
-  getAll() {
-    return this.http.get<Poll[]>(this.url, { headers: this.headers });
+  getAllAuth() {
+    return this.http.get<Poll[]>(this.url + "author", { headers: this.headers });
+  }
+
+  getAllParticipating() {
+    return this.http.get<Poll[]>(this.url + "participations", { headers: this.headers });
   }
 
   getByUrl(poll_url) {
@@ -34,4 +38,7 @@ export class PollService {
     return this.http.put<Poll>(this.url, poll, { headers: this.headers });
   }
 
+  delete(pollUrl: string) {
+    return this.http.delete<Poll>(this.url + pollUrl, { headers: this.headers });
+  }
 }

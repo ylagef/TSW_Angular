@@ -16,8 +16,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody *ngFor="let poll of polls">
-              <tr *ngIf="poll.author == currentUser.user_id">
+            <tbody *ngFor="let poll of authorPolls">
+              <tr>
                 <th scope="row" class="font-weight-normal">
                   <p>
                     {{poll.title}}
@@ -46,8 +46,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody *ngFor="let poll of polls">
-              <tr *ngIf="participatedPollsId.indexOf(poll.poll_id)>-1">
+            <tbody *ngFor="let poll of participatedPolls">
+              <tr>
                 <th scope="row" class="font-weight-normal">
                   <p>
                     {{poll.title}}

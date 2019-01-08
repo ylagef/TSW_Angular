@@ -13,34 +13,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./poll-index.component.scss']
 })
 export class PollIndexComponent implements OnInit {
-  polls: Poll[];
+  authorPolls: Poll[];
+  participatedPolls: Poll[];
   currentUser: User;
   gapsOfPoll: Map<number, number>;
-   participatedPollsId: number[];
+  participatedPollsId: number[];
 
   constructor(private pollService: PollService, private gapService: GapService, private assignationService: AssignationService,
     private toastr: ToastrService, private router: Router) {
     this.gapsOfPoll = new Map();
     this.participatedPollsId = [];
-    this.polls = [];
+    this.authorPolls = [];
+    this.participatedPolls = [];
   }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-    this.pollService.getAll().subscribe(
+    this.pollService.getAllParticipating().subscribe(
+      data => this.participatedPolls = data["response"]
+    );
+
+    this.pollService.getAllAuth().subscribe(
       data => {
-        this.polls = data["response"];
-        this.polls.forEach(poll => {
-          this.gapService.getGapsOfPoll(poll["poll_id"]).subscribe(
-            data => {
-              data["response"].forEach(element => {
-                this.gapsOfPoll.set(element["gap_id"], poll["poll_id"]);
-              });
-            },
-            error => this.toastrError(error)
-          );
-        });
+        this.authorPolls = data["response"];
+        // this.polls.forEach(poll => {
+        //   this.gapService.getGapsOfPoll(poll["poll_id"]).subscribe(
+        //     data => {
+        //       data["response"].forEach(element => {
+        //         this.gapsOfPoll.set(element["gap_id"], poll["poll_id"]);
+        //       });
+        //     },
+        //     error => this.toastrError(error)
+        //   );
+        // });
 
         this.assignationService.getGapsOfUser(this.currentUser["user_id"]).subscribe(
           data => {

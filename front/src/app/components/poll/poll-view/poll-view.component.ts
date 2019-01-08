@@ -162,4 +162,16 @@ export class PollViewComponent implements OnInit {
       this.toastr.error('Query error, please try again later.', 'Error');
     }
   }
+
+  deletePoll() {
+    this.pollService.delete(this.poll["url"]).subscribe(
+      () => {
+        this.toastr.success("Poll deleted successfull.");
+        this.router.navigate(["/polls"]);
+      },
+      () => {
+        this.toastr.error('Poll delete error, please try again later.', 'Error');
+      }
+    );
+  }
 }
