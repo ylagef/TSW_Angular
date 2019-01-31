@@ -1,11 +1,6 @@
 
 # TSW Project 2018-19
 
-## Students:
-
-### Yeray Lage Freitas
-### Iván Fernández Sánchez
-
 ## Used frameworks
 
 ### Frontend SPA
